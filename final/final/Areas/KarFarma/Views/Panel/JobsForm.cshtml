@@ -1,0 +1,60 @@
+﻿
+@{
+    ViewBag.Title = "JobsFrom";
+    Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+}
+
+<div class="form-widget ls-widget">
+    <div class="widget-title"><h4><span class="icon flaticon-user"></span> Job Details</h4></div>
+    <div class="widget-content">
+
+        <!-- Comment Form -->
+        <div class="default-form">
+            <!--Comment Form-->
+            <form>
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" name="companyname" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label>Region</label>
+                    <input type="text" name="regionname" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" name="city" placeholder="" required>
+                </div>
+
+                <div class="form-group">
+                    <label>Benefits</label>
+                    <input type="text" name="benefits" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label>Working Days</label>
+                    <input type="text" name="workingdays" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label>Gender</label>
+                    <input type="text" name="Gender" placeholder="" required>
+                </div>
+                <div class="form-group">
+                    <label>Request Date</label>
+                    <input type="text" name="requestdate" placeholder="" required>
+                </div>
+                <!-- Textarea -->
+                <div class="form-group chosen-search">
+                    <label>Text Form</label>
+                    <textarea placeholder="Message" name="textform"></textarea>
+                </div>
+                <div class="form-group">
+                    <button class="theme-btn btn-style-two" type="submit" name="submit-form">Save Changes</button>
+                </div>
+            </form>
+        </div>
+        <!--End Comment Form -->
+    </div>
+</div>
+
+
+
+

@@ -1,0 +1,62 @@
+﻿
+@{
+    ViewBag.Title = "RecievedResume";
+    Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+}
+<h4 class="title">Resumes</h4>
+<div class="table-outer">
+    <table class="default-table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>Item</td>
+                <td>Item</td>
+                <td>Item</td>
+                <td>
+                    <a href="javascript:;" data-id="" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
+                        <i class="fa fa-edit"></i> view
+                    </a>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+</div>
+
+@section PageScript{
+    
+ <script>
+     $(function () {
+
+         $(".btn-editfinall").click(function () {
+             $.ajax({
+                 type: "POST",
+                 url: "/Panel/ShowResume",
+                 data: JSON.stringify({
+                     Id: $(this).attr("data-id")
+                 }),
+                 contentType: "application/json; charset=utf-8",
+                 dataType: "json",
+                 success: function (e) {
+                     
+                 },
+                 error: function () {
+                     $(".loader").hide();
+                     toastr.error('خطا در ارتباط', 'خطا!');
+                 }
+             });
+         });
+     });
+    </script>   
+    
+ }
+
+
+
+
