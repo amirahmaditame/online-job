@@ -30,23 +30,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="FormTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
-        <MappingFragment StoreEntitySet="FormTB">
-          <ScalarProperty Name="FormID" ColumnName="FormID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="Region" ColumnName="Region" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Benefits" ColumnName="Benefits" />
-          <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-          <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
-          <ScalarProperty Name="FormText" ColumnName="FormText" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="JobCategoryTB">
       <EntityTypeMapping TypeName="OnlineJobModel.JobCategoryTB">
         <MappingFragment StoreEntitySet="JobCategoryTB">
@@ -58,6 +41,8 @@
     <EntitySetMapping Name="ResumeTB">
       <EntityTypeMapping TypeName="OnlineJobModel.ResumeTB">
         <MappingFragment StoreEntitySet="ResumeTB">
+          <ScalarProperty Name="LatName" ColumnName="LatName" />
+          <ScalarProperty Name="FirstName" ColumnName="FirstName" />
           <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
           <ScalarProperty Name="Age" ColumnName="Age" />
           <ScalarProperty Name="Gender" ColumnName="Gender" />
@@ -100,12 +85,37 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
+    <EntitySetMapping Name="ResumeFormTB">
+      <EntityTypeMapping TypeName="OnlineJobModel.ResumeFormTB">
+        <MappingFragment StoreEntitySet="ResumeFormTB">
+          <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+          <ScalarProperty Name="FormID" ColumnName="FormID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="FormTB">
+      <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
+        <MappingFragment StoreEntitySet="FormTB">
+          <ScalarProperty Name="FormText" ColumnName="FormText" />
+          <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
+          <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
+          <ScalarProperty Name="Benefits" ColumnName="Benefits" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="FormID" ColumnName="FormID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
     <AssociationSetMapping Name="FormDetailTB" TypeName="OnlineJobModel.FormDetailTB" StoreEntitySet="FormDetailTB">
-      <EndProperty Name="EmployeeTB">
-        <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-      </EndProperty>
       <EndProperty Name="FormTB">
         <ScalarProperty Name="FormID" ColumnName="FormID" />
+      </EndProperty>
+      <EndProperty Name="EmployeeTB">
+        <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
       </EndProperty>
     </AssociationSetMapping>
   </EntityContainerMapping>

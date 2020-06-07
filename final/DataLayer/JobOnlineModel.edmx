@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineJobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineJobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CommentTB">
           <Key>
             <PropertyRef Name="CommetID" />
@@ -46,7 +46,6 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <PropertyRef Name="FormID" />
           </Key>
           <Property Name="FormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
           <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Region" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="150" Nullable="false" />
@@ -64,15 +63,29 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="JobCategory" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
+        <!--Errors Found During Generation:
+warning 6002: The table/view 'OnlineJob.dbo.ResumeFormTB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
+        <EntityType Name="ResumeFormTB">
+          <Key>
+            <PropertyRef Name="ResumeID" />
+            <PropertyRef Name="FormID" />
+            <PropertyRef Name="SentDate" />
+          </Key>
+          <Property Name="ResumeID" Type="int" Nullable="false" />
+          <Property Name="FormID" Type="int" Nullable="false" />
+          <Property Name="SentDate" Type="datetime" Nullable="false" />
+        </EntityType>
         <EntityType Name="ResumeTB">
           <Key>
             <PropertyRef Name="ResumeID" />
           </Key>
           <Property Name="ResumeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="Age" Type="int" />
-          <Property Name="Gender" Type="nvarchar" MaxLength="150" />
+          <Property Name="FirstName" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="LatName" Type="nvarchar" MaxLength="50" Nullable="false" />
+          <Property Name="Age" Type="int" Nullable="false" />
+          <Property Name="Gender" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="RequestDate" Type="datetime" />
-          <Property Name="EduDegree" Type="nvarchar" MaxLength="150" />
+          <Property Name="EduDegree" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="AbilityDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="EnglishAbility" Type="bit" Nullable="false" />
           <Property Name="ExtraAbility" Type="nvarchar" MaxLength="150" />
@@ -154,6 +167,30 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Association Name="FK_ResumeFormTB_FormTB">
+          <End Role="FormTB" Type="Self.FormTB" Multiplicity="1" />
+          <End Role="ResumeFormTB" Type="Self.ResumeFormTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormTB">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="ResumeFormTB">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResumeFormTB_ResumeTB">
+          <End Role="ResumeTB" Type="Self.ResumeTB" Multiplicity="1" />
+          <End Role="ResumeFormTB" Type="Self.ResumeFormTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeTB">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="ResumeFormTB">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
         <Association Name="FK_SelectedJobTB_EmployeeTB">
           <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
           <End Role="SelectedJobTB" Type="Self.SelectedJobTB" Multiplicity="*" />
@@ -230,6 +267,13 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
     [FormDetailTB].[EmployeeID] AS [EmployeeID]
     FROM [dbo].[FormDetailTB] AS [FormDetailTB]</DefiningQuery>
           </EntitySet>
+          <EntitySet Name="ResumeFormTB" EntityType="Self.ResumeFormTB" store:Type="Tables" store:Schema="dbo">
+            <DefiningQuery>SELECT 
+    [ResumeFormTB].[ResumeID] AS [ResumeID], 
+    [ResumeFormTB].[FormID] AS [FormID], 
+    [ResumeFormTB].[SentDate] AS [SentDate]
+    FROM [dbo].[ResumeFormTB] AS [ResumeFormTB]</DefiningQuery>
+          </EntitySet>
           <AssociationSet Name="FK_CommentTB_JobCategoryTB" Association="Self.FK_CommentTB_JobCategoryTB">
             <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
             <End Role="CommentTB" EntitySet="CommentTB" />
@@ -245,6 +289,14 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <AssociationSet Name="FK_FormDetailTB_FormTB" Association="Self.FK_FormDetailTB_FormTB">
             <End Role="FormTB" EntitySet="FormTB" />
             <End Role="FormDetailTB" EntitySet="FormDetailTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResumeFormTB_FormTB" Association="Self.FK_ResumeFormTB_FormTB">
+            <End Role="FormTB" EntitySet="FormTB" />
+            <End Role="ResumeFormTB" EntitySet="ResumeFormTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResumeFormTB_ResumeTB" Association="Self.FK_ResumeFormTB_ResumeTB">
+            <End Role="ResumeTB" EntitySet="ResumeTB" />
+            <End Role="ResumeFormTB" EntitySet="ResumeFormTB" />
           </AssociationSet>
           <AssociationSet Name="FK_SelectedJobTB_EmployeeTB" Association="Self.FK_SelectedJobTB_EmployeeTB">
             <End Role="EmployeeTB" EntitySet="EmployeeTB" />
@@ -267,8 +319,7 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <End Role="UserTB" EntitySet="UserTB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineJobModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -292,7 +343,7 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <Property Name="EmailCompany" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="SelectedJobTB" Relationship="Self.FK_SelectedJobTB_EmployeeTB" FromRole="EmployeeTB" ToRole="SelectedJobTB" />
           <NavigationProperty Name="UserTB" Relationship="Self.FK_UserTB_EmployeeTB" FromRole="EmployeeTB" ToRole="UserTB" />
-          <NavigationProperty Name="FormTB" Relationship="Self.FormDetailTB" FromRole="EmployeeTB" ToRole="FormTB" />
+          <NavigationProperty Name="FormTB" Relationship="OnlineJobModel.FormDetailTB" FromRole="EmployeeTB" ToRole="FormTB" />
         </EntityType>
         <EntityType Name="EmployerTB">
           <Key>
@@ -303,23 +354,6 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <Property Name="MobilePhone" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="ResumeTB" Relationship="Self.FK_EmployerTB_ResumeTB" FromRole="EmployerTB" ToRole="ResumeTB" />
           <NavigationProperty Name="UserTB" Relationship="Self.FK_UserTB_EmployerTB" FromRole="EmployerTB" ToRole="UserTB" />
-        </EntityType>
-        <EntityType Name="FormTB">
-          <Key>
-            <PropertyRef Name="FormID" />
-          </Key>
-          <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Region" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="City" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-          <Property Name="Benefits" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="WorkingDays" Type="String" MaxLength="10" FixedLength="true" Unicode="true" Nullable="false" />
-          <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="TypeID" Type="Int32" Nullable="false" />
-          <Property Name="RequestDtae" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FormText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="EmployeeTB" Relationship="Self.FormDetailTB" FromRole="FormTB" ToRole="EmployeeTB" />
         </EntityType>
         <EntityType Name="JobCategoryTB">
           <Key>
@@ -335,14 +369,17 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <PropertyRef Name="ResumeID" />
           </Key>
           <Property Name="ResumeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="Age" Type="Int32" />
-          <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Age" Type="Int32" Nullable="false" />
+          <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="RequestDate" Type="DateTime" Precision="3" />
-          <Property Name="EduDegree" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="EduDegree" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="AbilityDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
           <Property Name="EnglishAbility" Type="Boolean" Nullable="false" />
           <Property Name="ExtraAbility" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="EmployerTB" Relationship="Self.FK_EmployerTB_ResumeTB" FromRole="ResumeTB" ToRole="EmployerTB" />
+          <Property Name="FirstName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="LatName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ResumeFormTB" Relationship="OnlineJobModel.FK_ResumeFormTB_ResumeTB" FromRole="ResumeTB" ToRole="ResumeFormTB" />
         </EntityType>
         <EntityType Name="RoleTB">
           <Key>
@@ -463,15 +500,10 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FormDetailTB">
-          <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="*" />
-          <End Role="FormTB" Type="Self.FormTB" Multiplicity="*" />
-        </Association>
         <EntityContainer Name="OnlineJobEntities" annotation:LazyLoadingEnabled="true">
           <EntitySet Name="CommentTB" EntityType="Self.CommentTB" />
           <EntitySet Name="EmployeeTB" EntityType="Self.EmployeeTB" />
           <EntitySet Name="EmployerTB" EntityType="Self.EmployerTB" />
-          <EntitySet Name="FormTB" EntityType="Self.FormTB" />
           <EntitySet Name="JobCategoryTB" EntityType="Self.JobCategoryTB" />
           <EntitySet Name="ResumeTB" EntityType="Self.ResumeTB" />
           <EntitySet Name="RoleTB" EntityType="Self.RoleTB" />
@@ -505,11 +537,78 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <End Role="RoleTB" EntitySet="RoleTB" />
             <End Role="UserTB" EntitySet="UserTB" />
           </AssociationSet>
-          <AssociationSet Name="FormDetailTB" Association="Self.FormDetailTB">
+          <EntitySet Name="ResumeFormTB" EntityType="OnlineJobModel.ResumeFormTB" />
+          <AssociationSet Name="FK_ResumeFormTB_ResumeTB" Association="OnlineJobModel.FK_ResumeFormTB_ResumeTB">
+            <End Role="ResumeTB" EntitySet="ResumeTB" />
+            <End Role="ResumeFormTB" EntitySet="ResumeFormTB" />
+          </AssociationSet>
+          <EntitySet Name="FormTB" EntityType="OnlineJobModel.FormTB" />
+          <AssociationSet Name="FK_ResumeFormTB_FormTB" Association="OnlineJobModel.FK_ResumeFormTB_FormTB">
+            <End Role="FormTB" EntitySet="FormTB" />
+            <End Role="ResumeFormTB" EntitySet="ResumeFormTB" />
+          </AssociationSet>
+          <AssociationSet Name="FormDetailTB" Association="OnlineJobModel.FormDetailTB">
             <End Role="EmployeeTB" EntitySet="EmployeeTB" />
             <End Role="FormTB" EntitySet="FormTB" />
           </AssociationSet>
         </EntityContainer>
+        <EntityType Name="ResumeFormTB">
+          <Key>
+            <PropertyRef Name="ResumeID" />
+            <PropertyRef Name="FormID" />
+            <PropertyRef Name="SentDate" />
+          </Key>
+          <Property Name="ResumeID" Type="Int32" Nullable="false" />
+          <Property Name="FormID" Type="Int32" Nullable="false" />
+          <Property Name="SentDate" Type="DateTime" Nullable="false" Precision="3" />
+          <NavigationProperty Name="ResumeTB" Relationship="OnlineJobModel.FK_ResumeFormTB_ResumeTB" FromRole="ResumeFormTB" ToRole="ResumeTB" />
+          <NavigationProperty Name="FormTB" Relationship="OnlineJobModel.FK_ResumeFormTB_FormTB" FromRole="ResumeFormTB" ToRole="FormTB" />
+        </EntityType>
+        <Association Name="FK_ResumeFormTB_ResumeTB">
+          <End Type="OnlineJobModel.ResumeTB" Role="ResumeTB" Multiplicity="1" />
+          <End Type="OnlineJobModel.ResumeFormTB" Role="ResumeFormTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeTB">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="ResumeFormTB">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <EntityType Name="FormTB">
+          <Key>
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Region" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Benefits" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingDays" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="TypeID" Type="Int32" Nullable="false" />
+          <Property Name="RequestDtae" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FormText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="ResumeFormTB" Relationship="OnlineJobModel.FK_ResumeFormTB_FormTB" FromRole="FormTB" ToRole="ResumeFormTB" />
+          <NavigationProperty Name="EmployeeTB" Relationship="OnlineJobModel.FormDetailTB" FromRole="FormTB" ToRole="EmployeeTB" />
+        </EntityType>
+        <Association Name="FK_ResumeFormTB_FormTB">
+          <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
+          <End Type="OnlineJobModel.ResumeFormTB" Role="ResumeFormTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormTB">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="ResumeFormTB">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FormDetailTB">
+          <End Type="OnlineJobModel.EmployeeTB" Role="EmployeeTB" Multiplicity="*" />
+          <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="*" />
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -545,23 +644,6 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FormTB">
-            <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
-              <MappingFragment StoreEntitySet="FormTB">
-                <ScalarProperty Name="FormID" ColumnName="FormID" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Benefits" ColumnName="Benefits" />
-                <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
-                <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
-                <ScalarProperty Name="FormText" ColumnName="FormText" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="JobCategoryTB">
             <EntityTypeMapping TypeName="OnlineJobModel.JobCategoryTB">
               <MappingFragment StoreEntitySet="JobCategoryTB">
@@ -573,6 +655,8 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <EntitySetMapping Name="ResumeTB">
             <EntityTypeMapping TypeName="OnlineJobModel.ResumeTB">
               <MappingFragment StoreEntitySet="ResumeTB">
+                <ScalarProperty Name="LatName" ColumnName="LatName" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
                 <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
                 <ScalarProperty Name="Age" ColumnName="Age" />
                 <ScalarProperty Name="Gender" ColumnName="Gender" />
@@ -615,12 +699,37 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ResumeFormTB">
+            <EntityTypeMapping TypeName="OnlineJobModel.ResumeFormTB">
+              <MappingFragment StoreEntitySet="ResumeFormTB">
+                <ScalarProperty Name="SentDate" ColumnName="SentDate" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormTB">
+            <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
+              <MappingFragment StoreEntitySet="FormTB">
+                <ScalarProperty Name="FormText" ColumnName="FormText" />
+                <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
+                <ScalarProperty Name="TypeID" ColumnName="TypeID" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
+                <ScalarProperty Name="Benefits" ColumnName="Benefits" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
           <AssociationSetMapping Name="FormDetailTB" TypeName="OnlineJobModel.FormDetailTB" StoreEntitySet="FormDetailTB">
-            <EndProperty Name="EmployeeTB">
-              <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-            </EndProperty>
             <EndProperty Name="FormTB">
               <ScalarProperty Name="FormID" ColumnName="FormID" />
+            </EndProperty>
+            <EndProperty Name="EmployeeTB">
+              <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
             </EndProperty>
           </AssociationSetMapping>
         </EntityContainerMapping>

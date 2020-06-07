@@ -25,5 +25,16 @@ namespace final.Areas.KarFarma.Controllers
         {
             return View();
         }
+        [HttpGet]
+        public ActionResult ShowResume()
+        {
+
+            return View();
+        }
+        [HttpPost]
+        public ActionResult ShowResume(string id) {
+          
+            return View();
+        }
     }
 }

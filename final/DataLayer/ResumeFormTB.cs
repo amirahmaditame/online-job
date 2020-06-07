@@ -15,27 +15,20 @@ namespace DataLayer
 using System;
     using System.Collections.Generic;
     
-public partial class RoleTB
+public partial class ResumeFormTB
 {
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-    public RoleTB()
-    {
+    public int ResumeID { get; set; }
 
-        this.UserTB = new HashSet<UserTB>();
+    public int FormID { get; set; }
 
-    }
-
-
-    public int RoleID { get; set; }
-
-    public string RoleTitle { get; set; }
+    public System.DateTime SentDate { get; set; }
 
 
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+    public virtual ResumeTB ResumeTB { get; set; }
 
-    public virtual ICollection<UserTB> UserTB { get; set; }
+    public virtual FormTB FormTB { get; set; }
 
 }
 

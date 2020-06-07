@@ -20,7 +20,7 @@
                 <td>Item</td>
                 <td>Item</td>
                 <td>
-                    <a href="javascript:;" data-id="" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
+                    <a href="javascript:;" data-id="1" class="btn btn-outline btn-circle btn-sm purple " id="btn-viewgroup">
                         <i class="fa fa-edit"></i> view
                     </a>
                 </td>
@@ -30,32 +30,36 @@
 </div>
 
 @section PageScript{
-    
- <script>
-     $(function () {
 
-         $(".btn-editfinall").click(function () {
-             $.ajax({
-                 type: "POST",
-                 url: "/Panel/ShowResume",
-                 data: JSON.stringify({
-                     Id: $(this).attr("data-id")
-                 }),
-                 contentType: "application/json; charset=utf-8",
-                 dataType: "json",
-                 success: function (e) {
-                     
-                 },
-                 error: function () {
-                     $(".loader").hide();
-                     toastr.error('خطا در ارتباط', 'خطا!');
-                 }
-             });
-         });
-     });
-    </script>   
-    
- }
+    <script>
+        $(function () {
+            $(document).ready(function () {
+
+                $("#btn-viewgroup").click(function () {
+                    console.log($(this).attr("data-id"));
+                    $.ajax({
+                        type: "POST",
+                        url: "/KarFarma/Panel/ShowResume",
+                        data: JSON.stringify({
+                            id: $(this).attr("data-id")
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                        },
+                        error: function () {
+                            alert('khata');
+                        }
+                    });
+                });
+
+
+
+            });
+        });
+    </script>
+
+}
 
 
 

@@ -558,6 +558,7 @@
     <Content Include="Areas\KarFarma\Content\js\jquery.fancybox.js" />
     <Content Include="Areas\KarFarma\Content\js\jquery.hideseek.min.js" />
     <Content Include="Areas\KarFarma\Content\js\jquery.js" />
+    <Content Include="Areas\KarFarma\Content\js\jquery.min.js" />
     <Content Include="Areas\KarFarma\Content\js\jquery.modal.min.js" />
     <Content Include="Areas\KarFarma\Content\js\map-script.js" />
     <Content Include="Areas\KarFarma\Content\js\maps.js" />
@@ -667,6 +668,7 @@
     <Content Include="Areas\KarFarma\Views\Panel\Jobs.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\JobsForm.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\RecievedResume.cshtml" />
+    <Content Include="Areas\KarFarma\Views\Panel\ShowResume.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
