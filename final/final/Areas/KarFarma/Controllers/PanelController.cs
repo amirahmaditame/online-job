@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -9,6 +10,7 @@ namespace final.Areas.KarFarma.Controllers
     public class PanelController : Controller
     {
         // GET: KarFarma/Panel
+        OnlineJobEntities online = new OnlineJobEntities();
         public ActionResult Index()
         {
             return View();
@@ -23,18 +25,23 @@ namespace final.Areas.KarFarma.Controllers
         }
         public ActionResult RecievedResume()
         {
-            return View();
-        }
-        [HttpGet]
-        public ActionResult ShowResume()
-        {
+            OnlineJobEntities online = new OnlineJobEntities();
 
-            return View();
+            return View(online.JobCategoryTB.ToList());
         }
-        [HttpPost]
-        public ActionResult ShowResume(string id) {
-          
-            return View();
+
+        public ActionResult ShowResume(int id)
+        {
+            JobCategoryTB c = online.JobCategoryTB.Find(id); 
+            return PartialView(c);
+
+        }
+
+        public class JsonData
+        {
+            public bool Status { get; set; }
+            public string Message { get; set; }
+
         }
     }
 }
