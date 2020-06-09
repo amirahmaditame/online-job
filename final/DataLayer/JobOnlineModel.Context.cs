@@ -17,6 +17,9 @@ using System;
 using System.Data.Entity;
 using System.Data.Entity.Infrastructure;
 
+using System.Data.Entity.Core.Objects;
+using System.Linq;
+
 
 public partial class OnlineJobEntities : DbContext
 {
@@ -48,9 +51,24 @@ public partial class OnlineJobEntities : DbContext
 
     public virtual DbSet<UserTB> UserTB { get; set; }
 
-    public virtual DbSet<ResumeFormTB> ResumeFormTB { get; set; }
+    public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
 
     public virtual DbSet<FormTB> FormTB { get; set; }
+
+
+
+
+
+    public virtual ObjectResult<ReportPerEmployeeForEachResume1_Result> ReportPerEmployeeForEachResume1(Nullable<int> employeeID)
+    {
+
+        var employeeIDParameter = employeeID.HasValue ?
+            new ObjectParameter("EmployeeID", employeeID) :
+            new ObjectParameter("EmployeeID", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForEachResume1_Result>("ReportPerEmployeeForEachResume1", employeeIDParameter);
+    }
 
 }
 

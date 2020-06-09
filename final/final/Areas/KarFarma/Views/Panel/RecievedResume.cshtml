@@ -1,4 +1,4 @@
-﻿@model IEnumerable<DataLayer.JobCategoryTB>
+﻿@model IEnumerable< final.Areas.KarFarma.ViewModle.Resume>
 @{
     ViewBag.Title = "RecievedResume";
     Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
@@ -18,11 +18,11 @@
             @foreach (var group in Model)
             {
                     <tr>
-                        <td>Item</td>
-                        <td>Item</td>
-                        <td>Item</td>
+                        <td>@group.FirstName</td>
+                        <td>@group.LastName</td>
+                        <td>@group.date</td>
                         <td>
-                            <a onclick="view(@group.JobID)" href="javascript:;" data-id="@group.JobID" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
+                            <a onclick="view(@group.id)" href="javascript:;" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
                                 <i class="fa fa-edit"></i> view
                             </a>
                         </td>
@@ -51,7 +51,7 @@
 @section PageScript{
     <script>
         function view(id) {
-            $.get("/karFarma/Panel/ShowResume/"+id, function (res) {
+            $.get("/karFarma/Panel/ShowResume/" + id, function (res) {
 
                 $("#MyModal").modal();
                 $("#myModalTitle").html("Create New Group");

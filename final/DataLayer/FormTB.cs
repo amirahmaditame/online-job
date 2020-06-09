@@ -22,8 +22,6 @@ public partial class FormTB
     public FormTB()
     {
 
-        this.ResumeFormTB = new HashSet<ResumeFormTB>();
-
         this.EmployeeTB = new HashSet<EmployeeTB>();
 
     }
@@ -43,17 +41,11 @@ public partial class FormTB
 
     public string Gender { get; set; }
 
-    public int TypeID { get; set; }
-
     public System.DateTime RequestDtae { get; set; }
 
     public string FormText { get; set; }
 
 
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<ResumeFormTB> ResumeFormTB { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 

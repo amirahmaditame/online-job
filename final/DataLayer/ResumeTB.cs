@@ -24,7 +24,7 @@ public partial class ResumeTB
 
         this.EmployerTB = new HashSet<EmployerTB>();
 
-        this.ResumeFormTB = new HashSet<ResumeFormTB>();
+        this.ResumeEmployeeTB = new HashSet<ResumeEmployeeTB>();
 
     }
 
@@ -57,7 +57,7 @@ public partial class ResumeTB
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<ResumeFormTB> ResumeFormTB { get; set; }
+    public virtual ICollection<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
 
 }
 

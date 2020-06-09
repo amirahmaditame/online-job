@@ -1,6 +1,8 @@
 ﻿using DataLayer;
+using final.Areas.KarFarma.ViewModle;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -25,22 +27,26 @@ namespace final.Areas.KarFarma.Controllers
         }
         public ActionResult RecievedResume()
         {
-            OnlineJobEntities online = new OnlineJobEntities();
-
-            return View(online.JobCategoryTB.ToList());
+            List<Resume> resume = new List<Resume>();
+            var model = online.ReportPerEmployeeForEachResume1(2);
+            
+            foreach (var item in model)
+            {
+                var r = new Resume();
+                r.FirstName = item.FirstName;
+                r.LastName= item.LatName;
+                r.id = item.ResumeID;
+                r.date = item.SentDate;
+                resume.Add(r);
+            }
+            return View(resume);
         }
 
         public ActionResult ShowResume(int id)
         {
-            JobCategoryTB c = online.JobCategoryTB.Find(id); 
-            return PartialView(c);
+            
 
-        }
-
-        public class JsonData
-        {
-            public bool Status { get; set; }
-            public string Message { get; set; }
+            return PartialView();
 
         }
     }

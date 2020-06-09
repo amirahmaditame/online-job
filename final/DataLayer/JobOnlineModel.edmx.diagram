@@ -4,7 +4,7 @@
   <edmx:Designer xmlns="http://schemas.microsoft.com/ado/2009/11/edmx">
     <!-- Diagram content (shape and connector positions) -->
     <edmx:Diagrams>
-      <Diagram DiagramId="073aa62dac624dbcbd0dab68517f338b" Name="Diagram1">
+      <Diagram DiagramId="073aa62dac624dbcbd0dab68517f338b" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="OnlineJobModel.CommentTB" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineJobModel.EmployeeTB" Width="1.5" PointX="0.75" PointY="5.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineJobModel.EmployerTB" Width="1.5" PointX="0.75" PointY="1.375" IsExpanded="true" />
@@ -20,10 +20,10 @@
         <AssociationConnector Association="OnlineJobModel.FK_UserTB_EmployerTB" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineJobModel.FK_SelectedJobTB_JobCategoryTB" ManuallyRouted="false" />
         <AssociationConnector Association="OnlineJobModel.FK_UserTB_RoleTB" ManuallyRouted="false" />
-        <EntityTypeShape EntityType="OnlineJobModel.ResumeFormTB" Width="1.5" PointX="8.25" PointY="7.5" />
-        <AssociationConnector Association="OnlineJobModel.FK_ResumeFormTB_ResumeTB" />
-        <EntityTypeShape EntityType="OnlineJobModel.FormTB" Width="1.5" PointX="3" PointY="4.75" />
-        <AssociationConnector Association="OnlineJobModel.FK_ResumeFormTB_FormTB" />
+        <EntityTypeShape EntityType="OnlineJobModel.ResumeEmployeeTB" Width="1.5" PointX="3.75" PointY="12.875" />
+        <AssociationConnector Association="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB" />
+        <AssociationConnector Association="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB" />
+        <EntityTypeShape EntityType="OnlineJobModel.FormTB" Width="1.5" PointX="3" PointY="5" />
         <AssociationConnector Association="OnlineJobModel.FormDetailTB" />
       </Diagram>
     </edmx:Diagrams>
