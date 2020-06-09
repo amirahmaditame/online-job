@@ -82,6 +82,7 @@
     </Compile>
     <Compile Include="MetaDataClasses\JobsGroupMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Repositories\IAccountRepository.cs" />
     <Compile Include="Repositories\IJobGroupRepository.cs" />
     <Compile Include="ResumeTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
@@ -96,6 +97,7 @@
     <Compile Include="UserTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ViewModels\AccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="JobOnlineModel.edmx">
