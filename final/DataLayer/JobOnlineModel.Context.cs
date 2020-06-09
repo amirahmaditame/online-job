@@ -56,7 +56,16 @@ public partial class OnlineJobEntities : DbContext
     public virtual DbSet<FormTB> FormTB { get; set; }
 
 
+    public virtual ObjectResult<ReportPerEmployeeForEachResume_Result> ReportPerEmployeeForEachResume(Nullable<int> employeeID)
+    {
 
+        var employeeIDParameter = employeeID.HasValue ?
+            new ObjectParameter("EmployeeID", employeeID) :
+            new ObjectParameter("EmployeeID", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForEachResume_Result>("ReportPerEmployeeForEachResume", employeeIDParameter);
+    }
 
 
     public virtual ObjectResult<ReportPerEmployeeForEachResume1_Result> ReportPerEmployeeForEachResume1(Nullable<int> employeeID)
@@ -68,6 +77,18 @@ public partial class OnlineJobEntities : DbContext
 
 
         return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForEachResume1_Result>("ReportPerEmployeeForEachResume1", employeeIDParameter);
+    }
+
+
+    public virtual ObjectResult<ReportPerEmployeeForPeForm_Result> ReportPerEmployeeForPeForm(Nullable<int> emplyeeid)
+    {
+
+        var emplyeeidParameter = emplyeeid.HasValue ?
+            new ObjectParameter("Emplyeeid", emplyeeid) :
+            new ObjectParameter("Emplyeeid", typeof(int));
+
+
+        return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForPeForm_Result>("ReportPerEmployeeForPeForm", emplyeeidParameter);
     }
 
 }

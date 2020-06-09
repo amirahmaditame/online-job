@@ -19,10 +19,23 @@ namespace final.Areas.KarFarma.Controllers
         }
         public ActionResult Jobs()
         {
-            return View();
+
+            int i = 1;
+            List<JobForm> Jobs = new List<JobForm>();
+            var model = online.ReportPerEmployeeForPeForm(2);
+            foreach (var item in model)
+            {
+                var r = new JobForm();
+                r.count = i ++;
+                r.date = item.RequestDtae;
+                r.id = item.FormID;
+                Jobs.Add(r);
+            }
+            return View(Jobs);
         }
         public ActionResult JobsForm()
         {
+         
             return View();
         }
         public ActionResult RecievedResume()
@@ -44,9 +57,17 @@ namespace final.Areas.KarFarma.Controllers
 
         public ActionResult ShowResume(int id)
         {
-            
 
-            return PartialView();
+            var model = online.ResumeTB.Find(id);
+            return PartialView(model);
+
+        }
+
+        public ActionResult ShowForms(int id)
+        {
+
+            var model = online.FormTB.Find(id);
+            return PartialView(model);
 
         }
     }

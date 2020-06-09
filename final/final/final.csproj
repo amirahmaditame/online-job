@@ -144,6 +144,7 @@
     <Compile Include="Areas\Admin\Controllers\JobCategoryController.cs" />
     <Compile Include="Areas\KarFarma\Controllers\PanelController.cs" />
     <Compile Include="Areas\KarFarma\KarFarmaAreaRegistration.cs" />
+    <Compile Include="Areas\KarFarma\ViewModle\JobForm.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\Resume.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -670,6 +671,7 @@
     <Content Include="Areas\KarFarma\Views\Panel\JobsForm.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\RecievedResume.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\ShowResume.cshtml" />
+    <Content Include="Areas\KarFarma\Views\Panel\ShowForms.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

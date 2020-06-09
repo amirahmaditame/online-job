@@ -235,6 +235,9 @@
     <FunctionImport Name="ReportPerEmployeeForEachResume1" ReturnType="Collection(OnlineJobModel.ReportPerEmployeeForEachResume1_Result)">
       <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
     </FunctionImport>
+    <FunctionImport Name="ReportPerEmployeeForPeForm" ReturnType="Collection(OnlineJobModel.ReportPerEmployeeForPeForm_Result)">
+      <Parameter Name="Emplyeeid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
   <EntityType Name="ResumeEmployeeTB">
     <Key>
@@ -315,5 +318,17 @@
     <Property Type="Boolean" Name="EnglishAbility" Nullable="false" />
     <Property Type="String" Name="ExtraAbility" Nullable="true" MaxLength="150" />
     <Property Type="DateTime" Name="SentDate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <ComplexType Name="ReportPerEmployeeForPeForm_Result">
+    <Property Type="Int32" Name="FormID" Nullable="false" />
+    <Property Type="String" Name="CompanyName" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Region" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Benefits" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="WorkingDays" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="150" />
+    <Property Type="DateTime" Name="RequestDtae" Nullable="false" Precision="23" />
+    <Property Type="String" Name="FormText" Nullable="true" MaxLength="150" />
+    <Property Type="Int32" Name="myid" Nullable="true" />
   </ComplexType>
 </Schema>

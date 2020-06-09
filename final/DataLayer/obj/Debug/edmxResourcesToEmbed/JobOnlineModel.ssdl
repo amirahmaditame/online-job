@@ -248,6 +248,9 @@ warning 6002: The table/view 'OnlineJob.dbo.ResumeEmployeeTB' does not have a pr
   <Function Name="ReportPerEmployeeForEachResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="EmployeeID" Type="int" Mode="In" />
   </Function>
+  <Function Name="ReportPerEmployeeForPeForm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Emplyeeid" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="OnlineJobModelStoreContainer">
     <EntitySet Name="CommentTB" EntityType="Self.CommentTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmployeeTB" EntityType="Self.EmployeeTB" Schema="dbo" store:Type="Tables" />
