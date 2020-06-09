@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineJobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineJobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CommentTB">
           <Key>
             <PropertyRef Name="CommetID" />
@@ -82,7 +82,8 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <PropertyRef Name="RoleID" />
           </Key>
           <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="RoleTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="RoleTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
+          <Property Name="RoleName" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="SelectedJobTB">
           <Key>
@@ -98,13 +99,16 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <PropertyRef Name="UserID" />
           </Key>
           <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+          <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="EmployeeID" Type="int" />
           <Property Name="EmployerID" Type="int" />
           <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
-          <Property Name="RoleID" Type="int" Nullable="false" />
           <Property Name="CommentID" Type="int" />
+          <Property Name="ActiveCode" Type="varchar" MaxLength="50" Nullable="false" />
+          <Property Name="IsActive" Type="bit" Nullable="false" />
+          <Property Name="RegisterDate" Type="datetime" Nullable="false" />
         </EntityType>
         <Association Name="FK_CommentTB_JobCategoryTB">
           <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
@@ -267,8 +271,7 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <End Role="UserTB" EntitySet="UserTB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineJobModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -349,8 +352,9 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
             <PropertyRef Name="RoleID" />
           </Key>
           <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="RoleTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+          <Property Name="RoleTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
           <NavigationProperty Name="UserTB" Relationship="Self.FK_UserTB_RoleTB" FromRole="RoleTB" ToRole="UserTB" />
+          <Property Name="RoleName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
         </EntityType>
         <EntityType Name="SelectedJobTB">
           <Key>
@@ -378,6 +382,9 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <NavigationProperty Name="EmployeeTB" Relationship="Self.FK_UserTB_EmployeeTB" FromRole="UserTB" ToRole="EmployeeTB" />
           <NavigationProperty Name="EmployerTB" Relationship="Self.FK_UserTB_EmployerTB" FromRole="UserTB" ToRole="EmployerTB" />
           <NavigationProperty Name="RoleTB" Relationship="Self.FK_UserTB_RoleTB" FromRole="UserTB" ToRole="RoleTB" />
+          <Property Name="ActiveCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+          <Property Name="IsActive" Type="Boolean" Nullable="false" />
+          <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
         </EntityType>
         <Association Name="FK_CommentTB_JobCategoryTB">
           <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
@@ -587,6 +594,7 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <EntitySetMapping Name="RoleTB">
             <EntityTypeMapping TypeName="OnlineJobModel.RoleTB">
               <MappingFragment StoreEntitySet="RoleTB">
+                <ScalarProperty Name="RoleName" ColumnName="RoleName" />
                 <ScalarProperty Name="RoleID" ColumnName="RoleID" />
                 <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
               </MappingFragment>
@@ -604,6 +612,9 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
           <EntitySetMapping Name="UserTB">
             <EntityTypeMapping TypeName="OnlineJobModel.UserTB">
               <MappingFragment StoreEntitySet="UserTB">
+                <ScalarProperty Name="RegisterDate" ColumnName="RegisterDate" />
+                <ScalarProperty Name="IsActive" ColumnName="IsActive" />
+                <ScalarProperty Name="ActiveCode" ColumnName="ActiveCode" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />

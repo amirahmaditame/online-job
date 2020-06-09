@@ -1,0 +1,31 @@
+﻿@model IEnumerable<DataLayer.JobCategoryTB>
+
+<table class="table table-bordered">
+    <tr>
+        <th>
+            @Html.DisplayNameFor(model => model.JobCategory)
+        </th>
+        <th></th>
+    </tr>
+
+    @foreach (var item in Model)
+    {
+        <tr id="Group_@(item.JobID)">
+            <td>
+                @Html.DisplayFor(modelItem => item.JobCategory)
+            </td>
+            <td>
+
+                <a onclick="Edit(@item.JobID)" class="btn btn-warning btn-sm">
+                    <i class="fas fa-edit"></i>
+                </a>
+                <a onclick="Delete(@item.JobID)" class="btn btn-danger btn-sm">
+                    <i class="fas fa-trash"></i>
+                </a>
+
+   
+            </td>
+        </tr>
+    }
+
+</table>

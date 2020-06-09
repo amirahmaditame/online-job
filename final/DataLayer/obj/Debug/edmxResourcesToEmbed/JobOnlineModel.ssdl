@@ -77,7 +77,8 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       <PropertyRef Name="RoleID" />
     </Key>
     <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="RoleTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="RoleTitle" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="150" Nullable="false" />
   </EntityType>
   <EntityType Name="SelectedJobTB">
     <Key>
@@ -93,13 +94,16 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       <PropertyRef Name="UserID" />
     </Key>
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="RoleID" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="EmployeeID" Type="int" />
     <Property Name="EmployerID" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="RoleID" Type="int" Nullable="false" />
     <Property Name="CommentID" Type="int" />
+    <Property Name="ActiveCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="RegisterDate" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_CommentTB_JobCategoryTB">
     <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />

@@ -5,12 +5,14 @@
 
 <head>
     <meta charset="utf-8">
-    <title>Listdo | Directory Listing Template | Dashboard </title>
+    <title>Dashboard </title>
 
     <!-- Stylesheets -->
     <link href="/Areas/Admin/Content/css/bootstrap.css" rel="stylesheet">
     <link href="/Areas/Admin/Content/css/style.css" rel="stylesheet">
     <link href="/Areas/Admin/Content/css/responsive.css" rel="stylesheet">
+    <link href="~/Areas/Admin/Content/Cusomcss.css" rel="stylesheet" />
+
 
     <link rel="shortcut icon" href="/Areas/Admin/Content/images/favicon.png" type="image/x-icon">
     <link rel="icon" href="/Areas/Admin/Content/images/favicon.png" type="image/x-icon">
@@ -99,7 +101,7 @@
 
                 <!--Nav Box-->
                 <div class="nav-outer">
-                    <nav class="nav main-menu">
+                    @*<nav class="nav main-menu">
                         <ul class="navigation" id="navbar">
                             <li class="dropdown">
                                 <span>Home</span>
@@ -117,7 +119,8 @@
                                     <li class="dropdown">
                                         <span>Dashboard</span>
                                         <ul>
-                                            <li class="active"><a href="dashboard.html"> Dashboard</a></li>
+                                            <li class="active"><a href="/Admin"> Dashboard</a></li>
+                                            <li><a href="/Admin/JobCategory"> Job Groups</a></li>
                                             <li><a href="dashboard-profile.html">Profile</a></li>
                                             <li><a href="dashboard-listing.html">Listings</a></li>
                                             <li><a href="dashboard-messages.html">Messages </a></li>
@@ -187,7 +190,7 @@
                             <li><a href="contact.html">Contact</a></li>
                             <li class="mm-add-listing"><a href="add-listing.html" class="theme-btn btn-style-three"><span class="flaticon-plus-symbol"></span>Add Listing</a></li>
                         </ul>
-                    </nav>
+                    </nav>*@
                     <!-- Main Menu End-->
 
                     <div class="outer-box">
@@ -195,7 +198,7 @@
                         <a href="add-listing.html" class="add-listing"> <span class="flaticon-plus-symbol"></span> Add Listing</a>
 
                         <!-- Cart btn -->
-                        <div class="cart-btn">
+                        @*<div class="cart-btn">
                             <a href="shopping-cart.html"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
 
                             <div class="shopping-cart">
@@ -223,18 +226,19 @@
                                     <a href="cart.html" class="theme-btn btn-style-one">View Cart</a>
                                     <a href="checkout.html" class="theme-btn btn-style-two">Checkout</a>
                                 </div>
-                            </div> <!--end shopping-cart -->
-                        </div>
+                            </div> 
+                        </div>*@
 
                         <!-- Dashboard Option -->
                         <div class="dropdown dashboard-option">
                             <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
                                 <img src="/Areas/Admin/Content/images/resource/user-img.jpg" alt="avatar" class="thumb">
-                                <span class="name">Ali Tufan</span>
+                                <span class="name">Amir Ahmadi</span>
                             </a>
                             <div class="dropdown-menu">
-                                <a class="dropdown-item active" href="dashboard.html"> <i class="la la-home"></i> Dashboard</a>
-                                <a class="dropdown-item" href="dashboard-profile.html"><i class="la la-user"></i>Profile</a>
+                                <a class="dropdown-item active" href="/Admin"> <i class="la la-home"></i> Dashboard</a>
+                                <a class="dropdown-item" href="/Admin/JobCategory"><i class="la la-user"></i>Job Category</a>
+                                <a class="dropdown-item" href="#"><i class="la la-user"></i>Profile</a>
                                 <a class="dropdown-item" href="dashboard-listing.html"><i class="la la-layer-group"></i>Listings</a>
                                 <a class="dropdown-item" href="dashboard-messages.html"><i class="la la-envelope"></i> Messages </a>
                                 <a class="dropdown-item" href="dashboard-reviews.html"><i class="la la-calendar"></i> Reviews</a>
@@ -260,9 +264,9 @@
                         </div>
 
                         <!-- Cart btn -->
-                        <div class="cart-btn">
+                        @*<div class="cart-btn">
                             <a href="shopping-cart.html"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
-                        </div>
+                        </div>*@
 
                         <button id="toggle-user-sidebar"><img src="/Areas/Admin/Content/images/resource/user-img.jpg" alt="avatar" class="thumb"></button>
 
@@ -322,52 +326,8 @@
         <section class="user-dashboard">
             <div class="dashboard-outer">
                 <div class="row">
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                        <div class="ui-item">
-                            <div class="left">
-                                <h4>19</h4>
-                                <p>Published Listings</p>
-                            </div>
-                            <div class="right">
-                                <i class="icon flaticon-computer"></i>
-                            </div>
-                        </div>
+                @RenderSection("summaryBox",false)
                     </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                        <div class="ui-item bg-purple">
-                            <div class="left">
-                                <h4>15</h4>
-                                <p>Pending Listings</p>
-                            </div>
-                            <div class="right">
-                                <i class="icon flaticon-school-material"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                        <div class="ui-item bg-pink">
-                            <div class="left">
-                                <h4>22</h4>
-                                <p>Visits this week</p>
-                            </div>
-                            <div class="right">
-                                <i class="icon flaticon-tour-guide"></i>
-                            </div>
-                        </div>
-                    </div>
-                    <div class="col-xl-3 col-lg-6 col-md-6 col-sm-12">
-                        <div class="ui-item bg-yellow">
-                            <div class="left">
-                                <h4>05</h4>
-                                <p>Times Bookmarked</p>
-                            </div>
-                            <div class="right">
-                                <i class="icon flaticon-heart"></i>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
                 <div class="row">
                     <div class="col-lg-3">
                         <!-- Total Widget -->
@@ -424,206 +384,211 @@
 
 
     <!-- Chart.js // documentation: http://www.chartjs.org/docs/latest/ -->
-    <script src="/Areas/Admin/Content/js/chart.min.js"></script>
-    <script>
-    Chart.defaults.global.defaultFontFamily = "Nunito";
-    Chart.defaults.global.defaultFontColor = '#888';
-    Chart.defaults.global.defaultFontSize = '14';
+    @*<script src="/Areas/Admin/Content/js/chart.min.js"></script>
+        <script>
+            Chart.defaults.global.defaultFontFamily = "Nunito";
+            Chart.defaults.global.defaultFontColor = '#888';
+            Chart.defaults.global.defaultFontSize = '14';
 
-    var ctx = document.getElementById('chart').getContext('2d');
-    var ctx_2 = document.getElementById('chart2').getContext('2d');
-    var ctx_3 = document.getElementById('chart3').getContext('2d');
+            var ctx = document.getElementById('chart').getContext('2d');
+            var ctx_2 = document.getElementById('chart2').getContext('2d');
+            var ctx_3 = document.getElementById('chart3').getContext('2d');
 
-    var chart = new Chart(ctx, {
+            var chart = new Chart(ctx, {
 
-        type: 'line',
-        // The data for our dataset
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June"],
-            // Information about the dataset
-            datasets: [{
-                label: "Views",
-                backgroundColor: '#ffe6ce',
-                borderColor: '#fff',
-                borderWidth: "3",
-                data: [196,132,215,362,210,252],
-                pointRadius: 5,
-                pointHoverRadius:5,
-                pointHitRadius: 10,
-                pointBackgroundColor: "#ffe6ce",
-                pointHoverBackgroundColor: "#ffe6ce",
-                pointBorderWidth: "2",
-            }]
-        },
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June"],
+                    // Information about the dataset
+                    datasets: [{
+                        label: "Views",
+                        backgroundColor: '#ffe6ce',
+                        borderColor: '#fff',
+                        borderWidth: "3",
+                        data: [196, 132, 215, 362, 210, 252],
+                        pointRadius: 5,
+                        pointHoverRadius: 5,
+                        pointHitRadius: 10,
+                        pointBackgroundColor: "#ffe6ce",
+                        pointHoverBackgroundColor: "#ffe6ce",
+                        pointBorderWidth: "2",
+                    }]
+                },
 
-        // Configuration options
-        options: {
+                // Configuration options
+                options: {
 
-            layout: {
-              padding: 10,
-            },
-
-            legend: { display: false },
-            title:  { display: false },
-
-            scales: {
-                yAxes: [{
-                    scaleLabel: {
-                        display: false
+                    layout: {
+                        padding: 10,
                     },
-                    gridLines: {
-                         borderDash: [6, 10],
-                         color: "#d8d8d8",
-                         lineWidth: 1,
+
+                    legend: { display: false },
+                    title: { display: false },
+
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: false
+                            },
+                            gridLines: {
+                                borderDash: [6, 10],
+                                color: "#d8d8d8",
+                                lineWidth: 1,
+                            },
+                        }],
+                        xAxes: [{
+                            scaleLabel: { display: false },
+                            gridLines: { display: false },
+                        }],
                     },
-                }],
-                xAxes: [{
-                    scaleLabel: { display: false },
-                    gridLines:  { display: false },
-                }],
-            },
 
-            tooltips: {
-              backgroundColor: '#333',
-              titleFontSize: 13,
-              titleFontColor: '#fff',
-              bodyFontColor: '#fff',
-              bodyFontSize: 13,
-              displayColors: false,
-              xPadding: 10,
-              yPadding: 10,
-              intersect: false
-            }
-        },
-    });
+                    tooltips: {
+                        backgroundColor: '#333',
+                        titleFontSize: 13,
+                        titleFontColor: '#fff',
+                        bodyFontColor: '#fff',
+                        bodyFontSize: 13,
+                        displayColors: false,
+                        xPadding: 10,
+                        yPadding: 10,
+                        intersect: false
+                    }
+                },
+            });
 
-    var chart = new Chart(ctx_2, {
+            var chart = new Chart(ctx_2, {
 
-        type: 'line',
-        // The data for our dataset
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June"],
-            // Information about the dataset
-            datasets: [{
-                label: "Views",
-                backgroundColor: '#ffe6ce',
-                borderColor: '#fff',
-                borderWidth: "3",
-                data: [196,132,215,362,210,252],
-                pointRadius: 5,
-                pointHoverRadius:5,
-                pointHitRadius: 10,
-                pointBackgroundColor: "#ffe6ce",
-                pointHoverBackgroundColor: "#ffe6ce",
-                pointBorderWidth: "2",
-            }]
-        },
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June"],
+                    // Information about the dataset
+                    datasets: [{
+                        label: "Views",
+                        backgroundColor: '#ffe6ce',
+                        borderColor: '#fff',
+                        borderWidth: "3",
+                        data: [196, 132, 215, 362, 210, 252],
+                        pointRadius: 5,
+                        pointHoverRadius: 5,
+                        pointHitRadius: 10,
+                        pointBackgroundColor: "#ffe6ce",
+                        pointHoverBackgroundColor: "#ffe6ce",
+                        pointBorderWidth: "2",
+                    }]
+                },
 
-        // Configuration options
-        options: {
+                // Configuration options
+                options: {
 
-            layout: {
-              padding: 10,
-            },
-
-            legend: { display: false },
-            title:  { display: false },
-
-            scales: {
-                yAxes: [{
-                    scaleLabel: {
-                        display: false
+                    layout: {
+                        padding: 10,
                     },
-                    gridLines: {
-                         borderDash: [6, 10],
-                         color: "#d8d8d8",
-                         lineWidth: 1,
+
+                    legend: { display: false },
+                    title: { display: false },
+
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: false
+                            },
+                            gridLines: {
+                                borderDash: [6, 10],
+                                color: "#d8d8d8",
+                                lineWidth: 1,
+                            },
+                        }],
+                        xAxes: [{
+                            scaleLabel: { display: false },
+                            gridLines: { display: false },
+                        }],
                     },
-                }],
-                xAxes: [{
-                    scaleLabel: { display: false },
-                    gridLines:  { display: false },
-                }],
-            },
 
-            tooltips: {
-              backgroundColor: '#333',
-              titleFontSize: 13,
-              titleFontColor: '#fff',
-              bodyFontColor: '#fff',
-              bodyFontSize: 13,
-              displayColors: false,
-              xPadding: 10,
-              yPadding: 10,
-              intersect: false
-            }
-        },
-    });
+                    tooltips: {
+                        backgroundColor: '#333',
+                        titleFontSize: 13,
+                        titleFontColor: '#fff',
+                        bodyFontColor: '#fff',
+                        bodyFontSize: 13,
+                        displayColors: false,
+                        xPadding: 10,
+                        yPadding: 10,
+                        intersect: false
+                    }
+                },
+            });
 
-    var chart = new Chart(ctx_3, {
+            var chart = new Chart(ctx_3, {
 
-        type: 'line',
-        // The data for our dataset
-        data: {
-            labels: ["January", "February", "March", "April", "May", "June"],
-            // Information about the dataset
-            datasets: [{
-                label: "Views",
-                backgroundColor: '#ffe6ce',
-                borderColor: '#fff',
-                borderWidth: "3",
-                data: [196,132,215,362,210,252],
-                pointRadius: 5,
-                pointHoverRadius:5,
-                pointHitRadius: 10,
-                pointBackgroundColor: "#ffe6ce",
-                pointHoverBackgroundColor: "#ffe6ce",
-                pointBorderWidth: "2",
-            }]
-        },
+                type: 'line',
+                // The data for our dataset
+                data: {
+                    labels: ["January", "February", "March", "April", "May", "June"],
+                    // Information about the dataset
+                    datasets: [{
+                        label: "Views",
+                        backgroundColor: '#ffe6ce',
+                        borderColor: '#fff',
+                        borderWidth: "3",
+                        data: [196, 132, 215, 362, 210, 252],
+                        pointRadius: 5,
+                        pointHoverRadius: 5,
+                        pointHitRadius: 10,
+                        pointBackgroundColor: "#ffe6ce",
+                        pointHoverBackgroundColor: "#ffe6ce",
+                        pointBorderWidth: "2",
+                    }]
+                },
 
-        // Configuration options
-        options: {
+                // Configuration options
+                options: {
 
-            layout: {
-              padding: 0,
-            },
-
-            legend: { display: false },
-            title:  { display: false },
-
-            scales: {
-                yAxes: [{
-                    scaleLabel: {
-                        display: false
+                    layout: {
+                        padding: 0,
                     },
-                    gridLines: {
-                         borderDash: [6, 10],
-                         color: "#d8d8d8",
-                         lineWidth: 1,
+
+                    legend: { display: false },
+                    title: { display: false },
+
+                    scales: {
+                        yAxes: [{
+                            scaleLabel: {
+                                display: false
+                            },
+                            gridLines: {
+                                borderDash: [6, 10],
+                                color: "#d8d8d8",
+                                lineWidth: 1,
+                            },
+                        }],
+                        xAxes: [{
+                            scaleLabel: { display: false },
+                            gridLines: { display: false },
+                        }],
                     },
-                }],
-                xAxes: [{
-                    scaleLabel: { display: false },
-                    gridLines:  { display: false },
-                }],
-            },
 
-            tooltips: {
-              backgroundColor: '#333',
-              titleFontSize: 13,
-              titleFontColor: '#fff',
-              bodyFontColor: '#fff',
-              bodyFontSize: 13,
-              displayColors: false,
-              xPadding: 10,
-              yPadding: 10,
-              intersect: false
-            }
-        },
-    });
+                    tooltips: {
+                        backgroundColor: '#333',
+                        titleFontSize: 13,
+                        titleFontColor: '#fff',
+                        bodyFontColor: '#fff',
+                        bodyFontSize: 13,
+                        displayColors: false,
+                        xPadding: 10,
+                        yPadding: 10,
+                        intersect: false
+                    }
+                },
+            });
 
-    </script>
+        </script>*@
+
+    <script src="~/Areas/Admin/Content/customjs/jquery.validate.min.js"></script>
+    <script src="~/Areas/Admin/Content/customjs/jquery.validate.unobtrusive.min.js"></script>
+    <script src="~/Scripts/jquery.unobtrusive-ajax.min.js"></script>
+    @RenderSection("scripts", required: false)
 </body>
 
 

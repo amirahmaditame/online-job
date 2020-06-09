@@ -77,8 +77,9 @@
       <PropertyRef Name="RoleID" />
     </Key>
     <Property Name="RoleID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="RoleTitle" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
+    <Property Name="RoleTitle" Type="String" MaxLength="250" FixedLength="false" Unicode="true" Nullable="false" />
     <NavigationProperty Name="UserTB" Relationship="Self.FK_UserTB_RoleTB" FromRole="RoleTB" ToRole="UserTB" />
+    <Property Name="RoleName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
   </EntityType>
   <EntityType Name="SelectedJobTB">
     <Key>
@@ -106,6 +107,9 @@
     <NavigationProperty Name="EmployeeTB" Relationship="Self.FK_UserTB_EmployeeTB" FromRole="UserTB" ToRole="EmployeeTB" />
     <NavigationProperty Name="EmployerTB" Relationship="Self.FK_UserTB_EmployerTB" FromRole="UserTB" ToRole="EmployerTB" />
     <NavigationProperty Name="RoleTB" Relationship="Self.FK_UserTB_RoleTB" FromRole="UserTB" ToRole="RoleTB" />
+    <Property Name="ActiveCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
+    <Property Name="IsActive" Type="Boolean" Nullable="false" />
+    <Property Name="RegisterDate" Type="DateTime" Nullable="false" Precision="3" />
   </EntityType>
   <Association Name="FK_CommentTB_JobCategoryTB">
     <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />

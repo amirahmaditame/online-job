@@ -1,33 +1,76 @@
-﻿@model IEnumerable<DataLayer.JobCategoryTB>
-
+﻿
 @{
     ViewBag.Title = "Index";
 }
 
-<h2>Categories</h2>
+<h3>Job Groups</h3>
 
 <p>
-    @*@Html.ActionLink("Create New", "Create")*@
+    <a class="btn btn-success" onclick="Create()" id="btnNewGroup">Create New Group</a>
 </p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.JobCategory)
-        </th>
-        <th></th>
-    </tr>
+<br>
+<div id="JobGroups">
+    @Html.Action("JobGroups")
+</div>
+<!-- Modal -->
+<div class="modal" id="MyModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="myModalTitle">Modal title</h5>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.JobCategory)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.JobID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.JobID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.JobID })
-        </td>
-    </tr>
+            </div>
+            <div class="modal-body" id="myModalBody">
+
+            </div>
+
+        </div>
+    </div>
+</div>
+@section scripts
+{
+
+    <script>
+
+
+        function Create() {
+
+            $.get("/Admin/JobCategory/Create", function (res) {
+
+                $("#MyModal").modal();
+                $("#myModalTitle").html("Create New Group");
+                $("#myModalBody").html(res);
+
+            });
+        }
+
+        function Edit(id) {
+            $.get("/Admin/JobCategory/Edit/" + id, function (res) {
+                $("#MyModal").modal();
+                $("#myModalTitle").html("Edit Job Group");
+                $("#myModalBody").html(res);
+
+            });
+        }
+
+
+        function success() {
+            $("MyModal").modal('hide');
+            $("#JobCategory").val('');
+            alert("با موفقیت انجام شد");
+        }
+
+        function Delete(id) {
+            if (confirm("Are you Sure?")) {
+
+                $.get("/Admin/JobCategory/Delete/" + id, function () {
+
+                    $("#Group_" + id).hide('slow')
+
+                });
+            }
+        }
+
+
+    </script>
 }
-
-</table>

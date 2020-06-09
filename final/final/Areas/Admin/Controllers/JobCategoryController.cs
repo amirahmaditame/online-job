@@ -12,7 +12,8 @@ namespace final.Areas.Admin.Controllers
 {
     public class JobCategoryController : Controller
     {
-        private IJobGroupRepository jobGroupRepository;
+       private IJobGroupRepository jobGroupRepository;
+
         public JobCategoryController()
         {
             jobGroupRepository = new JobGroupRepository();
@@ -21,9 +22,13 @@ namespace final.Areas.Admin.Controllers
         // GET: Admin/JobCategory
         public ActionResult Index()
         {
-            return View(jobGroupRepository.GetAllGroups());
+            return View();
         }
 
+        public ActionResult JobGroups()
+        {
+            return PartialView(jobGroupRepository.GetAllGroups());
+        }
         // GET: Admin/JobCategory/Details/5
         public ActionResult Details(int? id)
         {
@@ -31,7 +36,7 @@ namespace final.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JobCategoryTB jobCategoryTB = db.JobCategoryTB.Find(id);
+            JobCategoryTB jobCategoryTB = jobGroupRepository.GetGroupById(id.Value);
             if (jobCategoryTB == null)
             {
                 return HttpNotFound();
@@ -42,7 +47,7 @@ namespace final.Areas.Admin.Controllers
         // GET: Admin/JobCategory/Create
         public ActionResult Create()
         {
-            return View();
+            return PartialView();
         }
 
         // POST: Admin/JobCategory/Create
@@ -54,9 +59,9 @@ namespace final.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.JobCategoryTB.Add(jobCategoryTB);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                jobGroupRepository.InsertGroup(jobCategoryTB);
+                jobGroupRepository.save();
+                return PartialView("JobGroups", jobGroupRepository.GetAllGroups());
             }
 
             return View(jobCategoryTB);
@@ -69,12 +74,12 @@ namespace final.Areas.Admin.Controllers
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
             }
-            JobCategoryTB jobCategoryTB = db.JobCategoryTB.Find(id);
+            JobCategoryTB jobCategoryTB = jobGroupRepository.GetGroupById(id.Value);
             if (jobCategoryTB == null)
             {
                 return HttpNotFound();
             }
-            return View(jobCategoryTB);
+            return PartialView(jobCategoryTB);
         }
 
         // POST: Admin/JobCategory/Edit/5
@@ -86,26 +91,18 @@ namespace final.Areas.Admin.Controllers
         {
             if (ModelState.IsValid)
             {
-                db.Entry(jobCategoryTB).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                jobGroupRepository.UpdateGroup(jobCategoryTB);
+                jobGroupRepository.save();
+                return PartialView("JobGroups", jobGroupRepository.GetAllGroups());
             }
             return View(jobCategoryTB);
         }
 
         // GET: Admin/JobCategory/Delete/5
-        public ActionResult Delete(int? id)
+        public void Delete(int? id)
         {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            JobCategoryTB jobCategoryTB = db.JobCategoryTB.Find(id);
-            if (jobCategoryTB == null)
-            {
-                return HttpNotFound();
-            }
-            return View(jobCategoryTB);
+            jobGroupRepository.DeleteGroup(id.Value);
+            jobGroupRepository.save();
         }
 
         // POST: Admin/JobCategory/Delete/5
@@ -113,9 +110,8 @@ namespace final.Areas.Admin.Controllers
         [ValidateAntiForgeryToken]
         public ActionResult DeleteConfirmed(int id)
         {
-            JobCategoryTB jobCategoryTB = db.JobCategoryTB.Find(id);
-            db.JobCategoryTB.Remove(jobCategoryTB);
-            db.SaveChanges();
+            jobGroupRepository.DeleteGroup(id);
+            jobGroupRepository.save();
             return RedirectToAction("Index");
         }
 
@@ -123,9 +119,14 @@ namespace final.Areas.Admin.Controllers
         {
             if (disposing)
             {
-                db.Dispose();
+                jobGroupRepository.Dispose();
             }
             base.Dispose(disposing);
+        }
+
+        public ActionResult summaryBox()
+        {
+            return PartialView();
         }
     }
 }
