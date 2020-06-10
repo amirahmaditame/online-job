@@ -10,7 +10,7 @@ namespace final.Controllers
     {
         // GET: ManageEmail
         public ActionResult ActivationEmail()
-        {
+        { 
             return PartialView();
         }
     }

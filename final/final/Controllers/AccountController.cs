@@ -40,6 +40,10 @@ namespace final.Controllers
 
                     db.UserTB.Add(user);
                     db.SaveChanges();
+
+                    string body = PartialToStringClass.RenderPartialView("ManageEmail", "ActivationEmail", user);
+                    SendEmail.Send(user.Email, "Activation Email", body);
+
                     return View("SuccessRegister", user);
                 }
                 else
@@ -52,6 +56,19 @@ namespace final.Controllers
         }
         public ActionResult Login()
         {
+            return View();
+        }
+
+        public ActionResult ActiveUser(string id)
+        {
+            var user = db.UserTB.SingleOrDefault(u => u.ActiveCode == id);
+            if(user == null)
+            {
+                return HttpNotFound();
+            }
+            user.IsActive = true;
+            user.ActiveCode = Guid.NewGuid().ToString();
+            ViewBag.username = user.UserName;
             return View();
         }
     }

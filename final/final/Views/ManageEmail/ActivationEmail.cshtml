@@ -1,0 +1,9 @@
+﻿@using System.Configuration
+@model DataLayer.UserTB
+<div style="direction:rtl;padding:20px">
+    <p>Dear @Model.UserName</p>
+    <p>Please click on Activation Link</p>
+    <p>
+        <a href="@ConfigurationManager.AppSettings["MyDomain"]/Account/ActiveUser/@Model.ActiveCode">Actiovation Code</a>
+    </p>
+</div>
