@@ -672,6 +672,8 @@
     <Content Include="Areas\KarFarma\Views\Panel\RecievedResume.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\ShowResume.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\ShowForms.cshtml" />
+    <Content Include="Areas\KarFarma\Views\Panel\EditForm.cshtml" />
+    <Content Include="Areas\KarFarma\Views\Panel\test.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

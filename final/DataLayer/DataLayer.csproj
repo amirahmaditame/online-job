@@ -37,6 +37,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\final\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -80,6 +81,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JobOnlineModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MetaDataClasses\FormMetaData.cs" />
     <Compile Include="MetaDataClasses\JobsGroupMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="ReportPerEmployeeForEachResume1_Result.cs">

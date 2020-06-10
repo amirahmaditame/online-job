@@ -2,8 +2,10 @@
 using final.Areas.KarFarma.ViewModle;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Data.Entity.ModelConfiguration.Conventions;
 using System.Linq;
+using System.Net;
 using System.Web;
 using System.Web.Mvc;
 
@@ -26,7 +28,7 @@ namespace final.Areas.KarFarma.Controllers
             foreach (var item in model)
             {
                 var r = new JobForm();
-                r.count = i ++;
+                r.count = i++;
                 r.date = item.RequestDtae;
                 r.id = item.FormID;
                 Jobs.Add(r);
@@ -35,19 +37,19 @@ namespace final.Areas.KarFarma.Controllers
         }
         public ActionResult JobsForm()
         {
-         
+
             return View();
         }
         public ActionResult RecievedResume()
         {
             List<Resume> resume = new List<Resume>();
             var model = online.ReportPerEmployeeForEachResume1(2);
-            
+
             foreach (var item in model)
             {
                 var r = new Resume();
                 r.FirstName = item.FirstName;
-                r.LastName= item.LatName;
+                r.LastName = item.LatName;
                 r.id = item.ResumeID;
                 r.date = item.SentDate;
                 resume.Add(r);
@@ -69,6 +71,53 @@ namespace final.Areas.KarFarma.Controllers
             var model = online.FormTB.Find(id);
             return PartialView(model);
 
+        }
+        [HttpGet]
+        public ActionResult EditForm(int id)
+        {
+            var model = online.FormTB.Find(id);
+            return View(model);
+        }
+        [HttpPost]
+        public JsonResult EditForm(FormTB form)
+        {
+            form.RequestDtae = DateTime.Now;
+            online.Entry(form).State = EntityState.Modified;
+            online.SaveChanges();
+            return Json(new JsonData()
+            {
+                Status = true
+            });
+        }
+        public class JsonData
+        {
+            public bool Status { get; set; }
+            public string Message { get; set; }
+
+        }
+        public ActionResult test(int? id)
+        {
+            if (id == null)
+            {
+                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            }
+            var model = online.FormTB.Find(id);
+
+            if (model == null)
+            {
+                return HttpNotFound();
+            }
+            return View(model);
+        }
+        [HttpPost]
+        public ActionResult test(FormTB form)
+        {
+            if (ModelState.IsValid)
+            {
+                online.Entry(form).State = EntityState.Modified;
+                online.SaveChanges();
+            }
+            return View(form);
         }
     }
 }
