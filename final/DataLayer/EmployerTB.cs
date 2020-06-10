@@ -14,18 +14,10 @@ namespace DataLayer
     
     public partial class EmployerTB
     {
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
-        public EmployerTB()
-        {
-            this.UserTB = new HashSet<UserTB>();
-        }
-    
         public int EmployerID { get; set; }
         public int ResumeID { get; set; }
         public string MobilePhone { get; set; }
     
         public virtual ResumeTB ResumeTB { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<UserTB> UserTB { get; set; }
     }
 }

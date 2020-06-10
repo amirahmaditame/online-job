@@ -82,7 +82,6 @@
     </Compile>
     <Compile Include="MetaDataClasses\JobsGroupMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="Repositories\IAccountRepository.cs" />
     <Compile Include="Repositories\IJobGroupRepository.cs" />
     <Compile Include="ResumeTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>

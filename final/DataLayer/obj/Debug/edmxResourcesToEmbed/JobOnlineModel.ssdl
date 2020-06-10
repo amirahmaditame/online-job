@@ -96,11 +96,8 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleID" Type="int" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" />
-    <Property Name="EmployerID" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="CommentID" Type="int" />
     <Property Name="ActiveCode" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="RegisterDate" Type="datetime" Nullable="false" />
@@ -177,30 +174,6 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserTB_EmployeeTB">
-    <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="0..1" />
-    <End Role="UserTB" Type="Self.UserTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployeeTB">
-        <PropertyRef Name="EmployeeID" />
-      </Principal>
-      <Dependent Role="UserTB">
-        <PropertyRef Name="EmployeeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserTB_EmployerTB">
-    <End Role="EmployerTB" Type="Self.EmployerTB" Multiplicity="0..1" />
-    <End Role="UserTB" Type="Self.UserTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployerTB">
-        <PropertyRef Name="EmployerID" />
-      </Principal>
-      <Dependent Role="UserTB">
-        <PropertyRef Name="EmployerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserTB_RoleTB">
     <End Role="RoleTB" Type="Self.RoleTB" Multiplicity="1" />
     <End Role="UserTB" Type="Self.UserTB" Multiplicity="*" />
@@ -252,14 +225,6 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
     <AssociationSet Name="FK_SelectedJobTB_JobCategoryTB" Association="Self.FK_SelectedJobTB_JobCategoryTB">
       <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
       <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserTB_EmployeeTB" Association="Self.FK_UserTB_EmployeeTB">
-      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
-      <End Role="UserTB" EntitySet="UserTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserTB_EmployerTB" Association="Self.FK_UserTB_EmployerTB">
-      <End Role="EmployerTB" EntitySet="EmployerTB" />
-      <End Role="UserTB" EntitySet="UserTB" />
     </AssociationSet>
     <AssociationSet Name="FK_UserTB_RoleTB" Association="Self.FK_UserTB_RoleTB">
       <End Role="RoleTB" EntitySet="RoleTB" />

@@ -28,6 +28,9 @@ namespace DataLayer
         [DataType(DataType.Password)]
         [Compare("Password" , ErrorMessage ="Error")]
         public string RePassword { get; set; }
+
+        [Required(ErrorMessage = "Choose at least one")]
+        public int  roleid { get; set; }
     }
     
 }

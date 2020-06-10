@@ -14,3 +14,11 @@ D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\obj\Debug\DataLayer.
 D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\obj\Debug\DataLayer.csproj.CoreCompileInputs.cache
 D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\obj\Debug\DataLayer.dll
 D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\obj\Debug\DataLayer.pdb
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\bin\Debug\DataLayer.dll.config
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\bin\Debug\DataLayer.dll
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\bin\Debug\DataLayer.pdb
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\bin\Debug\EntityFramework.dll
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\bin\Debug\EntityFramework.SqlServer.dll
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\bin\Debug\EntityFramework.xml
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\bin\Debug\EntityFramework.SqlServer.xml
+D:\Users\Batman\Documents\GitHub\online-job\final\DataLayer\obj\Debug\DataLayer.csproj.CopyComplete
