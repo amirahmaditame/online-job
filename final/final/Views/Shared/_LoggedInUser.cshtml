@@ -1,0 +1,13 @@
+﻿@if (User.Identity.IsAuthenticated)
+{
+
+    <a href="#" class="call-modal">Hello @User.Identity.Name</a>
+    <a href="/Account/LogOff" class="call-modal">Log out</a>
+
+
+}
+else
+{
+    <a href="/Login" class="call-modal">Login </a>
+    <a href = "/register" class="call-modal">Register</a>
+}

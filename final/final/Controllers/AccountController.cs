@@ -2,6 +2,7 @@
 using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net.Configuration;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -54,22 +55,59 @@ namespace final.Controllers
             return View(register);
 
         }
+        [Route("Login")]
         public ActionResult Login()
         {
             return View();
         }
 
+        [HttpPost]
+        [Route("Login")]
+        public ActionResult Login(LoginViewModel login , string ReturnUrl="/")
+        {
+            if (ModelState.IsValid)
+            {
+                string hashpassword = FormsAuthentication.HashPasswordForStoringInConfigFile(login.Password, "MD5");
+                var user = db.UserTB.SingleOrDefault(u => u.Email == login.Email && u.Password == hashpassword);
+                if (user != null)
+                {
+                    if (user.IsActive)
+                    {
+                        FormsAuthentication.SetAuthCookie(user.UserName, login.RememberMe);
+                        return Redirect(ReturnUrl);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Email", "Your Account not Activated");
+                       
+                    }
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "The User Not Found");
+                }
+            }
+            return View(login);
+
+        }
         public ActionResult ActiveUser(string id)
         {
             var user = db.UserTB.SingleOrDefault(u => u.ActiveCode == id);
-            if(user == null)
+            if (user == null)
             {
                 return HttpNotFound();
             }
             user.IsActive = true;
             user.ActiveCode = Guid.NewGuid().ToString();
+            db.SaveChanges();
             ViewBag.username = user.UserName;
             return View();
+        }
+
+        public ActionResult LogOff()
+        {
+            FormsAuthentication.SignOut();
+            return Redirect("/");
         }
     }
 }

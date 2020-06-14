@@ -32,5 +32,20 @@ namespace DataLayer
         [Required(ErrorMessage = "Choose at least one")]
         public int  roleid { get; set; }
     }
+    public class LoginViewModel
+    {
+        [Display(Name = "Email")]
+        [Required(ErrorMessage = "please Enter the {0}")]
+        [EmailAddress(ErrorMessage ="Invlid Email Address")]
+        public string Email { get; set; }
+
+        [Display(Name = "Password")]
+        [Required(ErrorMessage = "please Enter the {0}")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Display(Name = "Remember Me")]
+        public bool RememberMe { get; set; }
+    }
     
 }
