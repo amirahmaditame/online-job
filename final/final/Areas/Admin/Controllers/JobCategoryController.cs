@@ -10,6 +10,7 @@ using DataLayer;
 
 namespace final.Areas.Admin.Controllers
 {
+    [Authorize(Roles ="admin")]
     public class JobCategoryController : Controller
     {
        private IJobGroupRepository jobGroupRepository;

@@ -709,6 +709,9 @@
     <Content Include="Views\Account\ActiveUser.cshtml" />
     <Content Include="Views\Account\Login.cshtml" />
     <Content Include="Views\Shared\_LoggedInUser.cshtml" />
+    <Content Include="Views\Account\ForgotPassword.cshtml" />
+    <Content Include="Views\ManageEmail\RecoverPassword.cshtml" />
+    <Content Include="Views\Account\SuccessForgotPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

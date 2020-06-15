@@ -13,5 +13,10 @@ namespace final.Controllers
         { 
             return PartialView();
         }
+
+        public ActionResult RecoverPassword()
+        {
+            return PartialView();
+        }
     }
 }

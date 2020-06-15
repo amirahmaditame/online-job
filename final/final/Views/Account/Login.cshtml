@@ -10,11 +10,11 @@
     @Html.AntiForgeryToken()
     
     <div class="form-horizontal">
-        @if(User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] !=null)
+        @if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
             <div class="alert alert-danger">
                 <p> you have not permission to access that page </p>
-                </div>
+            </div>
         }
 
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
@@ -41,6 +41,12 @@
                     @Html.EditorFor(model => model.RememberMe)
                     @Html.ValidationMessageFor(model => model.RememberMe, "", new { @class = "text-danger" })
                 </div>
+            </div>
+        </div>
+
+        <div class="form-group">
+            <div class="col-md-offset-2 col-md-10">
+               <a href="/ForgotPassword">Reset Your Password</a>
             </div>
         </div>
 

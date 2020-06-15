@@ -63,7 +63,7 @@ namespace final.Controllers
 
         [HttpPost]
         [Route("Login")]
-        public ActionResult Login(LoginViewModel login , string ReturnUrl="/")
+        public ActionResult Login(LoginViewModel login, string ReturnUrl = "/")
         {
             if (ModelState.IsValid)
             {
@@ -79,7 +79,7 @@ namespace final.Controllers
                     else
                     {
                         ModelState.AddModelError("Email", "Your Account not Activated");
-                       
+
                     }
                 }
                 else
@@ -109,5 +109,42 @@ namespace final.Controllers
             FormsAuthentication.SignOut();
             return Redirect("/");
         }
+
+        [Route("ForgotPassword")]
+        public ActionResult ForgotPassword()
+        {
+            return View();
+        }
+
+        [Route("ForgotPassword")]
+        [HttpPost]
+        public ActionResult ForgotPassword(ForgotPasswordViewModel forgot)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.UserTB.SingleOrDefault(u => u.Email == forgot.Email);
+                if (user != null)
+                {
+                    if (user.IsActive)
+                    {
+                        string body = PartialToStringClass.RenderPartialView("ManageEmail", "RecoverPassword", user);
+                        SendEmail.Send(user.Email, "Recovery Password", body);
+                        return View("SuccessForgotPassword", user);
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Email", "User Not Activated");
+                    }
+
+                }
+                else
+                {
+                    ModelState.AddModelError("Email", "USer Not Found");
+                }
+            }
+            return View(forgot);
+        }
+
+
     }
 }
