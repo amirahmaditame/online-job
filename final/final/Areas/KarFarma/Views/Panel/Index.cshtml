@@ -1,0 +1,59 @@
+﻿@model final.Areas.KarFarma.ViewModle.IndexInformation
+@{
+    ViewBag.Title = "Index";
+    Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+}
+<div class="form-widget ls-widget ">
+    <div class="widget-title"><h4><span class="icon flaticon-user"></span> My Information</h4></div>
+    <div class="widget-content">
+        <!-- Comment Form -->
+        <div class="row">
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="ui-item">
+                    <div class="left">
+                        <h4>@Model.TotallForms</h4>
+                        <p>Published Forms</p>
+                    </div>
+                    <div class="right">
+                        <i class="icon flaticon-computer"></i>
+                    </div>
+                </div>
+            </div>
+            <div class="col-xl-4 col-lg-6 col-md-6 col-sm-12">
+                <div class="ui-item bg-purple">
+                    <div class="left">
+                        <h4>@Model.RecievedResume</h4>
+                        <p>Recieved Resumes</p>
+                    </div>
+                    <div class="right">
+                        <i class="icon flaticon-school-material"></i>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="default-form">
+            <!--Comment Form-->
+            <form id="formemloyee">
+                <div class="form-group">
+                    <label>UserName</label>
+                    <input type="text" id="UserName" placeholder="@Model.UserName" value="@Model.UserName " readonly="readonly" required>
+                    <span class="icon fab "></span>
+                </div>
+                <div class="form-group">
+                    <label>PassWord</label>
+                    <input type="text" id="PassWord" placeholder="@Model.PassWord" value="@Model.PassWord" readonly="readonly" required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <label>Email</label>
+                    <input type="text" id="Email" placeholder="@Model.Email" value="@Model.Email" readonly="readonly" required>
+                    <span class="icon fab"></span>
+                </div>
+            </form>
+        </div>
+        <!--End Comment Form -->
+        <div class="form-group">
+            <button class="theme-btn btn-style-two" id="submit-form">Save Changes</button>
+        </div>
+    </div>
+</div>

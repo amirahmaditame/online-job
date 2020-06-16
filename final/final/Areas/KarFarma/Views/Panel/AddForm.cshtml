@@ -1,0 +1,123 @@
+﻿@model DataLayer.FormTB
+@{
+    ViewBag.Title = "AddForm";
+    Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+}
+<div class="form-widget ls-widget ">
+    <div class="widget-title"><h4><span class="icon flaticon-user"></span> Follow</h4></div>
+    <div class="widget-content">
+        <!-- Comment Form -->
+        <div class="default-form">
+            <!--Comment Form-->
+            <form id="formemloyee">
+                <div class="form-group">
+                    <label>Company Name</label>
+                    <input type="text" id="CompanyName" placeholder="" value=" " required>
+                    <span class="icon fab "></span>
+                </div>
+                <div class="form-group">
+                    <label>Region</label>
+                    <input type="text" id="Region" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="City" placeholder=" " value=" " required>
+                    <span class="icon fab "></span>
+                </div>
+                <div class="form-group">
+                    <label>Benifits</label>
+                    <input type="text" id="Benifits" placeholder=" " value=" " required>
+                    <span class="icon fab fa-instagram"></span>
+                </div>
+                <div class="form-group">
+                    <label>Working Days</label>
+                    <input type="text" id="WorkingDays" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <label>Radiobox</label>
+                <div class="radio-outer margin-top-10">
+                    <label>Checkbox</label>
+                    <div class="checkbox-outer margin-top-10">
+                        <ul class="checkboxes">
+                            <li>
+                                <input id="check-a" type="checkbox" name="Male" checked>
+                                <label for="check-a">Male</label>
+                            </li>
+                            <li>
+                                <input id="check-b" type="checkbox" name="Female" checked>
+                                <label for="check-b">Female</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Form Text</label>
+                    <input type="text" id="FormText" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <button class="theme-btn btn-style-two" id="submit-form">Save Changes</button>
+                </div>
+            </form>
+        </div>
+        <!--End Comment Form -->
+    </div>
+</div>
+@section PageScript{
+    <script>
+
+        $(function () {
+            $(document).ready(function () {
+                $(document).on("click", "#submit-form", function (e) {
+                    e.preventDefault();
+                    const s = $('#check-a').checked;
+                    const s1 = $('#check-b').checked;
+                    var c;
+                    console.log(s);
+                    console.log(s1);
+                    if (s) {
+                        c = "Male";
+                    }
+                    else {
+                        if (s1) {
+                            c = "Femle";
+                        }
+                        else {
+                            c = "Male-Female"
+                        }
+                    }
+                    console.log(c);
+                    $.ajax({
+                        type: "POST",
+                        url: "/KarFarma/Panel/AddForm",
+                        data: JSON.stringify({
+                            CompanyName: $("#CompanyName").val(),
+                            Region: $("#Region").val(),
+                            City: $("#City").val(),
+                            Benifits: $("#Benifits").val(),
+                            WorkingDays: $("#WorkingDays").val(),
+                            Gender: c,
+                            FormText: $("#FormText").val()
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                            if (e.Status) {
+                                alert('ok!');
+                            }
+                            else {
+                                alert('false');
+
+                            }
+                        },
+                        error: function () {
+                            alert('khata');
+                        }
+                    });
+                });
+
+            });
+        });
+    </script>
+}

@@ -16,7 +16,7 @@
       <PropertyRef Name="EmployeeID" />
     </Key>
     <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmailCompany" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="EmployerTB">
     <Key>
@@ -24,31 +24,27 @@
     </Key>
     <Property Name="EmployerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="ResumeID" Type="int" Nullable="false" />
-    <Property Name="MobilePhone" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
-  <!--Errors Found During Generation:
-warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primary key defined. The key has been inferred and the definition was created as a read-only table/view.-->
   <EntityType Name="FormDetailTB">
     <Key>
-      <PropertyRef Name="FormID" />
-      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="FormDetailID" />
     </Key>
     <Property Name="FormID" Type="int" Nullable="false" />
     <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="FormDetailID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="FormTB">
     <Key>
       <PropertyRef Name="FormID" />
     </Key>
     <Property Name="FormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Region" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="City" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Benefits" Type="nvarchar" MaxLength="150" />
     <Property Name="WorkingDays" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Gender" Type="nvarchar" MaxLength="150" />
-    <Property Name="TypeID" Type="int" Nullable="false" />
     <Property Name="RequestDtae" Type="datetime" Nullable="false" />
     <Property Name="FormText" Type="nvarchar" MaxLength="150" />
   </EntityType>
@@ -59,15 +55,26 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
     <Property Name="JobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="JobCategory" Type="nvarchar" MaxLength="150" Nullable="false" />
   </EntityType>
+  <EntityType Name="ResumeEmployeeTB">
+    <Key>
+      <PropertyRef Name="ResumeEmployeeID" />
+    </Key>
+    <Property Name="ResumeID" Type="int" Nullable="false" />
+    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="Date" Type="datetime" Nullable="false" />
+    <Property Name="ResumeEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+  </EntityType>
   <EntityType Name="ResumeTB">
     <Key>
       <PropertyRef Name="ResumeID" />
     </Key>
     <Property Name="ResumeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="Age" Type="int" />
-    <Property Name="Gender" Type="nvarchar" MaxLength="150" />
+    <Property Name="FirstName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="LatName" Type="nvarchar" MaxLength="50" Nullable="false" />
+    <Property Name="Age" Type="int" Nullable="false" />
+    <Property Name="Gender" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="RequestDate" Type="datetime" />
-    <Property Name="EduDegree" Type="nvarchar" MaxLength="150" />
+    <Property Name="EduDegree" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="AbilityDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="EnglishAbility" Type="bit" Nullable="false" />
     <Property Name="ExtraAbility" Type="nvarchar" MaxLength="150" />
@@ -78,6 +85,7 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
     </Key>
     <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="RoleName" Type="nvarchar" MaxLength="150" Nullable="false" />
   </EntityType>
   <EntityType Name="SelectedJobTB">
     <Key>
@@ -94,12 +102,12 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
     </Key>
     <Property Name="UserID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserName" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" />
-    <Property Name="EmployerID" Type="int" />
     <Property Name="Email" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Password" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="RoleID" Type="int" Nullable="false" />
-    <Property Name="CommentID" Type="int" />
+    <Property Name="ActiveCode" Type="varchar" MaxLength="50" Nullable="false" />
+    <Property Name="IsActive" Type="bit" Nullable="false" />
+    <Property Name="RegesterDate" Type="datetime" Nullable="false" />
   </EntityType>
   <Association Name="FK_CommentTB_JobCategoryTB">
     <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
@@ -113,6 +121,18 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_EmployeeTB_UserTB">
+    <End Role="UserTB" Type="Self.UserTB" Multiplicity="1" />
+    <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTB">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="EmployeeTB">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_EmployerTB_ResumeTB">
     <End Role="ResumeTB" Type="Self.ResumeTB" Multiplicity="1" />
     <End Role="EmployerTB" Type="Self.EmployerTB" Multiplicity="*" />
@@ -122,6 +142,18 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       </Principal>
       <Dependent Role="EmployerTB">
         <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployerTB_UserTB">
+    <End Role="UserTB" Type="Self.UserTB" Multiplicity="1" />
+    <End Role="EmployerTB" Type="Self.EmployerTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTB">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="EmployerTB">
+        <PropertyRef Name="UserID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -149,6 +181,30 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_ResumeEmployeeTB_EmployeeTB">
+    <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
+    <End Role="ResumeEmployeeTB" Type="Self.ResumeEmployeeTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="EmployeeTB">
+        <PropertyRef Name="EmployeeID" />
+      </Principal>
+      <Dependent Role="ResumeEmployeeTB">
+        <PropertyRef Name="EmployeeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_ResumeEmployeeTB_ResumeTB">
+    <End Role="ResumeTB" Type="Self.ResumeTB" Multiplicity="1" />
+    <End Role="ResumeEmployeeTB" Type="Self.ResumeEmployeeTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResumeTB">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="ResumeEmployeeTB">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_SelectedJobTB_EmployeeTB">
     <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
     <End Role="SelectedJobTB" Type="Self.SelectedJobTB" Multiplicity="*" />
@@ -173,30 +229,6 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserTB_EmployeeTB">
-    <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="0..1" />
-    <End Role="UserTB" Type="Self.UserTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployeeTB">
-        <PropertyRef Name="EmployeeID" />
-      </Principal>
-      <Dependent Role="UserTB">
-        <PropertyRef Name="EmployeeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_UserTB_EmployerTB">
-    <End Role="EmployerTB" Type="Self.EmployerTB" Multiplicity="0..1" />
-    <End Role="UserTB" Type="Self.UserTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployerTB">
-        <PropertyRef Name="EmployerID" />
-      </Principal>
-      <Dependent Role="UserTB">
-        <PropertyRef Name="EmployerID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserTB_RoleTB">
     <End Role="RoleTB" Type="Self.RoleTB" Multiplicity="1" />
     <End Role="UserTB" Type="Self.UserTB" Multiplicity="*" />
@@ -209,28 +241,38 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="ReportPerEmployeeForEachResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="EmployeeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReportPerEmployeeForPeForm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="Emplyeeid" Type="int" Mode="In" />
+  </Function>
   <EntityContainer Name="OnlineJobModelStoreContainer">
     <EntitySet Name="CommentTB" EntityType="Self.CommentTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmployeeTB" EntityType="Self.EmployeeTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmployerTB" EntityType="Self.EmployerTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="FormDetailTB" EntityType="Self.FormDetailTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FormTB" EntityType="Self.FormTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="JobCategoryTB" EntityType="Self.JobCategoryTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ResumeEmployeeTB" EntityType="Self.ResumeEmployeeTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResumeTB" EntityType="Self.ResumeTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RoleTB" EntityType="Self.RoleTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SelectedJobTB" EntityType="Self.SelectedJobTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTB" EntityType="Self.UserTB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="FormDetailTB" EntityType="Self.FormDetailTB" store:Type="Tables" store:Schema="dbo">
-      <DefiningQuery>SELECT 
-    [FormDetailTB].[FormID] AS [FormID], 
-    [FormDetailTB].[EmployeeID] AS [EmployeeID]
-    FROM [dbo].[FormDetailTB] AS [FormDetailTB]</DefiningQuery>
-    </EntitySet>
     <AssociationSet Name="FK_CommentTB_JobCategoryTB" Association="Self.FK_CommentTB_JobCategoryTB">
       <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
       <End Role="CommentTB" EntitySet="CommentTB" />
     </AssociationSet>
+    <AssociationSet Name="FK_EmployeeTB_UserTB" Association="Self.FK_EmployeeTB_UserTB">
+      <End Role="UserTB" EntitySet="UserTB" />
+      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
+    </AssociationSet>
     <AssociationSet Name="FK_EmployerTB_ResumeTB" Association="Self.FK_EmployerTB_ResumeTB">
       <End Role="ResumeTB" EntitySet="ResumeTB" />
+      <End Role="EmployerTB" EntitySet="EmployerTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployerTB_UserTB" Association="Self.FK_EmployerTB_UserTB">
+      <End Role="UserTB" EntitySet="UserTB" />
       <End Role="EmployerTB" EntitySet="EmployerTB" />
     </AssociationSet>
     <AssociationSet Name="FK_FormDetailTB_EmployeeTB" Association="Self.FK_FormDetailTB_EmployeeTB">
@@ -241,6 +283,14 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
       <End Role="FormTB" EntitySet="FormTB" />
       <End Role="FormDetailTB" EntitySet="FormDetailTB" />
     </AssociationSet>
+    <AssociationSet Name="FK_ResumeEmployeeTB_EmployeeTB" Association="Self.FK_ResumeEmployeeTB_EmployeeTB">
+      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
+      <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_ResumeEmployeeTB_ResumeTB" Association="Self.FK_ResumeEmployeeTB_ResumeTB">
+      <End Role="ResumeTB" EntitySet="ResumeTB" />
+      <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
+    </AssociationSet>
     <AssociationSet Name="FK_SelectedJobTB_EmployeeTB" Association="Self.FK_SelectedJobTB_EmployeeTB">
       <End Role="EmployeeTB" EntitySet="EmployeeTB" />
       <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
@@ -248,14 +298,6 @@ warning 6002: The table/view 'OnlineJob.dbo.FormDetailTB' does not have a primar
     <AssociationSet Name="FK_SelectedJobTB_JobCategoryTB" Association="Self.FK_SelectedJobTB_JobCategoryTB">
       <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
       <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserTB_EmployeeTB" Association="Self.FK_UserTB_EmployeeTB">
-      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
-      <End Role="UserTB" EntitySet="UserTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_UserTB_EmployerTB" Association="Self.FK_UserTB_EmployerTB">
-      <End Role="EmployerTB" EntitySet="EmployerTB" />
-      <End Role="UserTB" EntitySet="UserTB" />
     </AssociationSet>
     <AssociationSet Name="FK_UserTB_RoleTB" Association="Self.FK_UserTB_RoleTB">
       <End Role="RoleTB" EntitySet="RoleTB" />
