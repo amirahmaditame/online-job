@@ -144,7 +144,10 @@
     <Compile Include="Areas\Admin\Controllers\JobCategoryController.cs" />
     <Compile Include="Areas\KarFarma\Controllers\PanelController.cs" />
     <Compile Include="Areas\KarFarma\KarFarmaAreaRegistration.cs" />
+    <Compile Include="Areas\KarFarma\ViewModle\IndexInformation.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\JobForm.cs" />
+    <Compile Include="Areas\KarFarma\ViewModle\MyInformation.cs" />
+    <Compile Include="Areas\KarFarma\ViewModle\NewFormForEmployee.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\Resume.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -668,12 +671,13 @@
     <Content Include="Areas\KarFarma\Content\fonts\la-solid-900d41d.eot" />
     <Content Include="Areas\KarFarma\Views\Panel\Index.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\Jobs.cshtml" />
-    <Content Include="Areas\KarFarma\Views\Panel\JobsForm.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\RecievedResume.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\ShowResume.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\ShowForms.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\EditForm.cshtml" />
     <Content Include="Areas\KarFarma\Views\Panel\test.cshtml" />
+    <Content Include="Areas\KarFarma\Views\Panel\AddForm.cshtml" />
+    <Content Include="Areas\KarFarma\Views\Panel\EmployeeInformation.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

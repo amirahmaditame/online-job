@@ -22,38 +22,34 @@ public partial class EmployeeTB
     public EmployeeTB()
     {
 
+        this.FormDetailTB = new HashSet<FormDetailTB>();
+
         this.SelectedJobTB = new HashSet<SelectedJobTB>();
 
-        this.UserTB = new HashSet<UserTB>();
-
         this.ResumeEmployeeTB = new HashSet<ResumeEmployeeTB>();
-
-        this.FormTB = new HashSet<FormTB>();
 
     }
 
 
     public int EmployeeID { get; set; }
 
-    public string EmailCompany { get; set; }
+    public int UserID { get; set; }
 
 
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<FormDetailTB> FormDetailTB { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<SelectedJobTB> SelectedJobTB { get; set; }
 
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<UserTB> UserTB { get; set; }
+    public virtual UserTB UserTB { get; set; }
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
     public virtual ICollection<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<FormTB> FormTB { get; set; }
 
 }
 

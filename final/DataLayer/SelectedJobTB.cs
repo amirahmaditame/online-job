@@ -26,9 +26,9 @@ public partial class SelectedJobTB
 
 
 
-    public virtual EmployeeTB EmployeeTB { get; set; }
-
     public virtual JobCategoryTB JobCategoryTB { get; set; }
+
+    public virtual EmployeeTB EmployeeTB { get; set; }
 
 }
 

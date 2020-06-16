@@ -17,14 +17,44 @@ namespace final.Areas.KarFarma.Controllers
         OnlineJobEntities online = new OnlineJobEntities();
         public ActionResult Index()
         {
-            return View();
+            var model = online.UserTB.Find(1);
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
+            IndexInformation index = new IndexInformation();
+            index.Email = model.Email;
+            index.UserName = model.Password;
+            index.PassWord = model.Password;
+            index.RecievedResume = online.ResumeEmployeeTB.Where(p => p.EmployeeID == employeeId).Count();
+            index.TotallForms = online.FormDetailTB.Where(p => p.EmployeeID == employeeId).Count();
+            return View(index);
+        }
+        public ActionResult EmployeeInformation() {
+            var model = online.UserTB.Find(1);
+            MyInformation information = new MyInformation();
+            information.Email = model.Email;
+            information.UserName = model.UserName;
+            information.PassWord = model.Password;
+            information.UserID = model.UserID;
+            return View(information);
+        }
+        [HttpPost]
+        public ActionResult EmployeeInformation(int UserID,string UserName,string PassWord,String Email)
+        {
+            var model = online.UserTB.Find(UserID);
+            model.UserName = UserName;
+            model.Password = PassWord;
+            model.Email = Email;
+            online.SaveChanges();
+            return Json(new JsonData()
+            {
+                Status = true
+            });
         }
         public ActionResult Jobs()
         {
 
             int i = 1;
             List<JobForm> Jobs = new List<JobForm>();
-            var model = online.ReportPerEmployeeForPeForm(2);
+            var model = online.ReportPerEmployeeForPeForm(1);
             foreach (var item in model)
             {
                 var r = new JobForm();
@@ -34,11 +64,6 @@ namespace final.Areas.KarFarma.Controllers
                 Jobs.Add(r);
             }
             return View(Jobs);
-        }
-        public ActionResult JobsForm()
-        {
-
-            return View();
         }
         public ActionResult RecievedResume()
         {
@@ -88,6 +113,29 @@ namespace final.Areas.KarFarma.Controllers
             {
                 Status = true
             });
+        }
+        public ActionResult AddForm() {
+            return View();
+        }
+        [HttpPost]
+        public JsonResult AddForm(FormTB form)
+        {
+            form.RequestDtae = DateTime.Now;
+            online.Entry(form).State = EntityState.Added;
+            online.SaveChanges();
+            return Json(new JsonData()
+            {
+                Status = true
+            });
+        }
+
+        public void DeleteForm(int id) {
+            var entity = online.FormTB.Find(id);
+            online.Entry(entity).State = EntityState.Deleted;
+
+            var entityd = online.FormDetailTB.Where(p => p.FormID == id).First();
+            online.FormDetailTB.Remove(entityd);
+            online.SaveChanges();
         }
         public class JsonData
         {

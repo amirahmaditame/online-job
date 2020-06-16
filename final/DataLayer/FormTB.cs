@@ -22,7 +22,7 @@ public partial class FormTB
     public FormTB()
     {
 
-        this.EmployeeTB = new HashSet<EmployeeTB>();
+        this.FormDetailTB = new HashSet<FormDetailTB>();
 
     }
 
@@ -49,7 +49,7 @@ public partial class FormTB
 
     [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual ICollection<EmployeeTB> EmployeeTB { get; set; }
+    public virtual ICollection<FormDetailTB> FormDetailTB { get; set; }
 
 }
 

@@ -23,11 +23,11 @@
                         <a onclick="view(@group.id)" href="javascript:;" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
                             <i class="fa fa-edit"></i> view |
                         </a>
-                        <a  href="@Url.Action("EditForm","Panel", new { id = group.id })" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
+                        <a href="@Url.Action("EditForm","Panel", new { id = group.id })" class="btn btn-outline btn-circle btn-sm purple btn-editgroup">
                             <i class="fa fa-edit"></i> Edit |
                         </a>
-                        <a  href="javascript;:" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
-                            <i class="fa fa-edit"></i> Delete |
+                        <a href="javascript:;" onclick="Delete(@group.id,this)" class="btn btn-outline btn-circle btn-sm purple btn-deletegroup">
+                            <i class="fa fa-edit"></i> Delete
                         </a>
                     </td>
                 </tr>
@@ -52,12 +52,22 @@
             $.get("/karFarma/Panel/ShowForms/" + id, function (res) {
 
                 $("#MyModal").modal();
-
                 $("#myModalBody").html(res);
 
             });
         }
-    </script>
+
+        function Delete(id,me) {
+            if (confirm("Are you Sure?")) {
+
+                $.get("/karFarma/Panel/DeleteForm/" + id, function () {
+
+                    $(me).parent().parent().remove();
+
+                });
+            }
+        }
+       </script>
 
 }
 

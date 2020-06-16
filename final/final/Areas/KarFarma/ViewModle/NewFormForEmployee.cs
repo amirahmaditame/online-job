@@ -5,10 +5,9 @@ using System.Web;
 
 namespace final.Areas.KarFarma.ViewModle
 {
-    public class JobForm
+    public class NewFormForEmployee
     {
-        public int count;
-        public DateTime date;
+        public DataLayer.FormTB form;
         public int id;
     }
 }

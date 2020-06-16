@@ -24,6 +24,8 @@ public partial class ResumeEmployeeTB
 
     public System.DateTime Date { get; set; }
 
+    public int ResumeEmployeeID { get; set; }
+
 
 
     public virtual EmployeeTB EmployeeTB { get; set; }

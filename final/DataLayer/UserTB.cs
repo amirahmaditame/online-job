@@ -18,13 +18,20 @@ using System;
 public partial class UserTB
 {
 
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
+    public UserTB()
+    {
+
+        this.EmployeeTB = new HashSet<EmployeeTB>();
+
+        this.EmployerTB = new HashSet<EmployerTB>();
+
+    }
+
+
     public int UserID { get; set; }
 
     public string UserName { get; set; }
-
-    public Nullable<int> EmployeeID { get; set; }
-
-    public Nullable<int> EmployerID { get; set; }
 
     public string Email { get; set; }
 
@@ -32,13 +39,21 @@ public partial class UserTB
 
     public int RoleID { get; set; }
 
-    public Nullable<int> CommentID { get; set; }
+    public string ActiveCode { get; set; }
+
+    public bool IsActive { get; set; }
+
+    public System.DateTime RegesterDate { get; set; }
 
 
 
-    public virtual EmployeeTB EmployeeTB { get; set; }
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
 
-    public virtual EmployerTB EmployerTB { get; set; }
+    public virtual ICollection<EmployeeTB> EmployeeTB { get; set; }
+
+    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+
+    public virtual ICollection<EmployerTB> EmployerTB { get; set; }
 
     public virtual RoleTB RoleTB { get; set; }
 
