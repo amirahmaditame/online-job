@@ -1,4 +1,5 @@
-﻿using System;
+﻿using DataLayer;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Web;
@@ -8,10 +9,20 @@ namespace final.Areas.Admin.Controllers
 {
     public class HomeController : Controller
     {
+        OnlineJobEntities db = new OnlineJobEntities();
         // GET: Admin/Home
         public ActionResult Index()
         {
             return View();
+        }
+        public ActionResult summaryBox()
+        {
+            ViewBag.employee = db.UserTB.Where(u=>u.RoleID == 3).Count();
+            ViewBag.employer = db.UserTB.Where(u=>u.RoleID == 2).Count();
+            ViewBag.listings = db.FormTB.Count();
+            ViewBag.jobcategory = db.JobCategoryTB.Count();
+
+            return PartialView();
         }
     }
 }

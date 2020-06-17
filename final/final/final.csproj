@@ -636,7 +636,7 @@
     <Content Include="Areas\Admin\Views\JobCategory\Index.cshtml" />
     <Content Include="Areas\Admin\Views\Home\Index.cshtml" />
     <Content Include="Areas\Admin\Views\JobCategory\JobGroups.cshtml" />
-    <Content Include="Areas\Admin\Views\JobCategory\summaryBox.cshtml" />
+    <Content Include="Areas\Admin\Views\Home\summaryBox.cshtml" />
     <Content Include="Content\fonts\fa-brands-400.eot" />
     <Content Include="Content\fonts\fa-brands-400.ttf" />
     <Content Include="Content\fonts\fa-brands-400.woff" />

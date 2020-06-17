@@ -4,52 +4,61 @@
     ViewBag.Title = "Index";
 }
 
-<h3>Users</h3>
+<h3 >Manage Users</h3>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
+<p class="p-md-3">
+    <a class="btn btn-success" onclick="Create()" id="btnNewGroup">Create New Group</a>
 </p>
-<table class="table table-bordered">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.UserName)
-        </th>
-        <th>
-            @Html.DisplayNameFor(model => model.Email)
-        </th>
-         
-        <th>
-            @Html.DisplayNameFor(model => model.IsActive)
-        </th>
-        
-        <th>
-            @Html.DisplayNameFor(model => model.RoleTB.RoleTitle)
-        </th>
-        <th></th>
-    </tr>
+<div class="table-responsive">
+    <table class="table table-bordered">
+        <tr>
+            <th>
+                @Html.DisplayNameFor(model => model.UserName)
+            </th>
+            <th>
+                @Html.DisplayNameFor(model => model.Email)
+            </th>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.UserName)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Email)
-        </td>
-       
-        <td>
-            @Html.DisplayFor(modelItem => item.IsActive)
-        </td>
-        
-        <td>
-            @Html.DisplayFor(modelItem => item.RoleTB.RoleTitle)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.UserID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.UserID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.UserID })
-        </td>
-    </tr>
-}
+            <th>
+                @Html.DisplayNameFor(model => model.IsActive)
+            </th>
 
-</table>
+            <th>
+                @Html.DisplayNameFor(model => model.RoleTB.RoleTitle)
+            </th>
+            <th>
+                Action
+            </th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>
+                    @Html.DisplayFor(modelItem => item.UserName)
+                </td>
+                <td>
+                    @Html.DisplayFor(modelItem => item.Email)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.IsActive)
+                </td>
+
+                <td>
+                    @Html.DisplayFor(modelItem => item.RoleTB.RoleTitle)
+                </td>
+                <td>
+
+                    <a onclick="Edit()" class="btn btn-warning btn-sm">
+                        <i class="fas fa-edit"></i>
+                    </a>
+                    <a onclick="Delete()" class="btn btn-danger btn-sm">
+                        <i class="fas fa-trash"></i>
+                    </a>
+                </td>
+            </tr>
+        }
+
+    </table>
+    </div>

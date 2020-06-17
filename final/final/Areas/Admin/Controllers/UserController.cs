@@ -10,7 +10,7 @@ using DataLayer;
 
 namespace final.Areas.Admin.Controllers
 {
-    [Authorize(Roles ="admin")]
+  
     public class UserController : Controller
     {
         private OnlineJobEntities db = new OnlineJobEntities();

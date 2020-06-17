@@ -10,7 +10,7 @@ using DataLayer;
 
 namespace final.Areas.Admin.Controllers
 {
-    [Authorize(Roles ="admin")]
+   
     public class JobCategoryController : Controller
     {
        private IJobGroupRepository jobGroupRepository;
@@ -125,9 +125,6 @@ namespace final.Areas.Admin.Controllers
             base.Dispose(disposing);
         }
 
-        public ActionResult summaryBox()
-        {
-            return PartialView();
-        }
+       
     }
 }
