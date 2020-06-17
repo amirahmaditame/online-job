@@ -712,6 +712,7 @@
     <Content Include="Views\Account\ForgotPassword.cshtml" />
     <Content Include="Views\ManageEmail\RecoverPassword.cshtml" />
     <Content Include="Views\Account\SuccessForgotPassword.cshtml" />
+    <Content Include="Views\Account\RecoveryPassword.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

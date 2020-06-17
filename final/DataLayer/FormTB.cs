@@ -17,22 +17,20 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public FormTB()
         {
-            this.EmployeeTB = new HashSet<EmployeeTB>();
+            this.FormDetailTB = new HashSet<FormDetailTB>();
         }
     
         public int FormID { get; set; }
-        public int EmployeeID { get; set; }
         public string CompanyName { get; set; }
         public string Region { get; set; }
         public string City { get; set; }
         public string Benefits { get; set; }
         public string WorkingDays { get; set; }
         public string Gender { get; set; }
-        public int TypeID { get; set; }
         public System.DateTime RequestDtae { get; set; }
         public string FormText { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeTB> EmployeeTB { get; set; }
+        public virtual ICollection<FormDetailTB> FormDetailTB { get; set; }
     }
 }

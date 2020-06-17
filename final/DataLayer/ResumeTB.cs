@@ -18,10 +18,13 @@ namespace DataLayer
         public ResumeTB()
         {
             this.EmployerTB = new HashSet<EmployerTB>();
+            this.ResumeEmployeeTB = new HashSet<ResumeEmployeeTB>();
         }
     
         public int ResumeID { get; set; }
-        public Nullable<int> Age { get; set; }
+        public string FirstName { get; set; }
+        public string LatName { get; set; }
+        public int Age { get; set; }
         public string Gender { get; set; }
         public Nullable<System.DateTime> RequestDate { get; set; }
         public string EduDegree { get; set; }
@@ -31,5 +34,7 @@ namespace DataLayer
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployerTB> EmployerTB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
     }
 }

@@ -26,7 +26,7 @@ namespace DataLayer
         [Display(Name = "RePassword")]
         [Required(ErrorMessage = "please Enter the {0}")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Error")]
+        [Compare("Password", ErrorMessage = "Not Match")]
         public string RePassword { get; set; }
 
         [Required(ErrorMessage = "Choose at least one")]
@@ -54,6 +54,21 @@ namespace DataLayer
         [Required(ErrorMessage = "please Enter the {0}")]
         [EmailAddress(ErrorMessage = "Please Enter valid Email")]
         public string Email { get; set; }
+    }
+    public class RecoveryPasswordViewModel
+    {
+
+        [Display(Name = "New password")]
+        [Required(ErrorMessage = "please Enter the {0}")]
+        [DataType(DataType.Password)]
+        public string Password { get; set; }
+
+        [Display(Name = "New Repeat Password")]
+        [Required(ErrorMessage = "please Enter the {0}")]
+        [DataType(DataType.Password)]
+        [Compare("Password", ErrorMessage = "Not Match")]
+        public string RePassword { get; set; }
+
     }
 
 }

@@ -17,16 +17,20 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public EmployeeTB()
         {
+            this.FormDetailTB = new HashSet<FormDetailTB>();
+            this.ResumeEmployeeTB = new HashSet<ResumeEmployeeTB>();
             this.SelectedJobTB = new HashSet<SelectedJobTB>();
-            this.FormTB = new HashSet<FormTB>();
         }
     
         public int EmployeeID { get; set; }
-        public string EmailCompany { get; set; }
+        public int UserID { get; set; }
     
+        public virtual UserTB UserTB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<FormDetailTB> FormDetailTB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<SelectedJobTB> SelectedJobTB { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<FormTB> FormTB { get; set; }
     }
 }

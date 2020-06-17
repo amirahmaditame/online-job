@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Net.Configuration;
+using System.Security.Policy;
 using System.Web;
 using System.Web.Mvc;
 using System.Web.Security;
@@ -35,11 +36,31 @@ namespace final.Controllers
                         Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
                         ActiveCode = Guid.NewGuid().ToString(),
                         IsActive = false,
-                        RegisterDate = DateTime.Now,
+                        RegesterDate = DateTime.Now,
                         RoleID = register.roleid
                     };
 
                     db.UserTB.Add(user);
+                    
+                    if(user.RoleID == 3)
+                    {
+                        var useremployee = new EmployeeTB()
+                        {
+                            UserID = user.UserID
+                        };
+                        db.EmployeeTB.Add(useremployee);
+                    }
+                    ///////////////////////                  
+                    //if (user.RoleID == 2)
+                    //{
+                    //    var useremployer = new EmployerTB()
+                    //    {
+                    //        UserID = user.UserID
+                    //    };
+                    //    db.EmployerTB.Add(useremployer);
+                    //}
+                    ///////////////////
+
                     db.SaveChanges();
 
                     string body = PartialToStringClass.RenderPartialView("ManageEmail", "ActivationEmail", user);
@@ -144,6 +165,36 @@ namespace final.Controllers
             }
             return View(forgot);
         }
+
+        public ActionResult RecoveryPassword(string id)
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult RecoveryPassword(string id , RecoveryPasswordViewModel recovery)
+        {
+            if (ModelState.IsValid)
+            {
+                var user = db.UserTB.SingleOrDefault(u => u.ActiveCode == id);
+                if(user == null)
+                {
+                    return HttpNotFound();
+
+                }
+                user.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(recovery.Password, "MD5");
+                user.ActiveCode = Guid.NewGuid().ToString();
+                db.SaveChanges();
+                return Redirect("/Login?recovery=true");
+
+
+            }
+
+            return View();
+        }
+
+
+
 
 
     }

@@ -5,15 +5,22 @@
 }
 
 
-@using (Html.BeginForm()) 
+@using (Html.BeginForm())
 {
     @Html.AntiForgeryToken()
-    
+
     <div class="form-horizontal">
         @if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
             <div class="alert alert-danger">
                 <p> you have not permission to access that page </p>
+            </div>
+        }
+
+        @if (Request.QueryString["recovery"] != null)
+        {
+            <div class="alert alert-success">
+                <p> your assword change successfully</p>
             </div>
         }
 
@@ -46,7 +53,7 @@
 
         <div class="form-group">
             <div class="col-md-offset-2 col-md-10">
-               <a href="/ForgotPassword">Reset Your Password</a>
+                <a href="/ForgotPassword">Reset Your Password</a>
             </div>
         </div>
 

@@ -12,13 +12,13 @@ namespace DataLayer
     using System;
     using System.Collections.Generic;
     
-    public partial class EmployerTB
+    public partial class FormDetailTB
     {
-        public int EmployerID { get; set; }
-        public int ResumeID { get; set; }
-        public int UserID { get; set; }
+        public int FormID { get; set; }
+        public int EmployeeID { get; set; }
+        public int FormDetailID { get; set; }
     
-        public virtual ResumeTB ResumeTB { get; set; }
-        public virtual UserTB UserTB { get; set; }
+        public virtual EmployeeTB EmployeeTB { get; set; }
+        public virtual FormTB FormTB { get; set; }
     }
 }

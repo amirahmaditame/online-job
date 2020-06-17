@@ -28,11 +28,14 @@ namespace DataLayer
         public virtual DbSet<CommentTB> CommentTB { get; set; }
         public virtual DbSet<EmployeeTB> EmployeeTB { get; set; }
         public virtual DbSet<EmployerTB> EmployerTB { get; set; }
+        public virtual DbSet<FormDetailTB> FormDetailTB { get; set; }
         public virtual DbSet<FormTB> FormTB { get; set; }
         public virtual DbSet<JobCategoryTB> JobCategoryTB { get; set; }
+        public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
         public virtual DbSet<ResumeTB> ResumeTB { get; set; }
         public virtual DbSet<RoleTB> RoleTB { get; set; }
         public virtual DbSet<SelectedJobTB> SelectedJobTB { get; set; }
+        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
         public virtual DbSet<UserTB> UserTB { get; set; }
     }
 }
