@@ -229,22 +229,8 @@
                         </div>*@
 
                         <!-- Dashboard Option -->
-                        <div class="dropdown dashboard-option">
-                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
-                                <img src="/Areas/Admin/Content/images/resource/user-img.jpg" alt="avatar" class="thumb">
-                                <span class="name">@User.Identity.Name</span>
-                            </a>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item active" href="/Admin"> <i class="la la-home"></i> Dashboard</a>
-                                <a class="dropdown-item" href="/Admin/JobCategory"><i class="la la-list"></i>Job Category</a>
-                                <a class="dropdown-item" href="/Admin/User"><i class="la la-user-plus"></i>Manage Useres</a>
-                                <a class="dropdown-item" href="#"><i class="la la-layer-group"></i>Listings</a>
-                                <a class="dropdown-item" href="dashboard-messages.html"><i class="la la-envelope"></i> Messages </a>
-                                <a class="dropdown-item" href="dashboard-reviews.html"><i class="la la-calendar"></i> Reviews</a>
-                                <a class="dropdown-item" href="dashboard-favorites.html"><i class="la la-thumbs-o-up"></i>Favorites</a>
-                                <a class="dropdown-item" href="index.html"><i class="la la-sign-out"></i>Logout</a>
-                            </div>
-                        </div>
+                    @Html.Action("menuProfile", "Home")
+                        
                     </div>
                 </div>
             </div>

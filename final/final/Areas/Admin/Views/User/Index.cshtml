@@ -7,7 +7,7 @@
 <h3 >Manage Users</h3>
 
 <p class="p-md-3">
-    <a class="btn btn-success" onclick="Create()" id="btnNewGroup">Create New Group</a>
+    <a href="@Url.Action("Create")" class="btn btn-success">Create New Group</a>
 </p>
 <div class="table-responsive">
     <table class="table table-bordered">
@@ -50,7 +50,7 @@
                 </td>
                 <td>
 
-                    <a onclick="Edit()" class="btn btn-warning btn-sm">
+                    <a href="@Url.Action("Edit" ,new { id = item.UserID})" class="btn btn-warning btn-sm">
                         <i class="fas fa-edit"></i>
                     </a>
                     <a onclick="Delete()" class="btn btn-danger btn-sm">

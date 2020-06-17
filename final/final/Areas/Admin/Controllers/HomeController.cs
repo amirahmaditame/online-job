@@ -24,5 +24,10 @@ namespace final.Areas.Admin.Controllers
 
             return PartialView();
         }
+        public ActionResult menuProfile()
+        {
+            ViewBag.imagename = db.UserTB.SingleOrDefault(u => u.RoleID == 1).ImageName;
+            return PartialView();
+        }
     }
 }

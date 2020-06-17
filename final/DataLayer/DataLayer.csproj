@@ -69,6 +69,8 @@
       <DependentUpon>OnlineJobModel.tt</DependentUpon>
     </Compile>
     <Compile Include="MetaDataClasses\JobsGroupMetaData.cs" />
+    <Compile Include="MetaDataClasses\RoleMetaData.cs" />
+    <Compile Include="MetaDataClasses\UserMetaData.cs" />
     <Compile Include="OnlineJobModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>

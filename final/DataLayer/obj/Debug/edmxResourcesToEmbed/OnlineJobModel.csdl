@@ -140,6 +140,7 @@
     <NavigationProperty Name="EmployeeTB" Relationship="Self.FK_EmployeeTB_UserTB" FromRole="UserTB" ToRole="EmployeeTB" />
     <NavigationProperty Name="EmployerTB" Relationship="Self.FK_EmployerTB_UserTB" FromRole="UserTB" ToRole="EmployerTB" />
     <NavigationProperty Name="RoleTB" Relationship="Self.FK_UserTB_RoleTB" FromRole="UserTB" ToRole="RoleTB" />
+    <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
   </EntityType>
   <Association Name="FK_CommentTB_JobCategoryTB">
     <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />

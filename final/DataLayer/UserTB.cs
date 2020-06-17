@@ -29,6 +29,7 @@ namespace DataLayer
         public string ActiveCode { get; set; }
         public bool IsActive { get; set; }
         public System.DateTime RegesterDate { get; set; }
+        public string ImageName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployeeTB> EmployeeTB { get; set; }

@@ -4,7 +4,7 @@
   <edmx:Runtime>
     <!-- SSDL content -->
     <edmx:StorageModels>
-      <Schema Namespace="OnlineJobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
+    <Schema Namespace="OnlineJobModel.Store" Provider="System.Data.SqlClient" ProviderManifestToken="2012" Alias="Self" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm/ssdl">
         <EntityType Name="CommentTB">
           <Key>
             <PropertyRef Name="CommetID" />
@@ -123,6 +123,7 @@
           <Property Name="ActiveCode" Type="varchar" MaxLength="50" Nullable="false" />
           <Property Name="IsActive" Type="bit" Nullable="false" />
           <Property Name="RegesterDate" Type="datetime" Nullable="false" />
+          <Property Name="ImageName" Type="varchar" MaxLength="50" />
         </EntityType>
         <Association Name="FK_CommentTB_JobCategoryTB">
           <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
@@ -314,8 +315,7 @@
             <End Role="UserTB" EntitySet="UserTB" />
           </AssociationSet>
         </EntityContainer>
-      </Schema>
-    </edmx:StorageModels>
+      </Schema></edmx:StorageModels>
     <!-- CSDL content -->
     <edmx:ConceptualModels>
       <Schema Namespace="OnlineJobModel" Alias="Self" annotation:UseStrongSpatialTypes="false" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns:customannotation="http://schemas.microsoft.com/ado/2013/11/edm/customannotation" xmlns="http://schemas.microsoft.com/ado/2009/11/edm">
@@ -459,6 +459,7 @@
           <NavigationProperty Name="EmployeeTB" Relationship="Self.FK_EmployeeTB_UserTB" FromRole="UserTB" ToRole="EmployeeTB" />
           <NavigationProperty Name="EmployerTB" Relationship="Self.FK_EmployerTB_UserTB" FromRole="UserTB" ToRole="EmployerTB" />
           <NavigationProperty Name="RoleTB" Relationship="Self.FK_UserTB_RoleTB" FromRole="UserTB" ToRole="RoleTB" />
+          <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
         </EntityType>
         <Association Name="FK_CommentTB_JobCategoryTB">
           <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
@@ -775,6 +776,7 @@
           <EntitySetMapping Name="UserTB">
             <EntityTypeMapping TypeName="OnlineJobModel.UserTB">
               <MappingFragment StoreEntitySet="UserTB">
+                <ScalarProperty Name="ImageName" ColumnName="ImageName" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="UserName" ColumnName="UserName" />
                 <ScalarProperty Name="Email" ColumnName="Email" />

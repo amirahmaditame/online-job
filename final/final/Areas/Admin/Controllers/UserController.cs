@@ -6,6 +6,7 @@ using System.Linq;
 using System.Net;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using DataLayer;
 
 namespace final.Areas.Admin.Controllers
@@ -49,10 +50,14 @@ namespace final.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "UserID,RoleID,UserName,Email,Password,ActiveCode,IsActive,RegisterDate")] UserTB userTB)
+        public ActionResult Create([Bind(Include = "UserID,RoleID,UserName,Email,Password,ActiveCode,IsActive,RegesterDate")] UserTB userTB)
         {
             if (ModelState.IsValid)
             {
+               
+                userTB.Password = FormsAuthentication.HashPasswordForStoringInConfigFile(userTB.Password, "MD5");
+                userTB.ActiveCode = Guid.NewGuid().ToString();
+                userTB.RegesterDate = DateTime.Now;
                 db.UserTB.Add(userTB);
                 db.SaveChanges();
                 return RedirectToAction("Index");
@@ -83,7 +88,7 @@ namespace final.Areas.Admin.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "UserID,RoleID,UserName,Email,Password,ActiveCode,IsActive,RegisterDate")] UserTB userTB)
+        public ActionResult Edit([Bind(Include = "UserID,RoleID,UserName,Email,Password,ActiveCode,IsActive,RegesterDate")] UserTB userTB)
         {
             if (ModelState.IsValid)
             {
