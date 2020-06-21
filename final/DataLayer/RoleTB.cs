@@ -7,37 +7,24 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-
 namespace DataLayer
 {
-
     using System;
     using System.Collections.Generic;
 
     public partial class RoleTB
     {
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public RoleTB()
         {
-
             this.UserTB = new HashSet<UserTB>();
-
         }
 
-
         public int RoleID { get; set; }
-
         public string RoleTitle { get; set; }
-
         public string RoleName { get; set; }
 
-
-
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
         public virtual ICollection<UserTB> UserTB { get; set; }
-
     }
-
 }
