@@ -96,6 +96,16 @@
     <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="JobDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
   </EntityType>
+  <EntityType Name="sysdiagrams">
+    <Key>
+      <PropertyRef Name="diagram_id" />
+    </Key>
+    <Property Name="name" Type="nvarchar" MaxLength="128" Nullable="false" />
+    <Property Name="principal_id" Type="int" Nullable="false" />
+    <Property Name="diagram_id" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="version" Type="int" />
+    <Property Name="definition" Type="varbinary(max)" />
+  </EntityType>
   <EntityType Name="UserTB">
     <Key>
       <PropertyRef Name="UserID" />
@@ -108,6 +118,7 @@
     <Property Name="ActiveCode" Type="varchar" MaxLength="50" Nullable="false" />
     <Property Name="IsActive" Type="bit" Nullable="false" />
     <Property Name="RegesterDate" Type="datetime" Nullable="false" />
+    <Property Name="ImageName" Type="varchar" MaxLength="50" />
   </EntityType>
   <Association Name="FK_CommentTB_JobCategoryTB">
     <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
@@ -252,6 +263,7 @@
     <EntitySet Name="ResumeTB" EntityType="Self.ResumeTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RoleTB" EntityType="Self.RoleTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="SelectedJobTB" EntityType="Self.SelectedJobTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="sysdiagrams" EntityType="Self.sysdiagrams" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTB" EntityType="Self.UserTB" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CommentTB_JobCategoryTB" Association="Self.FK_CommentTB_JobCategoryTB">
       <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />

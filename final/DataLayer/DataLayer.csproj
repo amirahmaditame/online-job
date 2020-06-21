@@ -51,37 +51,37 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="CommentTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployeeTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="EmployerTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FormDetailTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="FormTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="JobCategoryTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobOnline.Context.cs">
+    <Compile Include="JobOnlineModel.Context.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JobOnline.Context.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.Context.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobOnline.cs">
+    <Compile Include="JobOnlineModel.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
-    <Compile Include="JobOnline.Designer.cs">
+    <Compile Include="JobOnlineModel.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>JobOnline.edmx</DependentUpon>
+      <DependentUpon>JobOnlineModel.edmx</DependentUpon>
     </Compile>
     <Compile Include="MetaDataClasses\JobsGroupMetaData.cs" />
     <Compile Include="MetaDataClasses\RoleMetaData.cs" />
@@ -89,34 +89,34 @@
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Repositories\IJobGroupRepository.cs" />
     <Compile Include="ResumeEmployeeTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ResumeTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="RoleTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="SelectedJobTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\JobGroupRepository.cs" />
     <Compile Include="sysdiagrams.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="UserTB.cs">
-      <DependentUpon>JobOnline.tt</DependentUpon>
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="App.Config" />
-    <EntityDeploy Include="JobOnline.edmx">
+    <EntityDeploy Include="JobOnlineModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>JobOnline.Designer.cs</LastGenOutput>
+      <LastGenOutput>JobOnlineModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
-    <None Include="JobOnline.edmx.diagram">
-      <DependentUpon>JobOnline.edmx</DependentUpon>
+    <None Include="JobOnlineModel.edmx.diagram">
+      <DependentUpon>JobOnlineModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
@@ -124,15 +124,15 @@
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
   </ItemGroup>
   <ItemGroup>
-    <Content Include="JobOnline.Context.tt">
+    <Content Include="JobOnlineModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JobOnline.edmx</DependentUpon>
-      <LastGenOutput>JobOnline.Context.cs</LastGenOutput>
+      <DependentUpon>JobOnlineModel.edmx</DependentUpon>
+      <LastGenOutput>JobOnlineModel.Context.cs</LastGenOutput>
     </Content>
-    <Content Include="JobOnline.tt">
+    <Content Include="JobOnlineModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JobOnline.edmx</DependentUpon>
-      <LastGenOutput>JobOnline.cs</LastGenOutput>
+      <DependentUpon>JobOnlineModel.edmx</DependentUpon>
+      <LastGenOutput>JobOnlineModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
