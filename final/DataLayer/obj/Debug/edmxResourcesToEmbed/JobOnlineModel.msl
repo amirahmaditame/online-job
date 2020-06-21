@@ -1,8 +1,8 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2009/11/mapping/cs">
-  <EntityContainerMapping StorageEntityContainer="OnlineJobModelStoreContainer" CdmEntityContainer="OnlineJobEntities">
+  <EntityContainerMapping StorageEntityContainer="JobOnlineModelStoreContainer" CdmEntityContainer="OnlineJobEntities">
     <EntitySetMapping Name="CommentTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.CommentTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.CommentTB">
         <MappingFragment StoreEntitySet="CommentTB">
           <ScalarProperty Name="CommetID" ColumnName="CommetID" />
           <ScalarProperty Name="JobID" ColumnName="JobID" />
@@ -14,7 +14,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EmployeeTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.EmployeeTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.EmployeeTB">
         <MappingFragment StoreEntitySet="EmployeeTB">
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="UserID" ColumnName="UserID" />
@@ -22,7 +22,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="EmployerTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.EmployerTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.EmployerTB">
         <MappingFragment StoreEntitySet="EmployerTB">
           <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
           <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
@@ -31,7 +31,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FormDetailTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.FormDetailTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.FormDetailTB">
         <MappingFragment StoreEntitySet="FormDetailTB">
           <ScalarProperty Name="FormID" ColumnName="FormID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -40,7 +40,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="FormTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.FormTB">
         <MappingFragment StoreEntitySet="FormTB">
           <ScalarProperty Name="FormID" ColumnName="FormID" />
           <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
@@ -55,7 +55,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="JobCategoryTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.JobCategoryTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.JobCategoryTB">
         <MappingFragment StoreEntitySet="JobCategoryTB">
           <ScalarProperty Name="JobID" ColumnName="JobID" />
           <ScalarProperty Name="JobCategory" ColumnName="JobCategory" />
@@ -63,7 +63,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ResumeEmployeeTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.ResumeEmployeeTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.ResumeEmployeeTB">
         <MappingFragment StoreEntitySet="ResumeEmployeeTB">
           <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -73,7 +73,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="ResumeTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.ResumeTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.ResumeTB">
         <MappingFragment StoreEntitySet="ResumeTB">
           <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
           <ScalarProperty Name="FirstName" ColumnName="FirstName" />
@@ -89,7 +89,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="RoleTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.RoleTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.RoleTB">
         <MappingFragment StoreEntitySet="RoleTB">
           <ScalarProperty Name="RoleID" ColumnName="RoleID" />
           <ScalarProperty Name="RoleTitle" ColumnName="RoleTitle" />
@@ -98,7 +98,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="SelectedJobTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.SelectedJobTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.SelectedJobTB">
         <MappingFragment StoreEntitySet="SelectedJobTB">
           <ScalarProperty Name="JobID" ColumnName="JobID" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
@@ -107,7 +107,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="sysdiagrams">
-      <EntityTypeMapping TypeName="OnlineJobModel.sysdiagrams">
+      <EntityTypeMapping TypeName="JobOnlineModel.sysdiagrams">
         <MappingFragment StoreEntitySet="sysdiagrams">
           <ScalarProperty Name="name" ColumnName="name" />
           <ScalarProperty Name="principal_id" ColumnName="principal_id" />
@@ -118,7 +118,7 @@
       </EntityTypeMapping>
     </EntitySetMapping>
     <EntitySetMapping Name="UserTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.UserTB">
+      <EntityTypeMapping TypeName="JobOnlineModel.UserTB">
         <MappingFragment StoreEntitySet="UserTB">
           <ScalarProperty Name="UserID" ColumnName="UserID" />
           <ScalarProperty Name="UserName" ColumnName="UserName" />
