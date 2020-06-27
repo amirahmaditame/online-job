@@ -41,24 +41,24 @@ namespace final.Controllers
                     };
 
                     db.UserTB.Add(user);
-                    
-                    //if(user.RoleID == 3)
-                    //{
-                    //    var useremployee = new EmployeeTB()
-                    //    {
-                    //        UserID = user.UserID
-                    //    };
-                    //    db.EmployeeTB.Add(useremployee);
-                    //}
-                    ///////////////////////                  
-                    //if (user.RoleID == 2)
-                    //{
-                    //    var useremployer = new EmployerTB()
-                    //    {
-                    //        UserID = user.UserID
-                    //    };
-                    //    db.EmployerTB.Add(useremployer);
-                    //}
+
+                    if (user.RoleID == 2)
+                    {
+                        var useremployee = new EmployeeTB()
+                        {
+                            UserID = user.UserID
+                        };
+                        db.EmployeeTB.Add(useremployee);
+                    }
+                    /////////////////////                  
+                    if (user.RoleID == 3)
+                    {
+                        var useremployer = new EmployerTB()
+                        {
+                            UserID = user.UserID
+                        };
+                        db.EmployerTB.Add(useremployer);
+                    }
                     ///////////////////
 
                     db.SaveChanges();

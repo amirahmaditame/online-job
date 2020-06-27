@@ -37,6 +37,7 @@
     <Reference Include="EntityFramework.SqlServer, Version=6.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089, processorArchitecture=MSIL">
       <HintPath>..\final\packages\EntityFramework.6.2.0\lib\net45\EntityFramework.SqlServer.dll</HintPath>
     </Reference>
+    <Reference Include="Microsoft.Build.Tasks.v4.0" />
     <Reference Include="System" />
     <Reference Include="System.ComponentModel.DataAnnotations" />
     <Reference Include="System.Core" />
@@ -83,10 +84,20 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JobOnlineModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MetaDataClasses\FormMetaData.cs" />
     <Compile Include="MetaDataClasses\JobsGroupMetaData.cs" />
     <Compile Include="MetaDataClasses\RoleMetaData.cs" />
     <Compile Include="MetaDataClasses\UserMetaData.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ReportPerEmployeeForEachResume1_Result.cs">
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPerEmployeeForEachResume_Result.cs">
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPerEmployeeForPeForm_Result.cs">
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\IJobGroupRepository.cs" />
     <Compile Include="ResumeEmployeeTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
@@ -101,33 +112,29 @@
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="Services\JobGroupRepository.cs" />
-    <Compile Include="sysdiagrams.cs">
-      <DependentUpon>JobOnlineModel.tt</DependentUpon>
-    </Compile>
     <Compile Include="UserTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AccountViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="App.Config" />
     <EntityDeploy Include="JobOnlineModel.edmx">
       <Generator>EntityModelCodeGenerator</Generator>
       <LastGenOutput>JobOnlineModel.Designer.cs</LastGenOutput>
     </EntityDeploy>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.Config" />
     <None Include="JobOnlineModel.edmx.diagram">
       <DependentUpon>JobOnlineModel.edmx</DependentUpon>
     </None>
     <None Include="packages.config" />
   </ItemGroup>
   <ItemGroup>
-    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
-  </ItemGroup>
-  <ItemGroup>
     <Content Include="JobOnlineModel.Context.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>JobOnlineModel.edmx</DependentUpon>
       <LastGenOutput>JobOnlineModel.Context.cs</LastGenOutput>
+      <DependentUpon>JobOnlineModel.edmx</DependentUpon>
     </Content>
     <Content Include="JobOnlineModel.tt">
       <Generator>TextTemplatingFileGenerator</Generator>
@@ -135,5 +142,9 @@
       <LastGenOutput>JobOnlineModel.cs</LastGenOutput>
     </Content>
   </ItemGroup>
+  <ItemGroup>
+    <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

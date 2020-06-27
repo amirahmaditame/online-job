@@ -18,7 +18,7 @@ namespace DataLayer
         public int EmployeeID { get; set; }
         public string JobDescription { get; set; }
     
-        public virtual EmployeeTB EmployeeTB { get; set; }
         public virtual JobCategoryTB JobCategoryTB { get; set; }
+        public virtual EmployeeTB EmployeeTB { get; set; }
     }
 }

@@ -22,8 +22,6 @@ namespace DataLayer
         }
     
         public int ResumeID { get; set; }
-        public string FirstName { get; set; }
-        public string LatName { get; set; }
         public int Age { get; set; }
         public string Gender { get; set; }
         public Nullable<System.DateTime> RequestDate { get; set; }
@@ -31,6 +29,8 @@ namespace DataLayer
         public string AbilityDescription { get; set; }
         public bool EnglishAbility { get; set; }
         public string ExtraAbility { get; set; }
+        public string FirstName { get; set; }
+        public string LatName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployerTB> EmployerTB { get; set; }

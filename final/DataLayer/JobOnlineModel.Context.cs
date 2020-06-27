@@ -12,6 +12,8 @@ namespace DataLayer
     using System;
     using System.Data.Entity;
     using System.Data.Entity.Infrastructure;
+    using System.Data.Entity.Core.Objects;
+    using System.Linq;
     
     public partial class OnlineJobEntities : DbContext
     {
@@ -26,16 +28,42 @@ namespace DataLayer
         }
     
         public virtual DbSet<CommentTB> CommentTB { get; set; }
-        public virtual DbSet<EmployeeTB> EmployeeTB { get; set; }
-        public virtual DbSet<EmployerTB> EmployerTB { get; set; }
-        public virtual DbSet<FormDetailTB> FormDetailTB { get; set; }
-        public virtual DbSet<FormTB> FormTB { get; set; }
         public virtual DbSet<JobCategoryTB> JobCategoryTB { get; set; }
-        public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
         public virtual DbSet<ResumeTB> ResumeTB { get; set; }
         public virtual DbSet<RoleTB> RoleTB { get; set; }
         public virtual DbSet<SelectedJobTB> SelectedJobTB { get; set; }
-        public virtual DbSet<sysdiagrams> sysdiagrams { get; set; }
+        public virtual DbSet<FormTB> FormTB { get; set; }
+        public virtual DbSet<EmployerTB> EmployerTB { get; set; }
+        public virtual DbSet<EmployeeTB> EmployeeTB { get; set; }
+        public virtual DbSet<FormDetailTB> FormDetailTB { get; set; }
         public virtual DbSet<UserTB> UserTB { get; set; }
+        public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
+    
+        public virtual ObjectResult<ReportPerEmployeeForEachResume_Result> ReportPerEmployeeForEachResume(Nullable<int> employeeID)
+        {
+            var employeeIDParameter = employeeID.HasValue ?
+                new ObjectParameter("EmployeeID", employeeID) :
+                new ObjectParameter("EmployeeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForEachResume_Result>("ReportPerEmployeeForEachResume", employeeIDParameter);
+        }
+    
+        public virtual ObjectResult<ReportPerEmployeeForEachResume1_Result> ReportPerEmployeeForEachResume1(Nullable<int> employeeID)
+        {
+            var employeeIDParameter = employeeID.HasValue ?
+                new ObjectParameter("EmployeeID", employeeID) :
+                new ObjectParameter("EmployeeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForEachResume1_Result>("ReportPerEmployeeForEachResume1", employeeIDParameter);
+        }
+    
+        public virtual ObjectResult<ReportPerEmployeeForPeForm_Result> ReportPerEmployeeForPeForm(Nullable<int> emplyeeid)
+        {
+            var emplyeeidParameter = emplyeeid.HasValue ?
+                new ObjectParameter("Emplyeeid", emplyeeid) :
+                new ObjectParameter("Emplyeeid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForPeForm_Result>("ReportPerEmployeeForPeForm", emplyeeidParameter);
+        }
     }
 }

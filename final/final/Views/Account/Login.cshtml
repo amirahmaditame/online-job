@@ -12,7 +12,7 @@
     <div class="form-horizontal">
         @if (User.Identity.IsAuthenticated && Request.QueryString["ReturnUrl"] != null)
         {
-            <div class="alert alert-danger">
+            <div class="alert alert-danger m-15">
                 <p> you have not permission to access that page </p>
             </div>
         }
