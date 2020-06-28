@@ -17,5 +17,10 @@ namespace final.Controllers
         {
             return PartialView();
         }
+
+        public ActionResult showcategory()
+        {
+            return PartialView();
+        }
     }
 }
