@@ -25,7 +25,7 @@ namespace final.Areas.KarFarma.Controllers
             int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
             IndexInformation index = new IndexInformation();
             index.Email = model.Email;
-            index.UserName = model.Password;
+            index.UserName = model.UserName;
             index.PassWord = model.Password;
             index.RecievedResume = online.ResumeEmployeeTB.Where(p => p.EmployeeID == employeeId).Count();
             index.TotallForms = online.FormDetailTB.Where(p => p.EmployeeID == employeeId).Count();

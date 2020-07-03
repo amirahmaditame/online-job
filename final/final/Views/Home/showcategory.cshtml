@@ -1,21 +1,25 @@
-﻿
-    <section class="features-section">
-        <div class="auto-container">
-            <div class="sec-title text-center">
-                <h2>What are you interested in?</h2>
-                <span class="divider"></span>
-                <div class="text">Explore some of the best tips from around the city from our partners and friends.</div>
-            </div>
+﻿@model IEnumerable<DataLayer.JobCategoryTB>
+<section class="features-section">
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <h2>What are you interested in?</h2>
+            <span class="divider"></span>
+            <div class="text">Explore some of the best tips from around the city from our partners and friends.</div>
+        </div>
 
-            <div class="row">
-                <!-- Feature Block -->
+        <div class="row">
+         
+            @foreach (var item in Model)
+            {
+               
+                
                 <div class="feature-block col-lg-6 col-md-12 col-sm-12">
                     <div class="inner-box">
-                        <figure class="image"><img src="/Content/images/resource/interested-1.jpg" alt=""></figure>
+                        <figure class="image"><img src="/Content/images/resource/interested-6.jpg" alt=""></figure>
                         <div class="overlay-box">
                             <div class="content">
-                                <span class="icon-box flaticon-musical-note"></span>
-                                <h5>Nightlife</h5>
+                                <span class="icon-box flaticon-list"></span>
+                                <h5>@item.JobCategory</h5>
                                 <span class="locations">07 Locations</span>
                                 <a href="#" class="overlay-link"></a>
                             </div>
@@ -23,80 +27,8 @@
                     </div>
                 </div>
 
-                <!-- Feature Block -->
-                <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <figure class="image"><img src="/Content/images/resource/interested-2.jpg" alt=""></figure>
-                        <div class="overlay-box">
-                            <div class="content">
-                                <span class="icon-box flaticon-hotel-bell"></span>
-                                <h5>Restaurant</h5>
-                                <span class="locations">58 Locations</span>
-                                <a href="#" class="overlay-link"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feature Block -->
-                <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <figure class="image"><img src="/Content/images/resource/interested-3.jpg" alt=""></figure>
-                        <div class="overlay-box">
-                            <div class="content">
-                                <span class="icon-box flaticon-weightlifting"></span>
-                                <h5>Gym &amp; Fitness</h5>
-                                <span class="locations">43 Locations</span>
-                                <a href="#" class="overlay-link"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feature Block -->
-                <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <figure class="image"><img src="/Content/images/resource/interested-4.jpg" alt=""></figure>
-                        <div class="overlay-box">
-                            <div class="content">
-                                <span class="icon-box flaticon-museum"></span>
-                                <h5>Art &amp; History</h5>
-                                <span class="locations">13 Locations</span>
-                                <a href="#" class="overlay-link"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feature Block -->
-                <div class="feature-block col-lg-3 col-md-6 col-sm-12">
-                    <div class="inner-box">
-                        <figure class="image"><img src="/Content/images/resource/interested-5.jpg" alt=""></figure>
-                        <div class="overlay-box">
-                            <div class="content">
-                                <span class="icon-box flaticon-bed"></span>
-                                <h5>Hotels</h5>
-                                <span class="locations">129 Locations</span>
-                                <a href="#" class="overlay-link"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-
-                <!-- Feature Block -->
-                <div class="feature-block col-lg-6 col-md-12 col-sm-12">
-                    <div class="inner-box">
-                        <figure class="image"><img src="/Content/images/resource/interested-6.jpg" alt=""></figure>
-                        <div class="overlay-box">
-                            <div class="content">
-                                <span class="icon-box flaticon-tent"></span>
-                                <h5>Outdoor Activities</h5>
-                                <span class="locations">94 Locations</span>
-                                <a href="#" class="overlay-link"></a>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
+                }
+           
         </div>
-    </section>
+    </div>
+</section>

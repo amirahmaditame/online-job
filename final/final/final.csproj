@@ -155,6 +155,7 @@
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageEmailController.cs" />
+    <Compile Include="Controllers\SearchController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -987,6 +988,12 @@
     <Content Include="Views\Web.config" />
     <Content Include="Views\_ViewStart.cshtml" />
     <Content Include="Views\Home\showcategory.cshtml" />
+    <Content Include="Views\Home\lastjob.cshtml" />
+    <Content Include="Views\Shared\_singleJobShow.cshtml" />
+    <Content Include="Views\Home\howitwork.cshtml" />
+    <Content Include="Views\Home\needmore.cshtml" />
+    <Content Include="Views\Home\ourcustomer.cshtml" />
+    <Content Include="Views\Search\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

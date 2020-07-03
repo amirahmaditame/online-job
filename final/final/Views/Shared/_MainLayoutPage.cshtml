@@ -12,6 +12,7 @@
     <link href="/Content/css/style.css" rel="stylesheet">
     <link href="/Content/css/responsive.css" rel="stylesheet">
     <link href="~/Content/css/Custom-main.css" rel="stylesheet" />
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <link rel="shortcut icon" href="/Content/images/favicon.png" type="image/x-icon">
     <link rel="icon" href="/Content/images/favicon.png" type="image/x-icon">
@@ -24,7 +25,7 @@
 </head>
 
 <body>
-
+    @RenderBody()
     <div class="page-wrapper">
 
         <!-- Preloader -->
@@ -241,15 +242,25 @@
             <!-- End Header Search -->
 
         </header>
-        <!--End Main Header -->
-        <!-- Banner Section-->
+
+
         @RenderSection("Slider", false)
 
 
-        <!-- End Banner Section-->
-        <!-- Features Section -->
+
         @RenderSection("showcategory", false)
-        <!-- End Features Section -->
+
+
+
+        @RenderSection("lastjob", false)
+
+        @RenderSection("howitwork", false)
+
+        @RenderSection("needmore", false)
+
+        @RenderSection("ourcustomer", false)
+
+
         <!-- Main Footer -->
         <footer class="main-footer">
             <!-- Footer Upper -->
@@ -296,7 +307,7 @@
 
     </div><!-- End Page Wrapper -->
 
-    @RenderBody()
+
     <script src="/Content/js/jquery.js"></script>
     <script src="/Content/js/popper.min.js"></script>
     <script src="/Content/js/chosen.min.js"></script>
@@ -312,6 +323,7 @@
     <script src="/Content/js/script.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
 
     <!-- Typed Script -->
     <script src="/Content/js/typed.js"></script>
@@ -326,7 +338,9 @@
             showCursor: true
         });
     </script>
-
+    <script>
+        AOS.init();
+    </script>
 </body>
 
 </html>

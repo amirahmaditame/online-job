@@ -1,0 +1,19 @@
+﻿@model IEnumerable<DataLayer.FormTB>
+<section class="listing-section">
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <h2>What are you interested in?</h2>
+            <span class="divider"></span>
+            <div class="text">Explore some of the best tips from around the city from our partners and friends.</div>
+        </div>
+        <div class="three-items-carousel owl-carousel owl-theme default-nav">
+
+            @foreach (var item in Model)
+            {
+                <div class="listing-block">
+                    @Html.Partial("_singleJobShow", item)
+                </div>
+            }
+        </div>
+    </div>
+</section>
