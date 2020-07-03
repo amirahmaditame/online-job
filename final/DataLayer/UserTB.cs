@@ -17,8 +17,8 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2214:DoNotCallOverridableMethodsInConstructors")]
         public UserTB()
         {
-            this.EmployeeTB = new HashSet<EmployeeTB>();
             this.EmployerTB = new HashSet<EmployerTB>();
+            this.EmployeeTB = new HashSet<EmployeeTB>();
         }
     
         public int UserID { get; set; }
@@ -32,9 +32,9 @@ namespace DataLayer
         public string ImageName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<EmployeeTB> EmployeeTB { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<EmployerTB> EmployerTB { get; set; }
         public virtual RoleTB RoleTB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<EmployeeTB> EmployeeTB { get; set; }
     }
 }

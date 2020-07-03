@@ -14,7 +14,7 @@ namespace DataLayer
         public int FormID { get; set; }
         [Display(Name = "Company Name")]
         [Required(ErrorMessage = "Plaase Enter the {0}")]
-        public string CompanyName { get; set; }
+      
 
         public string Region { get; set; }
 

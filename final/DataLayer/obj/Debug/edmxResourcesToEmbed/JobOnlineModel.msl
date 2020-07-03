@@ -46,15 +46,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="SelectedJobTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.SelectedJobTB">
-        <MappingFragment StoreEntitySet="SelectedJobTB">
-          <ScalarProperty Name="JobID" ColumnName="JobID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <FunctionImportMapping FunctionImportName="ReportPerEmployeeForEachResume1" FunctionName="OnlineJobModel.Store.ReportPerEmployeeForEachResume">
       <ResultMapping>
         <ComplexTypeMapping TypeName="OnlineJobModel.ReportPerEmployeeForEachResume1_Result">
@@ -97,18 +88,6 @@
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>
-    <EntitySetMapping Name="EmployeeTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.EmployeeTB">
-        <MappingFragment StoreEntitySet="EmployeeTB">
-          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-          <ScalarProperty Name="Adress" ColumnName="Adress" />
-          <ScalarProperty Name="Site" ColumnName="Site" />
-          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="FormDetailTB">
       <EntityTypeMapping TypeName="OnlineJobModel.FormDetailTB">
         <MappingFragment StoreEntitySet="FormDetailTB">
@@ -140,6 +119,28 @@
           <ScalarProperty Name="Date" ColumnName="Date" />
           <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
           <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="SelectedJobTB">
+      <EntityTypeMapping TypeName="OnlineJobModel.SelectedJobTB">
+        <MappingFragment StoreEntitySet="SelectedJobTB">
+          <ScalarProperty Name="SelectedJobID" ColumnName="SelectedJobID" />
+          <ScalarProperty Name="JobDescription" ColumnName="JobDescription" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="EmployeeTB">
+      <EntityTypeMapping TypeName="OnlineJobModel.EmployeeTB">
+        <MappingFragment StoreEntitySet="EmployeeTB">
+          <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+          <ScalarProperty Name="Adress" ColumnName="Adress" />
+          <ScalarProperty Name="Site" ColumnName="Site" />
+          <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
         </MappingFragment>
       </EntityTypeMapping>
     </EntitySetMapping>

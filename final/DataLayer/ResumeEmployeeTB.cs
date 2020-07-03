@@ -19,7 +19,7 @@ namespace DataLayer
         public System.DateTime Date { get; set; }
         public int ResumeEmployeeID { get; set; }
     
-        public virtual EmployeeTB EmployeeTB { get; set; }
         public virtual ResumeTB ResumeTB { get; set; }
+        public virtual EmployeeTB EmployeeTB { get; set; }
     }
 }

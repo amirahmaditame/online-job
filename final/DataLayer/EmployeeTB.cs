@@ -18,8 +18,8 @@ namespace DataLayer
         public EmployeeTB()
         {
             this.FormDetailTB = new HashSet<FormDetailTB>();
-            this.SelectedJobTB = new HashSet<SelectedJobTB>();
             this.ResumeEmployeeTB = new HashSet<ResumeEmployeeTB>();
+            this.SelectedJobTB = new HashSet<SelectedJobTB>();
         }
     
         public int EmployeeID { get; set; }
@@ -29,12 +29,12 @@ namespace DataLayer
         public string Adress { get; set; }
         public string CompanyName { get; set; }
     
+        public virtual UserTB UserTB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormDetailTB> FormDetailTB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SelectedJobTB> SelectedJobTB { get; set; }
-        public virtual UserTB UserTB { get; set; }
-        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
+        [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
+        public virtual ICollection<SelectedJobTB> SelectedJobTB { get; set; }
     }
 }

@@ -92,12 +92,12 @@
   </EntityType>
   <EntityType Name="SelectedJobTB">
     <Key>
-      <PropertyRef Name="JobID" />
-      <PropertyRef Name="EmployeeID" />
+      <PropertyRef Name="SelectedJobID" />
     </Key>
     <Property Name="JobID" Type="int" Nullable="false" />
     <Property Name="EmployeeID" Type="int" Nullable="false" />
     <Property Name="JobDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="SelectedJobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="UserTB">
     <Key>

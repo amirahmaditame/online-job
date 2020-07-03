@@ -135,23 +135,26 @@ namespace final.Areas.KarFarma.Controllers
             });
         }
         public ActionResult AddForm() {
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
-            ViewBag.CompanyName= online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
-            return View();
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            //int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            ViewBag.CompanyName = online.EmployeeTB.Where(p => p.EmployeeID == 1).Select(p => p.CompanyName).First();
+            AddForm category = new AddForm();
+            var model = online.JobCategoryTB.ToList();
+            return View(model);
         }
         [HttpPost]
-        public JsonResult AddForm(FormTB form)
+        public JsonResult AddForm(FormTB form,string JobDescription)
         {
             form.RequestDtae = DateTime.Now;
-            online.Entry(form).State = EntityState.Added;
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            online.FormTB.Add(form);
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
             FormDetailTB form1 = new FormDetailTB() {
                 EmployeeID = employeeId,
                 FormID=form.FormID
+                
             };
             online.FormDetailTB.Add(form1);
             online.SaveChanges();

@@ -1,7 +1,8 @@
-﻿@model DataLayer.FormTB
+﻿@model IEnumerable<DataLayer.JobCategoryTB>
 @{
     ViewBag.Title = "AddForm";
     Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+
 }
 <div class="form-widget ls-widget ">
     <div class="widget-title"><h4><span class="icon flaticon-user"></span> Follow</h4></div>
@@ -35,9 +36,10 @@
                     <input type="text" id="WorkingDays" placeholder=" " value=" " required>
                     <span class="icon fab"></span>
                 </div>
+                <label>Radiobox</label>
                 <div class="radio-outer margin-top-10">
-                    <label>GenderRequirement</label>
-                    <div class="checkbox-outer">
+                    <label>Checkbox</label>
+                    <div class="checkbox-outer margin-top-10">
                         <ul class="checkboxes">
                             <li>
                                 <input id="check-a" type="checkbox" name="Male" checked>
@@ -53,6 +55,11 @@
                 <div class="form-group">
                     <label>Form Text</label>
                     <input type="text" id="FormText" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <label>JobDescription</label>
+                    <input type="text" id="JobDescription" placeholder=" " value=" " required>
                     <span class="icon fab"></span>
                 </div>
                 <div class="form-group">
@@ -73,8 +80,6 @@
                     const s = $('#check-a').checked;
                     const s1 = $('#check-b').checked;
                     var c;
-                    console.log(s);
-                    console.log(s1);
                     if (s) {
                         c = "Male";
                     }
@@ -91,13 +96,13 @@
                         type: "POST",
                         url: "/KarFarma/Panel/AddForm",
                         data: JSON.stringify({
-                            CompanyName: $("#CompanyName").val(),
                             Region: $("#Region").val(),
                             City: $("#City").val(),
                             Benifits: $("#Benifits").val(),
                             WorkingDays: $("#WorkingDays").val(),
                             Gender: c,
-                            FormText: $("#FormText").val()
+                            FormText: $("#FormText").val(),
+                            JobDescription:$("#JobDescription").val()
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",

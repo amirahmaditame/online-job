@@ -147,6 +147,7 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\KarFarma\Controllers\PanelController.cs" />
     <Compile Include="Areas\KarFarma\KarFarmaAreaRegistration.cs" />
+    <Compile Include="Areas\KarFarma\ViewModle\AddForm.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\IndexInformation.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\JobForm.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\MyInformation.cs" />
