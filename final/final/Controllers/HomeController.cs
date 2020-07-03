@@ -19,6 +19,7 @@ namespace final.Controllers
         }
         public ActionResult Slider()
         {
+            ViewBag.category = db.JobCategoryTB.ToList();
             return PartialView();
         }
 
