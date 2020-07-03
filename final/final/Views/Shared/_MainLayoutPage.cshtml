@@ -99,15 +99,8 @@
                 <div class="nav-outer">
                     <nav class="nav main-menu">
                         <ul class="navigation" id="navbar">
-                            <li class="current dropdown">
-                                <span>Home</span>
-                                <ul>
-                                    <li class="current"><a href="index.html">Home Page One</a></li>
-                                    <li><a href="index-2.html">Home Page Two</a></li>
-                                    <li><a href="index-3.html">Home Page Three</a></li>
-                                    <li><a href="index-4.html">Home Page Four</a></li>
-                                    <li><a href="index-5.html">Home Page Five</a></li>
-                                </ul>
+                            <li class="current">
+                                <a href="/"> <span>Home</span></a>
                             </li>
                             <li class="dropdown">
                                 <span>Pages</span>
@@ -192,42 +185,10 @@
                         <!-- Add Listing -->
                         <a href="add-listing.html" class="add-listing"> <span class="flaticon-plus-symbol"></span> Add Listing</a>
 
-                        <!-- Cart btn -->
-                        <div class="cart-btn">
-                            <a href="shopping-cart.html"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
-
-                            <div class="shopping-cart">
-                                <ul class="shopping-cart-items">
-                                    <li class="cart-item">
-                                        <img src="/Content/images/resource/item-thumb-1.jpg" alt="" class="thumb" />
-                                        <span class="item-name">Dolar Sit Amet</span>
-                                        <span class="item-quantity">1 x <span class="item-amount">$7.90</span></span>
-                                        <a href="shop-single.html" class="product-detail"></a>
-                                        <button class="remove-item"><span class="fa fa-times"></span></button>
-                                    </li>
-
-                                    <li class="cart-item">
-                                        <img src="/Content/images/resource/item-thumb-2.jpg" alt="" class="thumb" />
-                                        <span class="item-name">Lorem Ipsum</span>
-                                        <span class="item-quantity">3 x <span class="item-amount">$7.90</span></span>
-                                        <a href="shop-single.html" class="product-detail"></a>
-                                        <button class="remove-item"><span class="fa fa-times"></span></button>
-                                    </li>
-                                </ul>
-
-                                <div class="shopping-cart-total"><span>Subtotal: </span> $57.70</div>
-
-                                <div class="cart-footer">
-                                    <a href="cart.html" class="theme-btn btn-style-one">View Cart</a>
-                                    <a href="checkout.html" class="theme-btn btn-style-two">Checkout</a>
-                                </div>
-                            </div> <!--end shopping-cart -->
-                        </div>
-
                         <!-- Login/Register -->
                         <div class="login-box">
                             <span class="flaticon-user"></span>
-                           @Html.Partial("_LoggedInUser")
+                            @Html.Partial("_LoggedInUser")
                         </div>
                     </div>
                 </div>
@@ -283,15 +244,11 @@
         <!--End Main Header -->
         <!-- Banner Section-->
         @RenderSection("Slider", false)
+
+
         <!-- End Banner Section-->
         <!-- Features Section -->
-        <section class="features-section">
-            <div class="auto-container">
-                <br><br>
-                @RenderBody()
-
-            </div>
-        </section>
+        @RenderSection("showcategory", false)
         <!-- End Features Section -->
         <!-- Main Footer -->
         <footer class="main-footer">
@@ -339,7 +296,7 @@
 
     </div><!-- End Page Wrapper -->
 
-
+    @RenderBody()
     <script src="/Content/js/jquery.js"></script>
     <script src="/Content/js/popper.min.js"></script>
     <script src="/Content/js/chosen.min.js"></script>
