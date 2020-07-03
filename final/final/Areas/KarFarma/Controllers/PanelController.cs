@@ -12,7 +12,7 @@ using System.ComponentModel.DataAnnotations;
 
 namespace final.Areas.KarFarma.Controllers
 {
-    [Authorize(Roles = "employeer")]
+    //[Authorize(Roles = "employeer")]
     public class PanelController : Controller
     {
         // GET: KarFarma/Panel
@@ -25,28 +25,44 @@ namespace final.Areas.KarFarma.Controllers
             int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
             IndexInformation index = new IndexInformation();
             index.Email = model.Email;
-            index.UserName = model.Password;
+            index.UserName = model.UserName;
             index.PassWord = model.Password;
             index.RecievedResume = online.ResumeEmployeeTB.Where(p => p.EmployeeID == employeeId).Count();
             index.TotallForms = online.FormDetailTB.Where(p => p.EmployeeID == employeeId).Count();
+            index.WebSite = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.Site).First();
+            index.PhoneNumber = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.PhoneNumber).First();
+            index.Address = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.Adress).First();
+            index.CompanyName = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
             return View(index);
         }
         public ActionResult EmployeeInformation() {
-            var model = online.UserTB.Find(1);
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(id);
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
             MyInformation information = new MyInformation();
+            information.CompanyName= online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
             information.Email = model.Email;
             information.UserName = model.UserName;
             information.PassWord = model.Password;
             information.UserID = model.UserID;
+            information.WebSite = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.Site).First();
+            information.PhoneNumber = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.PhoneNumber).First();
+            information.Address = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.Adress).First();
             return View(information);
         }
         [HttpPost]
-        public ActionResult EmployeeInformation(int UserID,string UserName,string PassWord,String Email)
+        public ActionResult EmployeeInformation(int UserID,string UserName,string PassWord,String Email,int PhoneNumber,string WebSite,string Address,string CompanyName)
         {
             var model = online.UserTB.Find(UserID);
+            var employee = online.EmployeeTB.Where(p => p.UserID == UserID).FirstOrDefault();
             model.UserName = UserName;
             model.Password = PassWord;
             model.Email = Email;
+            employee.CompanyName = CompanyName;
+            employee.Adress = Address;
+            employee.PhoneNumber = PhoneNumber;
+            employee.Site = WebSite;
             online.SaveChanges();
             return Json(new JsonData()
             {
@@ -119,6 +135,10 @@ namespace final.Areas.KarFarma.Controllers
             });
         }
         public ActionResult AddForm() {
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            ViewBag.CompanyName= online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
             return View();
         }
         [HttpPost]
@@ -126,6 +146,14 @@ namespace final.Areas.KarFarma.Controllers
         {
             form.RequestDtae = DateTime.Now;
             online.Entry(form).State = EntityState.Added;
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            FormDetailTB form1 = new FormDetailTB() {
+                EmployeeID = employeeId,
+                FormID=form.FormID
+            };
+            online.FormDetailTB.Add(form1);
             online.SaveChanges();
             return Json(new JsonData()
             {

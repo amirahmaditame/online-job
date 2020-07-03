@@ -11,8 +11,8 @@
             <!--Comment Form-->
             <form id="formemloyee">
                 <div class="form-group">
-                    <label>Company Name</label>
-                    <input type="text" id="CompanyName" placeholder="" value=" " required>
+                    <label>CompanyName</label>
+                    <input type="text" id="CompanyName" placeholder="@ViewBag.CompanyName" value="@ViewBag.CompanyName" readonly required>
                     <span class="icon fab "></span>
                 </div>
                 <div class="form-group">
@@ -35,10 +35,9 @@
                     <input type="text" id="WorkingDays" placeholder=" " value=" " required>
                     <span class="icon fab"></span>
                 </div>
-                <label>Radiobox</label>
                 <div class="radio-outer margin-top-10">
-                    <label>Checkbox</label>
-                    <div class="checkbox-outer margin-top-10">
+                    <label>GenderRequirement</label>
+                    <div class="checkbox-outer">
                         <ul class="checkboxes">
                             <li>
                                 <input id="check-a" type="checkbox" name="Male" checked>

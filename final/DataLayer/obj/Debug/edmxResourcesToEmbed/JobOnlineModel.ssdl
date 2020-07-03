@@ -17,6 +17,10 @@
     </Key>
     <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
+    <Property Name="PhoneNumber" Type="int" Nullable="false" />
+    <Property Name="Site" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
   </EntityType>
   <EntityType Name="EmployerTB">
     <Key>
@@ -39,7 +43,6 @@
       <PropertyRef Name="FormID" />
     </Key>
     <Property Name="FormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Region" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="City" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="Benefits" Type="nvarchar" MaxLength="150" />

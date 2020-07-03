@@ -24,6 +24,10 @@ namespace DataLayer
     
         public int EmployeeID { get; set; }
         public int UserID { get; set; }
+        public int PhoneNumber { get; set; }
+        public string Site { get; set; }
+        public string Adress { get; set; }
+        public string CompanyName { get; set; }
     
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<FormDetailTB> FormDetailTB { get; set; }

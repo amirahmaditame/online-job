@@ -22,6 +22,10 @@
           </Key>
           <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
           <Property Name="UserID" Type="int" Nullable="false" />
+          <Property Name="PhoneNumber" Type="int" Nullable="false" />
+          <Property Name="Site" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
+          <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
         </EntityType>
         <EntityType Name="EmployerTB">
           <Key>
@@ -44,7 +48,6 @@
             <PropertyRef Name="FormID" />
           </Key>
           <Property Name="FormID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-          <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Region" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="City" Type="nvarchar" MaxLength="150" Nullable="false" />
           <Property Name="Benefits" Type="nvarchar" MaxLength="150" />
@@ -410,7 +413,6 @@
             <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
             <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
           </AssociationSet>
-          <EntitySet Name="FormTB" EntityType="OnlineJobModel.FormTB" />
           <FunctionImport Name="ReportPerEmployeeForEachResume" ReturnType="Collection(OnlineJobModel.ReportPerEmployeeForEachResume_Result)">
           <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
           </FunctionImport>
@@ -435,10 +437,6 @@
             <End Role="EmployeeTB" EntitySet="EmployeeTB" />
             <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
           </AssociationSet>
-          <AssociationSet Name="FK_FormDetailTB_FormTB" Association="OnlineJobModel.FK_FormDetailTB_FormTB">
-            <End Role="FormTB" EntitySet="FormTB" />
-            <End Role="FormDetailTB" EntitySet="FormDetailTB" />
-          </AssociationSet>
           <EntitySet Name="UserTB" EntityType="OnlineJobModel.UserTB" />
           <AssociationSet Name="FK_EmployeeTB_UserTB" Association="OnlineJobModel.FK_EmployeeTB_UserTB">
             <End Role="UserTB" EntitySet="UserTB" />
@@ -461,22 +459,12 @@
             <End Role="ResumeTB" EntitySet="ResumeTB" />
             <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
           </AssociationSet>
+          <EntitySet Name="FormTB" EntityType="OnlineJobModel.FormTB" />
+          <AssociationSet Name="FK_FormDetailTB_FormTB" Association="OnlineJobModel.FK_FormDetailTB_FormTB">
+            <End Role="FormTB" EntitySet="FormTB" />
+            <End Role="FormDetailTB" EntitySet="FormDetailTB" />
+          </AssociationSet>
         </EntityContainer>
-        <EntityType Name="FormTB">
-          <Key>
-            <PropertyRef Name="FormID" />
-          </Key>
-          <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Region" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="City" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="Benefits" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="WorkingDays" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-          <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="RequestDtae" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FormText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_FormTB" FromRole="FormTB" ToRole="FormDetailTB" />
-        </EntityType>
         <ComplexType Name="ReportPerEmployeeForEachResume_Result">
           <Property Type="Int32" Name="ResumeID" Nullable="false" />
           <Property Type="String" Name="FirstName" Nullable="false" MaxLength="150" />
@@ -546,6 +534,10 @@
           <NavigationProperty Name="SelectedJobTB" Relationship="OnlineJobModel.FK_SelectedJobTB_EmployeeTB" FromRole="EmployeeTB" ToRole="SelectedJobTB" />
           <NavigationProperty Name="UserTB" Relationship="OnlineJobModel.FK_EmployeeTB_UserTB" FromRole="EmployeeTB" ToRole="UserTB" />
           <NavigationProperty Name="ResumeEmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB" FromRole="EmployeeTB" ToRole="ResumeEmployeeTB" />
+          <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+          <Property Name="Site" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="Adress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+          <Property Name="CompanyName" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
         </EntityType>
         <EntityType Name="FormDetailTB">
           <Key>
@@ -578,18 +570,6 @@
             </Principal>
             <Dependent Role="SelectedJobTB">
               <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_FormDetailTB_FormTB">
-          <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
-          <End Type="OnlineJobModel.FormDetailTB" Role="FormDetailTB" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="FormTB">
-              <PropertyRef Name="FormID" />
-            </Principal>
-            <Dependent Role="FormDetailTB">
-              <PropertyRef Name="FormID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -681,6 +661,32 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="FormTB">
+          <Key>
+            <PropertyRef Name="FormID" />
+          </Key>
+          <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="Region" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="City" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="Benefits" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="WorkingDays" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+          <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="RequestDtae" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="FormText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+          <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_FormTB" FromRole="FormTB" ToRole="FormDetailTB" />
+        </EntityType>
+        <Association Name="FK_FormDetailTB_FormTB">
+          <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
+          <End Type="OnlineJobModel.FormDetailTB" Role="FormDetailTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormTB">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="FormDetailTB">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -741,21 +747,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="FormTB">
-            <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
-              <MappingFragment StoreEntitySet="FormTB">
-                <ScalarProperty Name="FormText" ColumnName="FormText" />
-                <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
-                <ScalarProperty Name="Gender" ColumnName="Gender" />
-                <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
-                <ScalarProperty Name="Benefits" ColumnName="Benefits" />
-                <ScalarProperty Name="City" ColumnName="City" />
-                <ScalarProperty Name="Region" ColumnName="Region" />
-                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
-                <ScalarProperty Name="FormID" ColumnName="FormID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <FunctionImportMapping FunctionImportName="ReportPerEmployeeForEachResume1" FunctionName="OnlineJobModel.Store.ReportPerEmployeeForEachResume">
             <ResultMapping>
               <ComplexTypeMapping TypeName="OnlineJobModel.ReportPerEmployeeForEachResume1_Result">
@@ -801,6 +792,10 @@
           <EntitySetMapping Name="EmployeeTB">
             <EntityTypeMapping TypeName="OnlineJobModel.EmployeeTB">
               <MappingFragment StoreEntitySet="EmployeeTB">
+                <ScalarProperty Name="CompanyName" ColumnName="CompanyName" />
+                <ScalarProperty Name="Adress" ColumnName="Adress" />
+                <ScalarProperty Name="Site" ColumnName="Site" />
+                <ScalarProperty Name="PhoneNumber" ColumnName="PhoneNumber" />
                 <ScalarProperty Name="UserID" ColumnName="UserID" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
               </MappingFragment>
@@ -837,6 +832,20 @@
                 <ScalarProperty Name="Date" ColumnName="Date" />
                 <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
                 <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="FormTB">
+            <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
+              <MappingFragment StoreEntitySet="FormTB">
+                <ScalarProperty Name="FormText" ColumnName="FormText" />
+                <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
+                <ScalarProperty Name="Benefits" ColumnName="Benefits" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
