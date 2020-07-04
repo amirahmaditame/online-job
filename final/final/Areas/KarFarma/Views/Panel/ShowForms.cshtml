@@ -9,11 +9,20 @@
     <meta name="viewport" content="width=device-width" />
     <title>ShowForms</title>
     <style>
-        table, th, td {
+        #t1 {
             border: 1px solid black;
             border-collapse: collapse;
         }
 
+        #t1 th{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        #t1 td{
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
         th, td {
             padding: 5px;
             text-align: left;
@@ -23,10 +32,10 @@
 <body>
     <h4>Employee Resume</h4>
 
-    <table style="width:100%">
+    <table id="t1" style="width:100%">
         <tr>
             <th>CompanyName</th>
-            <td>@Model.CompanyName</td>
+            <td>@ViewBag.CompanyName</td>
         </tr>
         <tr>
             <th>City</th>
@@ -63,7 +72,18 @@
                 <td>@Model.Gender</td>
             }
         </tr>
-
+        <tr>
+            <th>Requirements</th>
+            <td>@Model.FormText</td>
+        </tr>
+        <tr>
+            <th>Jobcategory</th>
+            <td>@ViewBag.category</td>
+        </tr>
+        <tr>
+            <th>DescRiption</th>
+            <td>@Model.JobDescRiption</td>
+        </tr>
     </table>
 
 </body>

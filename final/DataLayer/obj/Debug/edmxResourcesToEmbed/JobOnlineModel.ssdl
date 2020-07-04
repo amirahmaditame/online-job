@@ -50,6 +50,8 @@
     <Property Name="Gender" Type="nvarchar" MaxLength="150" />
     <Property Name="RequestDtae" Type="datetime" Nullable="false" />
     <Property Name="FormText" Type="nvarchar" MaxLength="150" />
+    <Property Name="JobDescRiption" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="JobID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="JobCategoryTB">
     <Key>
@@ -89,15 +91,6 @@
     <Property Name="RoleID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="RoleTitle" Type="nvarchar" MaxLength="150" Nullable="false" />
     <Property Name="RoleName" Type="nvarchar" MaxLength="150" Nullable="false" />
-  </EntityType>
-  <EntityType Name="SelectedJobTB">
-    <Key>
-      <PropertyRef Name="SelectedJobID" />
-    </Key>
-    <Property Name="JobID" Type="int" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" Nullable="false" />
-    <Property Name="JobDescription" Type="nvarchar" MaxLength="150" Nullable="false" />
-    <Property Name="SelectedJobID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
   <EntityType Name="UserTB">
     <Key>
@@ -185,6 +178,18 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Association Name="FK_FormTB_JobCategoryTB">
+    <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
+    <End Role="FormTB" Type="Self.FormTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobCategoryTB">
+        <PropertyRef Name="JobID" />
+      </Principal>
+      <Dependent Role="FormTB">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
   <Association Name="FK_ResumeEmployeeTB_EmployeeTB">
     <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
     <End Role="ResumeEmployeeTB" Type="Self.ResumeEmployeeTB" Multiplicity="*" />
@@ -209,30 +214,6 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_SelectedJobTB_EmployeeTB">
-    <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
-    <End Role="SelectedJobTB" Type="Self.SelectedJobTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployeeTB">
-        <PropertyRef Name="EmployeeID" />
-      </Principal>
-      <Dependent Role="SelectedJobTB">
-        <PropertyRef Name="EmployeeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SelectedJobTB_JobCategoryTB">
-    <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
-    <End Role="SelectedJobTB" Type="Self.SelectedJobTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="JobCategoryTB">
-        <PropertyRef Name="JobID" />
-      </Principal>
-      <Dependent Role="SelectedJobTB">
-        <PropertyRef Name="JobID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <Association Name="FK_UserTB_RoleTB">
     <End Role="RoleTB" Type="Self.RoleTB" Multiplicity="1" />
     <End Role="UserTB" Type="Self.UserTB" Multiplicity="*" />
@@ -245,6 +226,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="ReportEmployeeForPerForm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="employeeid" Type="int" Mode="In" />
+  </Function>
   <Function Name="ReportPerEmployeeForEachResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="EmployeeID" Type="int" Mode="In" />
   </Function>
@@ -261,7 +245,6 @@
     <EntitySet Name="ResumeEmployeeTB" EntityType="Self.ResumeEmployeeTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="ResumeTB" EntityType="Self.ResumeTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="RoleTB" EntityType="Self.RoleTB" Schema="dbo" store:Type="Tables" />
-    <EntitySet Name="SelectedJobTB" EntityType="Self.SelectedJobTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="UserTB" EntityType="Self.UserTB" Schema="dbo" store:Type="Tables" />
     <AssociationSet Name="FK_CommentTB_JobCategoryTB" Association="Self.FK_CommentTB_JobCategoryTB">
       <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
@@ -287,6 +270,10 @@
       <End Role="FormTB" EntitySet="FormTB" />
       <End Role="FormDetailTB" EntitySet="FormDetailTB" />
     </AssociationSet>
+    <AssociationSet Name="FK_FormTB_JobCategoryTB" Association="Self.FK_FormTB_JobCategoryTB">
+      <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
+      <End Role="FormTB" EntitySet="FormTB" />
+    </AssociationSet>
     <AssociationSet Name="FK_ResumeEmployeeTB_EmployeeTB" Association="Self.FK_ResumeEmployeeTB_EmployeeTB">
       <End Role="EmployeeTB" EntitySet="EmployeeTB" />
       <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
@@ -294,14 +281,6 @@
     <AssociationSet Name="FK_ResumeEmployeeTB_ResumeTB" Association="Self.FK_ResumeEmployeeTB_ResumeTB">
       <End Role="ResumeTB" EntitySet="ResumeTB" />
       <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SelectedJobTB_EmployeeTB" Association="Self.FK_SelectedJobTB_EmployeeTB">
-      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
-      <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SelectedJobTB_JobCategoryTB" Association="Self.FK_SelectedJobTB_JobCategoryTB">
-      <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
-      <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
     </AssociationSet>
     <AssociationSet Name="FK_UserTB_RoleTB" Association="Self.FK_UserTB_RoleTB">
       <End Role="RoleTB" EntitySet="RoleTB" />

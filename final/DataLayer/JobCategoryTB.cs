@@ -18,7 +18,7 @@ namespace DataLayer
         public JobCategoryTB()
         {
             this.CommentTB = new HashSet<CommentTB>();
-            this.SelectedJobTB = new HashSet<SelectedJobTB>();
+            this.FormTB = new HashSet<FormTB>();
         }
     
         public int JobID { get; set; }
@@ -27,6 +27,6 @@ namespace DataLayer
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
         public virtual ICollection<CommentTB> CommentTB { get; set; }
         [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-        public virtual ICollection<SelectedJobTB> SelectedJobTB { get; set; }
+        public virtual ICollection<FormTB> FormTB { get; set; }
     }
 }

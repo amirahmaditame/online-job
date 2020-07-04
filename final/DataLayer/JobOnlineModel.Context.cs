@@ -28,16 +28,15 @@ namespace DataLayer
         }
     
         public virtual DbSet<CommentTB> CommentTB { get; set; }
-        public virtual DbSet<JobCategoryTB> JobCategoryTB { get; set; }
         public virtual DbSet<ResumeTB> ResumeTB { get; set; }
         public virtual DbSet<RoleTB> RoleTB { get; set; }
         public virtual DbSet<EmployerTB> EmployerTB { get; set; }
         public virtual DbSet<FormDetailTB> FormDetailTB { get; set; }
         public virtual DbSet<UserTB> UserTB { get; set; }
         public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
-        public virtual DbSet<SelectedJobTB> SelectedJobTB { get; set; }
         public virtual DbSet<EmployeeTB> EmployeeTB { get; set; }
         public virtual DbSet<FormTB> FormTB { get; set; }
+        public virtual DbSet<JobCategoryTB> JobCategoryTB { get; set; }
     
         public virtual ObjectResult<ReportPerEmployeeForEachResume_Result> ReportPerEmployeeForEachResume(Nullable<int> employeeID)
         {
@@ -64,6 +63,15 @@ namespace DataLayer
                 new ObjectParameter("Emplyeeid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerEmployeeForPeForm_Result>("ReportPerEmployeeForPeForm", emplyeeidParameter);
+        }
+    
+        public virtual ObjectResult<ReportEmployeeForPerForm_Result> ReportEmployeeForPerForm(Nullable<int> employeeid)
+        {
+            var employeeidParameter = employeeid.HasValue ?
+                new ObjectParameter("employeeid", employeeid) :
+                new ObjectParameter("employeeid", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportEmployeeForPerForm_Result>("ReportEmployeeForPerForm", employeeidParameter);
         }
     }
 }

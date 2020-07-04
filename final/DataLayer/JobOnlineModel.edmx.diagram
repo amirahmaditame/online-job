@@ -6,10 +6,8 @@
     <edmx:Diagrams>
       <Diagram DiagramId="073aa62dac624dbcbd0dab68517f338b" Name="Diagram1" ZoomLevel="81">
         <EntityTypeShape EntityType="OnlineJobModel.CommentTB" Width="1.5" PointX="6" PointY="9.125" IsExpanded="true" />
-        <EntityTypeShape EntityType="OnlineJobModel.JobCategoryTB" Width="1.5" PointX="3.75" PointY="9.375" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineJobModel.ResumeTB" Width="1.5" PointX="1.5" PointY="9" IsExpanded="true" />
         <EntityTypeShape EntityType="OnlineJobModel.RoleTB" Width="1.5" PointX="0.75" PointY="12.5" IsExpanded="true" />
-        <AssociationConnector Association="OnlineJobModel.FK_CommentTB_JobCategoryTB" ManuallyRouted="false" />
         <EntityTypeShape EntityType="OnlineJobModel.EmployerTB" Width="1.5" PointX="5.25" PointY="2.5" />
         <AssociationConnector Association="OnlineJobModel.FK_EmployerTB_ResumeTB" />
         <EntityTypeShape EntityType="OnlineJobModel.FormDetailTB" Width="1.5" PointX="7.5" PointY="3" />
@@ -18,15 +16,15 @@
         <AssociationConnector Association="OnlineJobModel.FK_UserTB_RoleTB" />
         <EntityTypeShape EntityType="OnlineJobModel.ResumeEmployeeTB" Width="1.5" PointX="8.5" PointY="6.5" />
         <AssociationConnector Association="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB" />
-        <EntityTypeShape EntityType="OnlineJobModel.SelectedJobTB" Width="1.5" PointX="10.5" PointY="2.875" />
-        <AssociationConnector Association="OnlineJobModel.FK_SelectedJobTB_JobCategoryTB" />
         <EntityTypeShape EntityType="OnlineJobModel.EmployeeTB" Width="1.5" PointX="5.25" PointY="16.125" />
-        <EntityTypeShape EntityType="OnlineJobModel.FormTB" Width="1.5" PointX="5.25" PointY="5.625" />
         <AssociationConnector Association="OnlineJobModel.FK_EmployeeTB_UserTB" />
         <AssociationConnector Association="OnlineJobModel.FK_FormDetailTB_EmployeeTB" />
         <AssociationConnector Association="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB" />
-        <AssociationConnector Association="OnlineJobModel.FK_SelectedJobTB_EmployeeTB" />
+        <EntityTypeShape EntityType="OnlineJobModel.FormTB" Width="1.5" PointX="0.75" PointY="1" />
         <AssociationConnector Association="OnlineJobModel.FK_FormDetailTB_FormTB" />
+        <EntityTypeShape EntityType="OnlineJobModel.JobCategoryTB" Width="1.5" PointX="3.75" PointY="9.375" />
+        <AssociationConnector Association="OnlineJobModel.FK_CommentTB_JobCategoryTB" />
+        <AssociationConnector Association="OnlineJobModel.FK_FormTB_JobCategoryTB" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>
