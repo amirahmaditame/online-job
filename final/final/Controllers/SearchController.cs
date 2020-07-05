@@ -10,11 +10,12 @@ namespace final.Controllers
     public class SearchController : Controller
     {
         OnlineJobEntities db = new OnlineJobEntities();
-        public ActionResult Index(string q)
+        public ActionResult Index(string q , string location)
         {
-            List<DataLayer.FormTB> list = new List<DataLayer.FormTB>();
+            List<DataLayer.FormTB> list = new List<DataLayer.FormTB>();    
             list.AddRange(db.FormTB.Where(f => f.CompanyName.Contains(q) || f.FormText.Contains(q)).ToList());
-
+            list.AddRange(db.FormTB.Where(f => f.Region == location));
+            list.Distinct();
             ViewBag.search = q;
             return View(list);
         }

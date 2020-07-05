@@ -157,6 +157,7 @@
     <Compile Include="Controllers\JobController.cs" />
     <Compile Include="Controllers\ManageEmailController.cs" />
     <Compile Include="Controllers\SearchController.cs" />
+    <Compile Include="Controllers\testController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -592,6 +593,11 @@
     <Content Include="Areas\KarFarma\Content\js\sticky_sidebar.min.js" />
     <Content Include="Areas\KarFarma\Content\js\typed.js" />
     <Content Include="Areas\KarFarma\Content\js\wow.js" />
+    <Content Include="Content\AVRecorder\av-recorder-api.js" />
+    <Content Include="Content\AVRecorder\av-recorder-html5.js" />
+    <Content Include="Content\AVRecorder\av-recorder.css" />
+    <Content Include="Content\AVRecorder\av-recorder.js" />
+    <Content Include="Content\AVRecorder\loader.css" />
     <Content Include="Content\bootstrap-theme.css" />
     <Content Include="Content\bootstrap-theme.min.css" />
     <Content Include="Content\bootstrap.css" />
@@ -807,6 +813,7 @@
     <Content Include="Content\js\sticky_sidebar.min.js" />
     <Content Include="Content\js\typed.js" />
     <Content Include="Content\js\wow.js" />
+    <Content Include="Content\recorderJs\recorder.js" />
     <Content Include="favicon.ico" />
     <Content Include="fonts\glyphicons-halflings-regular.svg" />
     <Content Include="Global.asax" />
@@ -996,6 +1003,7 @@
     <Content Include="Views\Home\ourcustomer.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Job\ShowJob.cshtml" />
+    <Content Include="Views\test\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
