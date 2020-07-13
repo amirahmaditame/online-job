@@ -101,6 +101,12 @@
     <Compile Include="ReportPerEmployeeForPeForm_Result.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ReportPerKarfarmaEachResume_Result.cs">
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
+    </Compile>
+    <Compile Include="ReportPerKarfarmaPerResume_Result.cs">
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="Repositories\IJobGroupRepository.cs" />
     <Compile Include="ResumeEmployeeTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>

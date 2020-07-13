@@ -33,10 +33,10 @@ namespace DataLayer
         public virtual DbSet<EmployerTB> EmployerTB { get; set; }
         public virtual DbSet<FormDetailTB> FormDetailTB { get; set; }
         public virtual DbSet<UserTB> UserTB { get; set; }
-        public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
         public virtual DbSet<EmployeeTB> EmployeeTB { get; set; }
         public virtual DbSet<FormTB> FormTB { get; set; }
         public virtual DbSet<JobCategoryTB> JobCategoryTB { get; set; }
+        public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
     
         public virtual ObjectResult<ReportPerEmployeeForEachResume_Result> ReportPerEmployeeForEachResume(Nullable<int> employeeID)
         {
@@ -72,6 +72,24 @@ namespace DataLayer
                 new ObjectParameter("employeeid", typeof(int));
     
             return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportEmployeeForPerForm_Result>("ReportEmployeeForPerForm", employeeidParameter);
+        }
+    
+        public virtual ObjectResult<ReportPerKarfarmaPerResume_Result> ReportPerKarfarmaPerResume(Nullable<int> employeeID)
+        {
+            var employeeIDParameter = employeeID.HasValue ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerKarfarmaPerResume_Result>("ReportPerKarfarmaPerResume", employeeIDParameter);
+        }
+    
+        public virtual ObjectResult<ReportPerKarfarmaEachResume_Result> ReportPerKarfarmaEachResume(Nullable<int> employeeID)
+        {
+            var employeeIDParameter = employeeID.HasValue ?
+                new ObjectParameter("employeeID", employeeID) :
+                new ObjectParameter("employeeID", typeof(int));
+    
+            return ((IObjectContextAdapter)this).ObjectContext.ExecuteFunction<ReportPerKarfarmaEachResume_Result>("ReportPerKarfarmaEachResume", employeeIDParameter);
         }
     }
 }

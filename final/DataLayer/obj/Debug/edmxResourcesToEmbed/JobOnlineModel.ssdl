@@ -65,7 +65,7 @@
       <PropertyRef Name="ResumeEmployeeID" />
     </Key>
     <Property Name="ResumeID" Type="int" Nullable="false" />
-    <Property Name="EmployeeID" Type="int" Nullable="false" />
+    <Property Name="FormID" Type="int" Nullable="false" />
     <Property Name="Date" Type="datetime" Nullable="false" />
     <Property Name="ResumeEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
   </EntityType>
@@ -190,15 +190,15 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_ResumeEmployeeTB_EmployeeTB">
-    <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
+  <Association Name="FK_ResumeEmployeeTB_FormTB">
+    <End Role="FormTB" Type="Self.FormTB" Multiplicity="1" />
     <End Role="ResumeEmployeeTB" Type="Self.ResumeEmployeeTB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="EmployeeTB">
-        <PropertyRef Name="EmployeeID" />
+      <Principal Role="FormTB">
+        <PropertyRef Name="FormID" />
       </Principal>
       <Dependent Role="ResumeEmployeeTB">
-        <PropertyRef Name="EmployeeID" />
+        <PropertyRef Name="FormID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -234,6 +234,12 @@
   </Function>
   <Function Name="ReportPerEmployeeForPeForm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="Emplyeeid" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReportPerKarfarmaEachResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="employeeID" Type="int" Mode="In" />
+  </Function>
+  <Function Name="ReportPerKarfarmaPerResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="employeeID" Type="int" Mode="In" />
   </Function>
   <EntityContainer Name="OnlineJobModelStoreContainer">
     <EntitySet Name="CommentTB" EntityType="Self.CommentTB" Schema="dbo" store:Type="Tables" />
@@ -274,8 +280,8 @@
       <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
       <End Role="FormTB" EntitySet="FormTB" />
     </AssociationSet>
-    <AssociationSet Name="FK_ResumeEmployeeTB_EmployeeTB" Association="Self.FK_ResumeEmployeeTB_EmployeeTB">
-      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
+    <AssociationSet Name="FK_ResumeEmployeeTB_FormTB" Association="Self.FK_ResumeEmployeeTB_FormTB">
+      <End Role="FormTB" EntitySet="FormTB" />
       <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
     </AssociationSet>
     <AssociationSet Name="FK_ResumeEmployeeTB_ResumeTB" Association="Self.FK_ResumeEmployeeTB_ResumeTB">

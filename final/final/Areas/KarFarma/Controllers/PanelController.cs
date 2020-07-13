@@ -19,15 +19,16 @@ namespace final.Areas.KarFarma.Controllers
         OnlineJobEntities online = new OnlineJobEntities();
         public ActionResult Index()
         {
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            var model = online.UserTB.Find(id);
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(1);
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
             IndexInformation index = new IndexInformation();
+            var resume = online.ReportPerKarfarmaPerResume(employeeId);
             index.Email = model.Email;
             index.UserName = model.UserName;
             index.PassWord = model.Password;
-            index.RecievedResume = online.ResumeEmployeeTB.Where(p => p.EmployeeID == employeeId).Count();
+            index.RecievedResume = resume.Count();
             index.TotallForms = online.FormDetailTB.Where(p => p.EmployeeID == employeeId).Count();
             index.WebSite = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.Site).First();
             index.PhoneNumber = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.PhoneNumber).First();
@@ -36,10 +37,10 @@ namespace final.Areas.KarFarma.Controllers
             return View(index);
         }
         public ActionResult EmployeeInformation() {
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            var model = online.UserTB.Find(id);
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(1);
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
             MyInformation information = new MyInformation();
             information.CompanyName= online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
             information.Email = model.Email;
@@ -71,9 +72,9 @@ namespace final.Areas.KarFarma.Controllers
         }
         public ActionResult Jobs()
         {
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
             int i = 1;
             List<JobForm> Jobs = new List<JobForm>();
             var model = online.ReportEmployeeForPerForm(employeeId);
@@ -90,10 +91,10 @@ namespace final.Areas.KarFarma.Controllers
         public ActionResult RecievedResume()
         {
             List<Resume> resume = new List<Resume>();
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
-            var model = online.ReportPerEmployeeForEachResume1(employeeId);
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
+            var model = online.ReportPerKarfarmaEachResume(employeeId);
 
             foreach (var item in model)
             {
@@ -101,7 +102,7 @@ namespace final.Areas.KarFarma.Controllers
                 r.FirstName = item.FirstName;
                 r.LastName = item.LatName;
                 r.id = item.ResumeID;
-                r.date = item.SentDate;
+                r.date = item.sentdate;
                 resume.Add(r);
             }
             return View(resume);
@@ -117,9 +118,9 @@ namespace final.Areas.KarFarma.Controllers
 
         public ActionResult ShowForms(int id)
         {
-            var username = User.Identity.Name;
-            var i = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == i).FirstOrDefault().EmployeeID;
+            //var username = User.Identity.Name;
+            //var i = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
             var model = online.FormTB.Find(id);
             ViewBag.CompanyName = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
             var catid = online.FormTB.Where(p => p.FormID == id).FirstOrDefault().JobID;
@@ -131,9 +132,9 @@ namespace final.Areas.KarFarma.Controllers
         public ActionResult EditForm(int id)
         {
             EditFormViewModel editForm = new EditFormViewModel(); 
-            var username = User.Identity.Name;
-            var i = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == i).FirstOrDefault().EmployeeID;
+            //var username = User.Identity.Name;
+            //var i = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == 1).FirstOrDefault().EmployeeID;
             var model = online.FormTB.Find(id);
             editForm.Form = model;
             editForm.JobCategory = online.JobCategoryTB.ToList();
@@ -156,10 +157,10 @@ namespace final.Areas.KarFarma.Controllers
         }
         public ActionResult AddForm()
         {
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
-            ViewBag.CompanyName = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            //int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            ViewBag.CompanyName = online.EmployeeTB.Where(p => p.EmployeeID == 1).Select(p => p.CompanyName).First();
             AddForm category = new AddForm();
             var model = online.JobCategoryTB.ToList();
             return View(model);
@@ -169,11 +170,11 @@ namespace final.Areas.KarFarma.Controllers
         {
             form.RequestDtae = DateTime.Now;
             online.FormTB.Add(form);
-            var username = User.Identity.Name;
-            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            //var username = User.Identity.Name;
+            //var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            //int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
             FormDetailTB form1 = new FormDetailTB() {
-                EmployeeID = employeeId,
+                EmployeeID = 1,
                 FormID=form.FormID
             };
             online.FormDetailTB.Add(form1);

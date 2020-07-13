@@ -70,7 +70,7 @@
             <PropertyRef Name="ResumeEmployeeID" />
           </Key>
           <Property Name="ResumeID" Type="int" Nullable="false" />
-          <Property Name="EmployeeID" Type="int" Nullable="false" />
+          <Property Name="FormID" Type="int" Nullable="false" />
           <Property Name="Date" Type="datetime" Nullable="false" />
           <Property Name="ResumeEmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
         </EntityType>
@@ -195,15 +195,15 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <Association Name="FK_ResumeEmployeeTB_EmployeeTB">
-          <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
+        <Association Name="FK_ResumeEmployeeTB_FormTB">
+          <End Role="FormTB" Type="Self.FormTB" Multiplicity="1" />
           <End Role="ResumeEmployeeTB" Type="Self.ResumeEmployeeTB" Multiplicity="*" />
           <ReferentialConstraint>
-            <Principal Role="EmployeeTB">
-              <PropertyRef Name="EmployeeID" />
+            <Principal Role="FormTB">
+              <PropertyRef Name="FormID" />
             </Principal>
             <Dependent Role="ResumeEmployeeTB">
-              <PropertyRef Name="EmployeeID" />
+              <PropertyRef Name="FormID" />
             </Dependent>
           </ReferentialConstraint>
         </Association>
@@ -239,6 +239,12 @@
         </Function>
         <Function Name="ReportPerEmployeeForPeForm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="Emplyeeid" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReportPerKarfarmaEachResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="employeeID" Type="int" Mode="In" />
+        </Function>
+        <Function Name="ReportPerKarfarmaPerResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="employeeID" Type="int" Mode="In" />
         </Function>
         <EntityContainer Name="OnlineJobModelStoreContainer">
           <EntitySet Name="CommentTB" EntityType="Self.CommentTB" Schema="dbo" store:Type="Tables" />
@@ -279,8 +285,8 @@
             <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
             <End Role="FormTB" EntitySet="FormTB" />
           </AssociationSet>
-          <AssociationSet Name="FK_ResumeEmployeeTB_EmployeeTB" Association="Self.FK_ResumeEmployeeTB_EmployeeTB">
-            <End Role="EmployeeTB" EntitySet="EmployeeTB" />
+          <AssociationSet Name="FK_ResumeEmployeeTB_FormTB" Association="Self.FK_ResumeEmployeeTB_FormTB">
+            <End Role="FormTB" EntitySet="FormTB" />
             <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
           </AssociationSet>
           <AssociationSet Name="FK_ResumeEmployeeTB_ResumeTB" Association="Self.FK_ResumeEmployeeTB_ResumeTB">
@@ -362,11 +368,6 @@
             <End Role="RoleTB" EntitySet="RoleTB" />
             <End Role="UserTB" EntitySet="UserTB" />
           </AssociationSet>
-          <EntitySet Name="ResumeEmployeeTB" EntityType="OnlineJobModel.ResumeEmployeeTB" />
-          <AssociationSet Name="FK_ResumeEmployeeTB_ResumeTB" Association="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB">
-            <End Role="ResumeTB" EntitySet="ResumeTB" />
-            <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
-          </AssociationSet>
           <EntitySet Name="EmployeeTB" EntityType="OnlineJobModel.EmployeeTB" />
           <AssociationSet Name="FK_EmployeeTB_UserTB" Association="OnlineJobModel.FK_EmployeeTB_UserTB">
             <End Role="UserTB" EntitySet="UserTB" />
@@ -375,10 +376,6 @@
           <AssociationSet Name="FK_FormDetailTB_EmployeeTB" Association="OnlineJobModel.FK_FormDetailTB_EmployeeTB">
             <End Role="EmployeeTB" EntitySet="EmployeeTB" />
             <End Role="FormDetailTB" EntitySet="FormDetailTB" />
-          </AssociationSet>
-          <AssociationSet Name="FK_ResumeEmployeeTB_EmployeeTB" Association="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB">
-            <End Role="EmployeeTB" EntitySet="EmployeeTB" />
-            <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
           </AssociationSet>
           <FunctionImport Name="ReportEmployeeForPerForm" ReturnType="Collection(OnlineJobModel.ReportEmployeeForPerForm_Result)">
           <Parameter Name="employeeid" Mode="In" Type="Int32" />
@@ -397,6 +394,21 @@
             <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
             <End Role="FormTB" EntitySet="FormTB" />
           </AssociationSet>
+          <EntitySet Name="ResumeEmployeeTB" EntityType="OnlineJobModel.ResumeEmployeeTB" />
+          <AssociationSet Name="FK_ResumeEmployeeTB_FormTB" Association="OnlineJobModel.FK_ResumeEmployeeTB_FormTB">
+            <End Role="FormTB" EntitySet="FormTB" />
+            <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
+          </AssociationSet>
+          <AssociationSet Name="FK_ResumeEmployeeTB_ResumeTB" Association="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB">
+            <End Role="ResumeTB" EntitySet="ResumeTB" />
+            <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
+          </AssociationSet>
+          <FunctionImport Name="ReportPerKarfarmaPerResume" ReturnType="Collection(OnlineJobModel.ReportPerKarfarmaPerResume_Result)">
+          <Parameter Name="employeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
+          <FunctionImport Name="ReportPerKarfarmaEachResume" ReturnType="Collection(OnlineJobModel.ReportPerKarfarmaEachResume_Result)">
+            <Parameter Name="employeeID" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ReportPerEmployeeForEachResume_Result">
           <Property Type="Int32" Name="ResumeID" Nullable="false" />
@@ -508,29 +520,6 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
-        <EntityType Name="ResumeEmployeeTB">
-          <Key>
-            <PropertyRef Name="ResumeEmployeeID" />
-          </Key>
-          <Property Name="ResumeID" Type="Int32" Nullable="false" />
-          <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="ResumeEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-          <NavigationProperty Name="ResumeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB" FromRole="ResumeEmployeeTB" ToRole="ResumeTB" />
-          <NavigationProperty Name="EmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB" FromRole="ResumeEmployeeTB" ToRole="EmployeeTB" />
-        </EntityType>
-        <Association Name="FK_ResumeEmployeeTB_ResumeTB">
-          <End Type="OnlineJobModel.ResumeTB" Role="ResumeTB" Multiplicity="1" />
-          <End Type="OnlineJobModel.ResumeEmployeeTB" Role="ResumeEmployeeTB" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="ResumeTB">
-              <PropertyRef Name="ResumeID" />
-            </Principal>
-            <Dependent Role="ResumeEmployeeTB">
-              <PropertyRef Name="ResumeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
         <EntityType Name="EmployeeTB">
           <Key>
             <PropertyRef Name="EmployeeID" />
@@ -543,7 +532,6 @@
           <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="UserTB" Relationship="OnlineJobModel.FK_EmployeeTB_UserTB" FromRole="EmployeeTB" ToRole="UserTB" />
           <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_EmployeeTB" FromRole="EmployeeTB" ToRole="FormDetailTB" />
-          <NavigationProperty Name="ResumeEmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB" FromRole="EmployeeTB" ToRole="ResumeEmployeeTB" />
         </EntityType>
         <Association Name="FK_EmployeeTB_UserTB">
           <End Type="OnlineJobModel.UserTB" Role="UserTB" Multiplicity="1" />
@@ -565,18 +553,6 @@
               <PropertyRef Name="EmployeeID" />
             </Principal>
             <Dependent Role="FormDetailTB">
-              <PropertyRef Name="EmployeeID" />
-            </Dependent>
-          </ReferentialConstraint>
-        </Association>
-        <Association Name="FK_ResumeEmployeeTB_EmployeeTB">
-          <End Type="OnlineJobModel.EmployeeTB" Role="EmployeeTB" Multiplicity="1" />
-          <End Type="OnlineJobModel.ResumeEmployeeTB" Role="ResumeEmployeeTB" Multiplicity="*" />
-          <ReferentialConstraint>
-            <Principal Role="EmployeeTB">
-              <PropertyRef Name="EmployeeID" />
-            </Principal>
-            <Dependent Role="ResumeEmployeeTB">
               <PropertyRef Name="EmployeeID" />
             </Dependent>
           </ReferentialConstraint>
@@ -608,6 +584,7 @@
           <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_FormTB" FromRole="FormTB" ToRole="FormDetailTB" />
           <Property Name="JobID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="JobCategoryTB" Relationship="OnlineJobModel.FK_FormTB_JobCategoryTB" FromRole="FormTB" ToRole="JobCategoryTB" />
+          <NavigationProperty Name="ResumeEmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_FormTB" FromRole="FormTB" ToRole="ResumeEmployeeTB" />
         </EntityType>
         <Association Name="FK_FormDetailTB_FormTB">
           <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
@@ -654,6 +631,66 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <EntityType Name="ResumeEmployeeTB">
+          <Key>
+            <PropertyRef Name="ResumeEmployeeID" />
+          </Key>
+          <Property Name="ResumeID" Type="Int32" Nullable="false" />
+          <Property Name="FormID" Type="Int32" Nullable="false" />
+          <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
+          <Property Name="ResumeEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <NavigationProperty Name="FormTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_FormTB" FromRole="ResumeEmployeeTB" ToRole="FormTB" />
+          <NavigationProperty Name="ResumeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB" FromRole="ResumeEmployeeTB" ToRole="ResumeTB" />
+        </EntityType>
+        <Association Name="FK_ResumeEmployeeTB_FormTB">
+          <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
+          <End Type="OnlineJobModel.ResumeEmployeeTB" Role="ResumeEmployeeTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="FormTB">
+              <PropertyRef Name="FormID" />
+            </Principal>
+            <Dependent Role="ResumeEmployeeTB">
+              <PropertyRef Name="FormID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <Association Name="FK_ResumeEmployeeTB_ResumeTB">
+          <End Type="OnlineJobModel.ResumeTB" Role="ResumeTB" Multiplicity="1" />
+          <End Type="OnlineJobModel.ResumeEmployeeTB" Role="ResumeEmployeeTB" Multiplicity="*" />
+          <ReferentialConstraint>
+            <Principal Role="ResumeTB">
+              <PropertyRef Name="ResumeID" />
+            </Principal>
+            <Dependent Role="ResumeEmployeeTB">
+              <PropertyRef Name="ResumeID" />
+            </Dependent>
+          </ReferentialConstraint>
+        </Association>
+        <ComplexType Name="ReportPerKarfarmaPerResume_Result">
+          <Property Type="Int32" Name="ResumeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="LatName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="RequestDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="EduDegree" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="AbilityDescription" Nullable="false" MaxLength="150" />
+          <Property Type="Boolean" Name="EnglishAbility" Nullable="false" />
+          <Property Type="String" Name="ExtraAbility" Nullable="true" MaxLength="150" />
+        </ComplexType>
+        <ComplexType Name="ReportPerKarfarmaEachResume_Result">
+          <Property Type="Int32" Name="ResumeID" Nullable="false" />
+          <Property Type="String" Name="FirstName" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="LatName" Nullable="false" MaxLength="50" />
+          <Property Type="Int32" Name="Age" Nullable="false" />
+          <Property Type="String" Name="Gender" Nullable="false" MaxLength="150" />
+          <Property Type="DateTime" Name="RequestDate" Nullable="true" Precision="23" />
+          <Property Type="String" Name="EduDegree" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="AbilityDescription" Nullable="false" MaxLength="150" />
+          <Property Type="Boolean" Name="EnglishAbility" Nullable="false" />
+          <Property Type="String" Name="ExtraAbility" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="sentdate" Nullable="true" Precision="23" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -763,16 +800,6 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
-          <EntitySetMapping Name="ResumeEmployeeTB">
-            <EntityTypeMapping TypeName="OnlineJobModel.ResumeEmployeeTB">
-              <MappingFragment StoreEntitySet="ResumeEmployeeTB">
-                <ScalarProperty Name="ResumeEmployeeID" ColumnName="ResumeEmployeeID" />
-                <ScalarProperty Name="Date" ColumnName="Date" />
-                <ScalarProperty Name="EmployeeID" ColumnName="EmployeeID" />
-                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
-              </MappingFragment>
-            </EntityTypeMapping>
-          </EntitySetMapping>
           <EntitySetMapping Name="EmployeeTB">
             <EntityTypeMapping TypeName="OnlineJobModel.EmployeeTB">
               <MappingFragment StoreEntitySet="EmployeeTB">
@@ -824,6 +851,49 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <EntitySetMapping Name="ResumeEmployeeTB">
+            <EntityTypeMapping TypeName="OnlineJobModel.ResumeEmployeeTB">
+              <MappingFragment StoreEntitySet="ResumeEmployeeTB">
+                <ScalarProperty Name="ResumeEmployeeID" ColumnName="ResumeEmployeeID" />
+                <ScalarProperty Name="Date" ColumnName="Date" />
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="ReportPerKarfarmaPerResume" FunctionName="OnlineJobModel.Store.ReportPerKarfarmaPerResume">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OnlineJobModel.ReportPerKarfarmaPerResume_Result">
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LatName" ColumnName="LatName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="EduDegree" ColumnName="EduDegree" />
+                <ScalarProperty Name="AbilityDescription" ColumnName="AbilityDescription" />
+                <ScalarProperty Name="EnglishAbility" ColumnName="EnglishAbility" />
+                <ScalarProperty Name="ExtraAbility" ColumnName="ExtraAbility" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
+          <FunctionImportMapping FunctionImportName="ReportPerKarfarmaEachResume" FunctionName="OnlineJobModel.Store.ReportPerKarfarmaEachResume">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OnlineJobModel.ReportPerKarfarmaEachResume_Result">
+                <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+                <ScalarProperty Name="FirstName" ColumnName="FirstName" />
+                <ScalarProperty Name="LatName" ColumnName="LatName" />
+                <ScalarProperty Name="Age" ColumnName="Age" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="RequestDate" ColumnName="RequestDate" />
+                <ScalarProperty Name="EduDegree" ColumnName="EduDegree" />
+                <ScalarProperty Name="AbilityDescription" ColumnName="AbilityDescription" />
+                <ScalarProperty Name="EnglishAbility" ColumnName="EnglishAbility" />
+                <ScalarProperty Name="ExtraAbility" ColumnName="ExtraAbility" />
+                <ScalarProperty Name="sentdate" ColumnName="sentdate" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>
