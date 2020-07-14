@@ -27,7 +27,7 @@
       <PropertyRef Name="EmployerID" />
     </Key>
     <Property Name="EmployerID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
-    <Property Name="ResumeID" Type="int" Nullable="false" />
+    <Property Name="ResumeID" Type="int" />
     <Property Name="UserID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="FormDetailTB">
@@ -131,7 +131,7 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_EmployerTB_ResumeTB">
-    <End Role="ResumeTB" Type="Self.ResumeTB" Multiplicity="1" />
+    <End Role="ResumeTB" Type="Self.ResumeTB" Multiplicity="0..1" />
     <End Role="EmployerTB" Type="Self.EmployerTB" Multiplicity="*" />
     <ReferentialConstraint>
       <Principal Role="ResumeTB">

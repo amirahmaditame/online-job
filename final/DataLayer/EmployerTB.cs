@@ -15,7 +15,7 @@ namespace DataLayer
     public partial class EmployerTB
     {
         public int EmployerID { get; set; }
-        public int ResumeID { get; set; }
+        public Nullable<int> ResumeID { get; set; }
         public int UserID { get; set; }
     
         public virtual ResumeTB ResumeTB { get; set; }

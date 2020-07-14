@@ -71,15 +71,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="EmployerTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.EmployerTB">
-        <MappingFragment StoreEntitySet="EmployerTB">
-          <ScalarProperty Name="UserID" ColumnName="UserID" />
-          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
-          <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="FormDetailTB">
       <EntityTypeMapping TypeName="OnlineJobModel.FormDetailTB">
         <MappingFragment StoreEntitySet="FormDetailTB">
@@ -198,5 +189,14 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="EmployerTB">
+      <EntityTypeMapping TypeName="OnlineJobModel.EmployerTB">
+        <MappingFragment StoreEntitySet="EmployerTB">
+          <ScalarProperty Name="UserID" ColumnName="UserID" />
+          <ScalarProperty Name="ResumeID" ColumnName="ResumeID" />
+          <ScalarProperty Name="EmployerID" ColumnName="EmployerID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
