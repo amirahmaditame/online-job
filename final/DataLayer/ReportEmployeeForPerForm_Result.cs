@@ -10,15 +10,17 @@
 namespace DataLayer
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class SelectedJobTB
+    public partial class ReportEmployeeForPerForm_Result
     {
-        public int JobID { get; set; }
-        public int EmployeeID { get; set; }
-        public string JobDescription { get; set; }
-    
-        public virtual JobCategoryTB JobCategoryTB { get; set; }
-        public virtual EmployeeTB EmployeeTB { get; set; }
+        public int FormID { get; set; }
+        public string Region { get; set; }
+        public string City { get; set; }
+        public string Benefits { get; set; }
+        public string WorkingDays { get; set; }
+        public string Gender { get; set; }
+        public System.DateTime RequestDtae { get; set; }
+        public string FormText { get; set; }
+        public string CompanyName { get; set; }
     }
 }

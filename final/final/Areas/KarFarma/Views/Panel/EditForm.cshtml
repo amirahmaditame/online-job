@@ -1,4 +1,4 @@
-﻿@model DataLayer.FormTB
+﻿@model final.Areas.KarFarma.ViewModle.EditFormViewModel
 @{
     ViewBag.Title = "EditForm";
     Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
@@ -11,28 +11,23 @@
             <!--Comment Form-->
             <form id="formemloyee">
                 <div class="form-group">
-                    <label>Company Name</label>
-                    <input type="text" id="CompanyName" placeholder="@Model.CompanyName" value="@Model.CompanyName" required>
-                    <span class="icon fab "></span>
-                </div>
-                <div class="form-group">
                     <label>Region</label>
-                    <input type="text" id="Region" placeholder="@Model.Region" value="@Model.Region" required>
+                    <input type="text" id="Region" placeholder="@Model.Form.Region" value="@Model.Form.Region" required>
                     <span class="icon fab"></span>
                 </div>
                 <div class="form-group">
                     <label>City</label>
-                    <input type="text" id="City" placeholder="@Model.City" value="@Model.City" required>
+                    <input type="text" id="City" placeholder="@Model.Form.City" value="@Model.Form.City" required>
                     <span class="icon fab "></span>
                 </div>
                 <div class="form-group">
                     <label>Benifits</label>
-                    <input type="text" id="Benifits" placeholder="@Model.Benefits" value="@Model.Benefits" required>
+                    <input type="text" id="Benifits" placeholder="@Model.Form.Benefits" value="@Model.Form.Benefits" required>
                     <span class="icon fab fa-instagram"></span>
                 </div>
                 <div class="form-group">
                     <label>Working Days</label>
-                    <input type="text" id="WorkingDays" placeholder="@Model.WorkingDays" value="@Model.WorkingDays" required>
+                    <input type="text" id="WorkingDays" placeholder="@Model.Form.WorkingDays" value="@Model.Form.WorkingDays" required>
                     <span class="icon fab"></span>
                 </div>
                 <label>Radiobox</label>
@@ -40,7 +35,7 @@
                     <label>Checkbox</label>
                     <div class="checkbox-outer margin-top-10">
                         <ul class="checkboxes">
-                            @if (Model.Gender == "Male")
+                            @if (Model.Form.Gender == "Male")
                             {
                                 <!-- Checkboxes Ouer -->
                                 <li>
@@ -54,7 +49,7 @@
                             }
                             else
                             {
-                                if (Model.Gender == "Female")
+                                if (Model.Form.Gender == "Female")
                                 {
                                     <li>
                                         <input id="check-a" type="checkbox" name="Male">
@@ -81,7 +76,36 @@
                 </div>
                 <div class="form-group">
                     <label>Form Text</label>
-                    <input type="text" id="FormText" placeholder="@Model.FormText" value="@Model.FormText" required>
+                    <input type="text" id="FormText" placeholder="@Model.Form.FormText" value="@Model.Form.FormText" required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="radio-outer margin-top-10">
+                    <label>Jobs</label>
+                    <div class="checkbox-outer margin-top-10">
+                        <ul class="checkboxes">
+                            @foreach (var g in Model.JobCategory)
+                            {
+                                if (g.JobCategory.ToString() == ViewBag.category)
+                                {
+                                    <li>
+                                        <input id="check-@g.JobID" data-id="@g.JobID" type="checkbox" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)" checked>
+                                        <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <input id="check-@g.JobID" data-id="@g.JobID" type="checkbox" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)">
+                                        <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>JobDescRiption</label>
+                    <input type="text" id="JobDescRiption" placeholder="@Model.Form.JobDescRiption" value="@Model.Form.JobDescRiption" required>
                     <span class="icon fab"></span>
                 </div>
                 <div class="form-group">
@@ -94,7 +118,15 @@
 </div>
 @section PageScript{
     <script>
-
+        var t =@Model.JobCategory.Count();
+        var cat;
+        function selectOnlyThis(e,id) {
+            for (var i = 1; i <= t; i++) {
+                document.getElementById("check-" + i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+            cat = $(e).attr("data-id");
+        }
         $(function () {
             $(document).ready(function () {
                 $(document).on("click", "#submit-form", function (e) {
@@ -120,14 +152,15 @@
                         type: "POST",
                         url: "/KarFarma/Panel/EditForm",
                         data: JSON.stringify({
-                            FormID:@Model.FormID,
-                            CompanyName: $("#CompanyName").val(),
+                            FormID:@Model.Form.FormID,
                             Region: $("#Region").val(),
                             City: $("#City").val(),
                             Benifits: $("#Benifits").val(),
                             WorkingDays: $("#WorkingDays").val(),
                             Gender: c,
-                            FormText: $("#FormText").val()
+                            FormText: $("#FormText").val(),
+                            JobDescRiption: $("#JobDescRiption").val(),
+                            JobID: cat
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",

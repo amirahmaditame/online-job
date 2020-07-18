@@ -10,16 +10,18 @@
 namespace DataLayer
 {
     using System;
-    using System.Collections.Generic;
     
-    public partial class ResumeEmployeeTB
+    public partial class ReportPerKarfarmaPerResume_Result
     {
         public int ResumeID { get; set; }
-        public int FormID { get; set; }
-        public System.DateTime Date { get; set; }
-        public int ResumeEmployeeID { get; set; }
-    
-        public virtual FormTB FormTB { get; set; }
-        public virtual ResumeTB ResumeTB { get; set; }
+        public string FirstName { get; set; }
+        public string LatName { get; set; }
+        public int Age { get; set; }
+        public string Gender { get; set; }
+        public Nullable<System.DateTime> RequestDate { get; set; }
+        public string EduDegree { get; set; }
+        public string AbilityDescription { get; set; }
+        public bool EnglishAbility { get; set; }
+        public string ExtraAbility { get; set; }
     }
 }

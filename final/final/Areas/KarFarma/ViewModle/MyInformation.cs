@@ -11,5 +11,11 @@ namespace final.Areas.KarFarma.ViewModle
         public string UserName { set; get; }
         public string PassWord { set; get; }
         public string Email { set; get; }
+
+        public string WebSite { set; get; }
+        public string Address { set; get; }
+        public string CompanyName { set; get; }
+        public int PhoneNumber { set; get; }
+
     }
 }
