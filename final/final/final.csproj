@@ -958,8 +958,8 @@
     <Content Include="Areas\KarJo\Views\web.config" />
     <Content Include="Areas\KarJo\Views\Shared\_LayoutKarjo.cshtml" />
     <Content Include="Areas\KarJo\Views\Panel\Index.cshtml" />
-    <Content Include="Areas\KarJo\Views\Panel\Resume.cshtml" />
     <Content Include="Areas\KarJo\Views\Panel\EditResume.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\CreateResume.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
