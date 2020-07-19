@@ -231,6 +231,9 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <Function Name="FormForeachResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+          <Parameter Name="resumeid" Type="int" Mode="In" />
+        </Function>
         <Function Name="ReportEmployeeForPerForm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
           <Parameter Name="employeeid" Type="int" Mode="In" />
         </Function>
@@ -409,6 +412,9 @@
             <End Role="UserTB" EntitySet="UserTB" />
             <End Role="EmployerTB" EntitySet="EmployerTB" />
           </AssociationSet>
+          <FunctionImport Name="FormForeachResume" ReturnType="Collection(OnlineJobModel.FormForeachResume_Result)">
+            <Parameter Name="resumeid" Mode="In" Type="Int32" />
+          </FunctionImport>
         </EntityContainer>
         <ComplexType Name="ReportPerEmployeeForEachResume_Result">
           <Property Type="Int32" Name="ResumeID" Nullable="false" />
@@ -691,6 +697,19 @@
             </Dependent>
           </ReferentialConstraint>
         </Association>
+        <ComplexType Name="FormForeachResume_Result">
+          <Property Type="Int32" Name="FormID" Nullable="false" />
+          <Property Type="String" Name="Region" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+          <Property Type="String" Name="Benefits" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="WorkingDays" Nullable="false" MaxLength="10" />
+          <Property Type="String" Name="Gender" Nullable="true" MaxLength="150" />
+          <Property Type="DateTime" Name="RequestDtae" Nullable="false" Precision="23" />
+          <Property Type="String" Name="FormText" Nullable="true" MaxLength="150" />
+          <Property Type="String" Name="JobDescRiption" Nullable="false" MaxLength="150" />
+          <Property Type="Int32" Name="JobID" Nullable="false" />
+          <Property Type="String" Name="companyname" Nullable="true" MaxLength="150" />
+        </ComplexType>
       </Schema>
     </edmx:ConceptualModels>
     <!-- C-S mapping content -->
@@ -894,6 +913,23 @@
               </MappingFragment>
             </EntityTypeMapping>
           </EntitySetMapping>
+          <FunctionImportMapping FunctionImportName="FormForeachResume" FunctionName="OnlineJobModel.Store.FormForeachResume">
+            <ResultMapping>
+              <ComplexTypeMapping TypeName="OnlineJobModel.FormForeachResume_Result">
+                <ScalarProperty Name="FormID" ColumnName="FormID" />
+                <ScalarProperty Name="Region" ColumnName="Region" />
+                <ScalarProperty Name="City" ColumnName="City" />
+                <ScalarProperty Name="Benefits" ColumnName="Benefits" />
+                <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
+                <ScalarProperty Name="Gender" ColumnName="Gender" />
+                <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
+                <ScalarProperty Name="FormText" ColumnName="FormText" />
+                <ScalarProperty Name="JobDescRiption" ColumnName="JobDescRiption" />
+                <ScalarProperty Name="JobID" ColumnName="JobID" />
+                <ScalarProperty Name="companyname" ColumnName="companyname" />
+              </ComplexTypeMapping>
+            </ResultMapping>
+          </FunctionImportMapping>
         </EntityContainerMapping>
       </Mapping>
     </edmx:Mappings>

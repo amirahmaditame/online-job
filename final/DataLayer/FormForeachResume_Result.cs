@@ -14,28 +14,30 @@ namespace DataLayer
 
 using System;
     
-public partial class ReportPerEmployeeForEachResume_Result
+public partial class FormForeachResume_Result
 {
 
-    public int ResumeID { get; set; }
+    public int FormID { get; set; }
 
-    public string FirstName { get; set; }
+    public string Region { get; set; }
 
-    public string LatName { get; set; }
+    public string City { get; set; }
 
-    public int Age { get; set; }
+    public string Benefits { get; set; }
+
+    public string WorkingDays { get; set; }
 
     public string Gender { get; set; }
 
-    public Nullable<System.DateTime> RequestDate { get; set; }
+    public System.DateTime RequestDtae { get; set; }
 
-    public string EduDegree { get; set; }
+    public string FormText { get; set; }
 
-    public string AbilityDescription { get; set; }
+    public string JobDescRiption { get; set; }
 
-    public bool EnglishAbility { get; set; }
+    public int JobID { get; set; }
 
-    public string ExtraAbility { get; set; }
+    public string companyname { get; set; }
 
 }
 

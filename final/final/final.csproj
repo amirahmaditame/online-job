@@ -156,6 +156,7 @@
     <Compile Include="Areas\KarFarma\ViewModle\Resume.cs" />
     <Compile Include="Areas\KarJo\Controllers\PanelController.cs" />
     <Compile Include="Areas\KarJo\KarJoAreaRegistration.cs" />
+    <Compile Include="Areas\KarJo\ViewModel\ResumeDisplay.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageEmailController.cs" />
@@ -961,6 +962,8 @@
     <Content Include="Areas\KarJo\Views\Panel\EditResume.cshtml" />
     <Content Include="Areas\KarJo\Views\Panel\CreateResume.cshtml" />
     <Content Include="Areas\KarJo\Views\Panel\EditPersonalInformation.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\SendResume.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\ShowForms.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />

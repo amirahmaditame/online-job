@@ -1,4 +1,5 @@
 ﻿using DataLayer;
+using final.Areas.KarJo.ViewModel;
 using System;
 using System.Collections.Generic;
 using System.Data.Entity;
@@ -78,6 +79,39 @@ namespace final.Areas.KarJo.Controllers
             {
                 Status = true
             });
+        }
+        public ActionResult SendResume() {
+            var model = online.UserTB.Find(4);
+            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            int? resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).Select(p => p.ResumeID).First();
+            var Forms = online.FormForeachResume(resumeid);
+            int i;i = 1;
+            List<ResumeDisplay> resumes = new List<ResumeDisplay>();
+            foreach (var item in Forms)
+            {
+                var r = new ResumeDisplay();
+                r.count = i++;
+                r.date = item.RequestDtae;
+                r.id = item.FormID;
+                resumes.Add(r);
+            }
+            return View(resumes);
+        }
+        public ActionResult ShowForms(int id)
+        {
+            var model = online.FormTB.Find(id);
+            int employeeId = online.FormDetailTB.Where(p => p.FormID == id).Select(p => p.EmployeeID).FirstOrDefault();
+            ViewBag.CompanyName = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
+            var catid = online.FormTB.Where(p => p.FormID == id).FirstOrDefault().JobID;
+            ViewBag.category = online.JobCategoryTB.Where(p => p.JobID == catid).FirstOrDefault().JobCategory;
+            return PartialView(model);
+
+        }
+        public void DeleteForm(int id)
+        {
+            var entityd = online.FormDetailTB.Where(p => p.FormID == id).First();
+            online.FormDetailTB.Remove(entityd);
+            online.SaveChanges();
         }
         public class JsonData
         {

@@ -226,6 +226,9 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <Function Name="FormForeachResume" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
+    <Parameter Name="resumeid" Type="int" Mode="In" />
+  </Function>
   <Function Name="ReportEmployeeForPerForm" Aggregate="false" BuiltIn="false" NiladicFunction="false" IsComposable="false" ParameterTypeSemantics="AllowImplicitConversion" Schema="dbo">
     <Parameter Name="employeeid" Type="int" Mode="In" />
   </Function>

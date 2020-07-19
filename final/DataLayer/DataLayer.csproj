@@ -63,6 +63,9 @@
     <Compile Include="FormDetailTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="FormForeachResume_Result.cs">
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="FormTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
