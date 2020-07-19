@@ -1,6 +1,7 @@
 ﻿using DataLayer;
 using System;
 using System.Collections.Generic;
+using System.Data.Entity;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
@@ -39,8 +40,44 @@ namespace final.Areas.KarJo.Controllers
             online.SaveChanges();
             return RedirectToAction("Index");
         }
+        [HttpGet]
         public ActionResult EditResume() {
-            return View();
+            var model = online.UserTB.Find(4);
+            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            int? resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).Select(p=>p.ResumeID).First();
+            var resume = online.ResumeTB.Where(p => p.ResumeID == resumeid).First();
+            return View(resume);
+        }
+        [HttpPost]
+        public JsonResult EditResume(ResumeTB resume)
+        {
+            resume.RequestDate = DateTime.Now;
+            online.Entry(resume).State = EntityState.Modified;
+
+            online.SaveChanges();
+            return Json(new JsonData()
+            {
+                Status = true
+            });
+        }
+        [HttpGet]
+        public ActionResult EditPersonalInformation() 
+        {
+            var model = online.UserTB.Find(4);
+            return View(model);
+        }
+
+        [HttpPost]
+        public JsonResult EditPersonalInformation(UserTB user)
+        {
+            user.RegesterDate = DateTime.Now;
+            online.Entry(user).State = EntityState.Modified;
+
+            online.SaveChanges();
+            return Json(new JsonData()
+            {
+                Status = true
+            });
         }
         public class JsonData
         {

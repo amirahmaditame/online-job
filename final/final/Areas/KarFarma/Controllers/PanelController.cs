@@ -53,17 +53,17 @@ namespace final.Areas.KarFarma.Controllers
             return View(information);
         }
         [HttpPost]
-        public ActionResult EmployeeInformation(int UserID,string UserName,string PassWord,String Email,int PhoneNumber,string WebSite,string Address,string CompanyName)
+        public ActionResult EmployeeInformation(MyInformation information)
         {
-            var model = online.UserTB.Find(UserID);
-            var employee = online.EmployeeTB.Where(p => p.UserID == UserID).FirstOrDefault();
-            model.UserName = UserName;
-            model.Password = PassWord;
-            model.Email = Email;
-            employee.CompanyName = CompanyName;
-            employee.Adress = Address;
-            employee.PhoneNumber = PhoneNumber;
-            employee.Site = WebSite;
+            var model = online.UserTB.Find(information.UserID);
+            var employee = online.EmployeeTB.Where(p => p.UserID == information.UserID).FirstOrDefault();
+            model.UserName = information.UserName;
+            model.Password = information.PassWord;
+            model.Email = information.Email;
+            employee.CompanyName = information.CompanyName;
+            employee.Adress = information.Address;
+            employee.PhoneNumber = information.PhoneNumber;
+            employee.Site = information.WebSite;
             online.SaveChanges();
             return Json(new JsonData()
             {

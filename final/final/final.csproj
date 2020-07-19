@@ -960,6 +960,7 @@
     <Content Include="Areas\KarJo\Views\Panel\Index.cshtml" />
     <Content Include="Areas\KarJo\Views\Panel\EditResume.cshtml" />
     <Content Include="Areas\KarJo\Views\Panel\CreateResume.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\EditPersonalInformation.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
