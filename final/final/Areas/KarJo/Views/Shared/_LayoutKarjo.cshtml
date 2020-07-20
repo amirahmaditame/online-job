@@ -327,10 +327,10 @@
                     <div class="sidebar-column sidebar-side sticky-container col-lg-3 col-md-12 col-sm-12">
                         <aside class="sidebar theiaStickySidebar">
                             <div class="sticky-sidebar">
-                                <ul class="listing-content-list">
-                                    <li data-target="#General" class="active"><span class="icon flaticon-house"></span><a href="">General</a></li>
-                                    <li data-target="#Contact-Information"><span class="icon flaticon-phone-call-1"></span><a href=""> Edit Pesonal Information</a></li>
-                                    <li data-target="#Listing-Details"><span class="icon flaticon-setup"></span><a href="">Send Resume</a></li>
+                                <ul class="listing-content-list" id="menu">
+                                    <li data-target="#General"><span class="icon flaticon-house"></span><a href="/KarJo/Panel/Index">General</a></li>
+                                    <li data-target="#Contact-Information"><span class="icon flaticon-phone-call-1"></span><a href="/KarJo/Panel/EditPersonalInformation"> Edit Pesonal Information</a></li>
+                                    <li data-target="#Listing-Details"><span class="icon flaticon-setup"></span><a href="/KarJo/Panel/SendResume">Send Resume</a></li>
                                 </ul>
                             </div>
                         </aside>
@@ -371,5 +371,11 @@
 
 <!-- Mirrored from grandetest.com/theme/listdo-html/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 31 May 2020 13:54:44 GMT -->
 </html>
+<script>
+    $("#menu li a").click(function () {
+        $(this).parent().addClass('selected').siblings().removeClass('selected');
 
+    });
+
+</script>
 

@@ -21,13 +21,22 @@ namespace final.Areas.KarJo.Controllers
             int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
             var resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).First().ResumeID;
             ViewBag.id = resumeid;
+            int count = online.FormForeachResume(resumeid).Count();
+            ViewBag.count = count;
             return View();
         }
         [HttpGet]
         public ActionResult CreateResume() 
         {
-            ResumeTB resume = new ResumeTB();
-            return View(resume);
+            var model = online.UserTB.Find(4);
+            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            var resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).First().ResumeID;
+            if (resumeid !=null) {
+                var resumesample = online.ResumeTB.Where(p => p.ResumeID == resumeid).First();
+                return View("EditResume", resumesample);
+            }
+                ResumeTB resume = new ResumeTB();
+                return View(resume);
         }
         [HttpPost]
         public ActionResult CreateResume(ResumeTB resume)
