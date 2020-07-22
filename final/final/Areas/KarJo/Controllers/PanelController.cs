@@ -25,6 +25,7 @@ namespace final.Areas.KarJo.Controllers
             ViewBag.count = count;
             return View();
         }
+
         [HttpGet]
         public ActionResult CreateResume() 
         {
@@ -118,8 +119,8 @@ namespace final.Areas.KarJo.Controllers
         }
         public void DeleteForm(int id)
         {
-            var entityd = online.FormDetailTB.Where(p => p.FormID == id).First();
-            online.FormDetailTB.Remove(entityd);
+            var entityd = online.ResumeEmployeeTB.Where(p => p.FormID == id).First();
+            online.ResumeEmployeeTB.Remove(entityd);
             online.SaveChanges();
         }
         public class JsonData
