@@ -123,6 +123,7 @@ namespace final.Areas.KarJo.Controllers
             online.ResumeEmployeeTB.Remove(entityd);
             online.SaveChanges();
         }
+
         public class JsonData
         {
             public bool Status { get; set; }
