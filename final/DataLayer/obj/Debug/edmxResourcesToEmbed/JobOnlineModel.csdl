@@ -10,16 +10,7 @@
     <Property Name="Email" Type="String" MaxLength="50" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CommentText" Type="String" MaxLength="350" FixedLength="false" Unicode="true" Nullable="false" />
     <Property Name="CommentDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="JobCategoryTB" Relationship="Self.FK_CommentTB_JobCategoryTB" FromRole="CommentTB" ToRole="JobCategoryTB" />
-  </EntityType>
-  <EntityType Name="JobCategoryTB">
-    <Key>
-      <PropertyRef Name="JobID" />
-    </Key>
-    <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="JobCategory" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="CommentTB" Relationship="Self.FK_CommentTB_JobCategoryTB" FromRole="JobCategoryTB" ToRole="CommentTB" />
-    <NavigationProperty Name="SelectedJobTB" Relationship="Self.FK_SelectedJobTB_JobCategoryTB" FromRole="JobCategoryTB" ToRole="SelectedJobTB" />
+    <NavigationProperty Name="JobCategoryTB" Relationship="OnlineJobModel.FK_CommentTB_JobCategoryTB" FromRole="CommentTB" ToRole="JobCategoryTB" />
   </EntityType>
   <EntityType Name="ResumeTB">
     <Key>
@@ -35,8 +26,8 @@
     <Property Name="ExtraAbility" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="FirstName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <Property Name="LatName" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="EmployerTB" Relationship="OnlineJobModel.FK_EmployerTB_ResumeTB" FromRole="ResumeTB" ToRole="EmployerTB" />
     <NavigationProperty Name="ResumeEmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB" FromRole="ResumeTB" ToRole="ResumeEmployeeTB" />
+    <NavigationProperty Name="EmployerTB" Relationship="OnlineJobModel.FK_EmployerTB_ResumeTB" FromRole="ResumeTB" ToRole="EmployerTB" />
   </EntityType>
   <EntityType Name="RoleTB">
     <Key>
@@ -47,56 +38,10 @@
     <Property Name="RoleName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
     <NavigationProperty Name="UserTB" Relationship="OnlineJobModel.FK_UserTB_RoleTB" FromRole="RoleTB" ToRole="UserTB" />
   </EntityType>
-  <EntityType Name="SelectedJobTB">
-    <Key>
-      <PropertyRef Name="JobID" />
-      <PropertyRef Name="EmployeeID" />
-    </Key>
-    <Property Name="JobID" Type="Int32" Nullable="false" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
-    <Property Name="JobDescription" Type="String" MaxLength="150" FixedLength="false" Unicode="true" Nullable="false" />
-    <NavigationProperty Name="JobCategoryTB" Relationship="Self.FK_SelectedJobTB_JobCategoryTB" FromRole="SelectedJobTB" ToRole="JobCategoryTB" />
-    <NavigationProperty Name="EmployeeTB" Relationship="OnlineJobModel.FK_SelectedJobTB_EmployeeTB" FromRole="SelectedJobTB" ToRole="EmployeeTB" />
-  </EntityType>
-  <Association Name="FK_CommentTB_JobCategoryTB">
-    <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
-    <End Role="CommentTB" Type="Self.CommentTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="JobCategoryTB">
-        <PropertyRef Name="JobID" />
-      </Principal>
-      <Dependent Role="CommentTB">
-        <PropertyRef Name="JobID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SelectedJobTB_JobCategoryTB">
-    <End Role="JobCategoryTB" Type="Self.JobCategoryTB" Multiplicity="1" />
-    <End Role="SelectedJobTB" Type="Self.SelectedJobTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="JobCategoryTB">
-        <PropertyRef Name="JobID" />
-      </Principal>
-      <Dependent Role="SelectedJobTB">
-        <PropertyRef Name="JobID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityContainer Name="OnlineJobEntities" annotation:LazyLoadingEnabled="true">
     <EntitySet Name="CommentTB" EntityType="Self.CommentTB" />
-    <EntitySet Name="JobCategoryTB" EntityType="Self.JobCategoryTB" />
     <EntitySet Name="ResumeTB" EntityType="Self.ResumeTB" />
     <EntitySet Name="RoleTB" EntityType="Self.RoleTB" />
-    <EntitySet Name="SelectedJobTB" EntityType="Self.SelectedJobTB" />
-    <AssociationSet Name="FK_CommentTB_JobCategoryTB" Association="Self.FK_CommentTB_JobCategoryTB">
-      <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
-      <End Role="CommentTB" EntitySet="CommentTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SelectedJobTB_JobCategoryTB" Association="Self.FK_SelectedJobTB_JobCategoryTB">
-      <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
-      <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
-    </AssociationSet>
-    <EntitySet Name="FormTB" EntityType="OnlineJobModel.FormTB" />
     <FunctionImport Name="ReportPerEmployeeForEachResume" ReturnType="Collection(OnlineJobModel.ReportPerEmployeeForEachResume_Result)">
       <Parameter Name="EmployeeID" Mode="In" Type="Int32" />
     </FunctionImport>
@@ -106,63 +51,66 @@
     <FunctionImport Name="ReportPerEmployeeForPeForm" ReturnType="Collection(OnlineJobModel.ReportPerEmployeeForPeForm_Result)">
       <Parameter Name="Emplyeeid" Mode="In" Type="Int32" />
     </FunctionImport>
-    <EntitySet Name="EmployerTB" EntityType="OnlineJobModel.EmployerTB" />
-    <AssociationSet Name="FK_EmployerTB_ResumeTB" Association="OnlineJobModel.FK_EmployerTB_ResumeTB">
-      <End Role="ResumeTB" EntitySet="ResumeTB" />
-      <End Role="EmployerTB" EntitySet="EmployerTB" />
-    </AssociationSet>
-    <EntitySet Name="EmployeeTB" EntityType="OnlineJobModel.EmployeeTB" />
     <EntitySet Name="FormDetailTB" EntityType="OnlineJobModel.FormDetailTB" />
-    <AssociationSet Name="FK_FormDetailTB_EmployeeTB" Association="OnlineJobModel.FK_FormDetailTB_EmployeeTB">
-      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
-      <End Role="FormDetailTB" EntitySet="FormDetailTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_SelectedJobTB_EmployeeTB" Association="OnlineJobModel.FK_SelectedJobTB_EmployeeTB">
-      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
-      <End Role="SelectedJobTB" EntitySet="SelectedJobTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_FormDetailTB_FormTB" Association="OnlineJobModel.FK_FormDetailTB_FormTB">
-      <End Role="FormTB" EntitySet="FormTB" />
-      <End Role="FormDetailTB" EntitySet="FormDetailTB" />
-    </AssociationSet>
     <EntitySet Name="UserTB" EntityType="OnlineJobModel.UserTB" />
-    <AssociationSet Name="FK_EmployeeTB_UserTB" Association="OnlineJobModel.FK_EmployeeTB_UserTB">
-      <End Role="UserTB" EntitySet="UserTB" />
-      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
-    </AssociationSet>
-    <AssociationSet Name="FK_EmployerTB_UserTB" Association="OnlineJobModel.FK_EmployerTB_UserTB">
-      <End Role="UserTB" EntitySet="UserTB" />
-      <End Role="EmployerTB" EntitySet="EmployerTB" />
-    </AssociationSet>
     <AssociationSet Name="FK_UserTB_RoleTB" Association="OnlineJobModel.FK_UserTB_RoleTB">
       <End Role="RoleTB" EntitySet="RoleTB" />
       <End Role="UserTB" EntitySet="UserTB" />
     </AssociationSet>
-    <EntitySet Name="ResumeEmployeeTB" EntityType="OnlineJobModel.ResumeEmployeeTB" />
-    <AssociationSet Name="FK_ResumeEmployeeTB_EmployeeTB" Association="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB">
+    <EntitySet Name="EmployeeTB" EntityType="OnlineJobModel.EmployeeTB" />
+    <AssociationSet Name="FK_EmployeeTB_UserTB" Association="OnlineJobModel.FK_EmployeeTB_UserTB">
+      <End Role="UserTB" EntitySet="UserTB" />
       <End Role="EmployeeTB" EntitySet="EmployeeTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FormDetailTB_EmployeeTB" Association="OnlineJobModel.FK_FormDetailTB_EmployeeTB">
+      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
+      <End Role="FormDetailTB" EntitySet="FormDetailTB" />
+    </AssociationSet>
+    <FunctionImport Name="ReportEmployeeForPerForm" ReturnType="Collection(OnlineJobModel.ReportEmployeeForPerForm_Result)">
+      <Parameter Name="employeeid" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="FormTB" EntityType="OnlineJobModel.FormTB" />
+    <AssociationSet Name="FK_FormDetailTB_FormTB" Association="OnlineJobModel.FK_FormDetailTB_FormTB">
+      <End Role="FormTB" EntitySet="FormTB" />
+      <End Role="FormDetailTB" EntitySet="FormDetailTB" />
+    </AssociationSet>
+    <EntitySet Name="JobCategoryTB" EntityType="OnlineJobModel.JobCategoryTB" />
+    <AssociationSet Name="FK_CommentTB_JobCategoryTB" Association="OnlineJobModel.FK_CommentTB_JobCategoryTB">
+      <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
+      <End Role="CommentTB" EntitySet="CommentTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_FormTB_JobCategoryTB" Association="OnlineJobModel.FK_FormTB_JobCategoryTB">
+      <End Role="JobCategoryTB" EntitySet="JobCategoryTB" />
+      <End Role="FormTB" EntitySet="FormTB" />
+    </AssociationSet>
+    <EntitySet Name="ResumeEmployeeTB" EntityType="OnlineJobModel.ResumeEmployeeTB" />
+    <AssociationSet Name="FK_ResumeEmployeeTB_FormTB" Association="OnlineJobModel.FK_ResumeEmployeeTB_FormTB">
+      <End Role="FormTB" EntitySet="FormTB" />
       <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
     </AssociationSet>
     <AssociationSet Name="FK_ResumeEmployeeTB_ResumeTB" Association="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB">
       <End Role="ResumeTB" EntitySet="ResumeTB" />
       <End Role="ResumeEmployeeTB" EntitySet="ResumeEmployeeTB" />
     </AssociationSet>
+    <FunctionImport Name="ReportPerKarfarmaPerResume" ReturnType="Collection(OnlineJobModel.ReportPerKarfarmaPerResume_Result)">
+      <Parameter Name="employeeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <FunctionImport Name="ReportPerKarfarmaEachResume" ReturnType="Collection(OnlineJobModel.ReportPerKarfarmaEachResume_Result)">
+      <Parameter Name="employeeID" Mode="In" Type="Int32" />
+    </FunctionImport>
+    <EntitySet Name="EmployerTB" EntityType="OnlineJobModel.EmployerTB" />
+    <AssociationSet Name="FK_EmployerTB_ResumeTB" Association="OnlineJobModel.FK_EmployerTB_ResumeTB">
+      <End Role="ResumeTB" EntitySet="ResumeTB" />
+      <End Role="EmployerTB" EntitySet="EmployerTB" />
+    </AssociationSet>
+    <AssociationSet Name="FK_EmployerTB_UserTB" Association="OnlineJobModel.FK_EmployerTB_UserTB">
+      <End Role="UserTB" EntitySet="UserTB" />
+      <End Role="EmployerTB" EntitySet="EmployerTB" />
+    </AssociationSet>
+    <FunctionImport Name="FormForeachResume" ReturnType="Collection(OnlineJobModel.FormForeachResume_Result)">
+      <Parameter Name="resumeid" Mode="In" Type="Int32" />
+    </FunctionImport>
   </EntityContainer>
-  <EntityType Name="FormTB">
-    <Key>
-      <PropertyRef Name="FormID" />
-    </Key>
-    <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Region" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="City" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="Benefits" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="WorkingDays" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
-    <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <Property Name="RequestDtae" Type="DateTime" Nullable="false" Precision="3" />
-    <Property Name="FormText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-    <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_FormTB" FromRole="FormTB" ToRole="FormDetailTB" />
-  </EntityType>
   <ComplexType Name="ReportPerEmployeeForEachResume_Result">
     <Property Type="Int32" Name="ResumeID" Nullable="false" />
     <Property Type="String" Name="FirstName" Nullable="false" MaxLength="150" />
@@ -200,39 +148,6 @@
     <Property Type="String" Name="FormText" Nullable="true" MaxLength="150" />
     <Property Type="Int32" Name="myid" Nullable="true" />
   </ComplexType>
-  <EntityType Name="EmployerTB">
-    <Key>
-      <PropertyRef Name="EmployerID" />
-    </Key>
-    <Property Name="EmployerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="ResumeID" Type="Int32" Nullable="false" />
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="ResumeTB" Relationship="OnlineJobModel.FK_EmployerTB_ResumeTB" FromRole="EmployerTB" ToRole="ResumeTB" />
-    <NavigationProperty Name="UserTB" Relationship="OnlineJobModel.FK_EmployerTB_UserTB" FromRole="EmployerTB" ToRole="UserTB" />
-  </EntityType>
-  <Association Name="FK_EmployerTB_ResumeTB">
-    <End Type="OnlineJobModel.ResumeTB" Role="ResumeTB" Multiplicity="1" />
-    <End Type="OnlineJobModel.EmployerTB" Role="EmployerTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="ResumeTB">
-        <PropertyRef Name="ResumeID" />
-      </Principal>
-      <Dependent Role="EmployerTB">
-        <PropertyRef Name="ResumeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <EntityType Name="EmployeeTB">
-    <Key>
-      <PropertyRef Name="EmployeeID" />
-    </Key>
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <Property Name="UserID" Type="Int32" Nullable="false" />
-    <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_EmployeeTB" FromRole="EmployeeTB" ToRole="FormDetailTB" />
-    <NavigationProperty Name="SelectedJobTB" Relationship="OnlineJobModel.FK_SelectedJobTB_EmployeeTB" FromRole="EmployeeTB" ToRole="SelectedJobTB" />
-    <NavigationProperty Name="UserTB" Relationship="OnlineJobModel.FK_EmployeeTB_UserTB" FromRole="EmployeeTB" ToRole="UserTB" />
-    <NavigationProperty Name="ResumeEmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB" FromRole="EmployeeTB" ToRole="ResumeEmployeeTB" />
-  </EntityType>
   <EntityType Name="FormDetailTB">
     <Key>
       <PropertyRef Name="FormDetailID" />
@@ -243,42 +158,6 @@
     <NavigationProperty Name="EmployeeTB" Relationship="OnlineJobModel.FK_FormDetailTB_EmployeeTB" FromRole="FormDetailTB" ToRole="EmployeeTB" />
     <NavigationProperty Name="FormTB" Relationship="OnlineJobModel.FK_FormDetailTB_FormTB" FromRole="FormDetailTB" ToRole="FormTB" />
   </EntityType>
-  <Association Name="FK_FormDetailTB_EmployeeTB">
-    <End Type="OnlineJobModel.EmployeeTB" Role="EmployeeTB" Multiplicity="1" />
-    <End Type="OnlineJobModel.FormDetailTB" Role="FormDetailTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployeeTB">
-        <PropertyRef Name="EmployeeID" />
-      </Principal>
-      <Dependent Role="FormDetailTB">
-        <PropertyRef Name="EmployeeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_SelectedJobTB_EmployeeTB">
-    <End Type="OnlineJobModel.EmployeeTB" Role="EmployeeTB" Multiplicity="1" />
-    <End Type="OnlineJobModel.SelectedJobTB" Role="SelectedJobTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="EmployeeTB">
-        <PropertyRef Name="EmployeeID" />
-      </Principal>
-      <Dependent Role="SelectedJobTB">
-        <PropertyRef Name="EmployeeID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
-  <Association Name="FK_FormDetailTB_FormTB">
-    <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
-    <End Type="OnlineJobModel.FormDetailTB" Role="FormDetailTB" Multiplicity="*" />
-    <ReferentialConstraint>
-      <Principal Role="FormTB">
-        <PropertyRef Name="FormID" />
-      </Principal>
-      <Dependent Role="FormDetailTB">
-        <PropertyRef Name="FormID" />
-      </Dependent>
-    </ReferentialConstraint>
-  </Association>
   <EntityType Name="UserTB">
     <Key>
       <PropertyRef Name="UserID" />
@@ -291,10 +170,35 @@
     <Property Name="ActiveCode" Type="String" Nullable="false" MaxLength="50" FixedLength="false" Unicode="false" />
     <Property Name="IsActive" Type="Boolean" Nullable="false" />
     <Property Name="RegesterDate" Type="DateTime" Nullable="false" Precision="3" />
-    <NavigationProperty Name="EmployeeTB" Relationship="OnlineJobModel.FK_EmployeeTB_UserTB" FromRole="UserTB" ToRole="EmployeeTB" />
-    <NavigationProperty Name="EmployerTB" Relationship="OnlineJobModel.FK_EmployerTB_UserTB" FromRole="UserTB" ToRole="EmployerTB" />
     <NavigationProperty Name="RoleTB" Relationship="OnlineJobModel.FK_UserTB_RoleTB" FromRole="UserTB" ToRole="RoleTB" />
     <Property Name="ImageName" Type="String" MaxLength="50" FixedLength="false" Unicode="false" />
+    <NavigationProperty Name="EmployeeTB" Relationship="OnlineJobModel.FK_EmployeeTB_UserTB" FromRole="UserTB" ToRole="EmployeeTB" />
+    <NavigationProperty Name="EmployerTB" Relationship="OnlineJobModel.FK_EmployerTB_UserTB" FromRole="UserTB" ToRole="EmployerTB" />
+  </EntityType>
+  <Association Name="FK_UserTB_RoleTB">
+    <End Type="OnlineJobModel.RoleTB" Role="RoleTB" Multiplicity="1" />
+    <End Type="OnlineJobModel.UserTB" Role="UserTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="RoleTB">
+        <PropertyRef Name="RoleID" />
+      </Principal>
+      <Dependent Role="UserTB">
+        <PropertyRef Name="RoleID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="EmployeeTB">
+    <Key>
+      <PropertyRef Name="EmployeeID" />
+    </Key>
+    <Property Name="EmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <Property Name="PhoneNumber" Type="Int32" Nullable="false" />
+    <Property Name="Site" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="Adress" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="false" />
+    <Property Name="CompanyName" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="UserTB" Relationship="OnlineJobModel.FK_EmployeeTB_UserTB" FromRole="EmployeeTB" ToRole="UserTB" />
+    <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_EmployeeTB" FromRole="EmployeeTB" ToRole="FormDetailTB" />
   </EntityType>
   <Association Name="FK_EmployeeTB_UserTB">
     <End Type="OnlineJobModel.UserTB" Role="UserTB" Multiplicity="1" />
@@ -308,27 +212,89 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_EmployerTB_UserTB">
-    <End Type="OnlineJobModel.UserTB" Role="UserTB" Multiplicity="1" />
-    <End Type="OnlineJobModel.EmployerTB" Role="EmployerTB" Multiplicity="*" />
+  <Association Name="FK_FormDetailTB_EmployeeTB">
+    <End Type="OnlineJobModel.EmployeeTB" Role="EmployeeTB" Multiplicity="1" />
+    <End Type="OnlineJobModel.FormDetailTB" Role="FormDetailTB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="UserTB">
-        <PropertyRef Name="UserID" />
+      <Principal Role="EmployeeTB">
+        <PropertyRef Name="EmployeeID" />
       </Principal>
-      <Dependent Role="EmployerTB">
-        <PropertyRef Name="UserID" />
+      <Dependent Role="FormDetailTB">
+        <PropertyRef Name="EmployeeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
-  <Association Name="FK_UserTB_RoleTB">
-    <End Type="OnlineJobModel.RoleTB" Role="RoleTB" Multiplicity="1" />
-    <End Type="OnlineJobModel.UserTB" Role="UserTB" Multiplicity="*" />
+  <ComplexType Name="ReportEmployeeForPerForm_Result">
+    <Property Type="Int32" Name="FormID" Nullable="false" />
+    <Property Type="String" Name="Region" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Benefits" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="WorkingDays" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="150" />
+    <Property Type="DateTime" Name="RequestDtae" Nullable="false" Precision="23" />
+    <Property Type="String" Name="FormText" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="CompanyName" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <EntityType Name="FormTB">
+    <Key>
+      <PropertyRef Name="FormID" />
+    </Key>
+    <Property Name="FormID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="Region" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="City" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="Benefits" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="WorkingDays" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
+    <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="RequestDtae" Type="DateTime" Nullable="false" Precision="3" />
+    <Property Name="FormText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
+    <Property Name="JobDescRiption" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_FormTB" FromRole="FormTB" ToRole="FormDetailTB" />
+    <Property Name="JobID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="JobCategoryTB" Relationship="OnlineJobModel.FK_FormTB_JobCategoryTB" FromRole="FormTB" ToRole="JobCategoryTB" />
+    <NavigationProperty Name="ResumeEmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_FormTB" FromRole="FormTB" ToRole="ResumeEmployeeTB" />
+  </EntityType>
+  <Association Name="FK_FormDetailTB_FormTB">
+    <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
+    <End Type="OnlineJobModel.FormDetailTB" Role="FormDetailTB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="RoleTB">
-        <PropertyRef Name="RoleID" />
+      <Principal Role="FormTB">
+        <PropertyRef Name="FormID" />
       </Principal>
-      <Dependent Role="UserTB">
-        <PropertyRef Name="RoleID" />
+      <Dependent Role="FormDetailTB">
+        <PropertyRef Name="FormID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <EntityType Name="JobCategoryTB">
+    <Key>
+      <PropertyRef Name="JobID" />
+    </Key>
+    <Property Name="JobID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="JobCategory" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+    <NavigationProperty Name="CommentTB" Relationship="OnlineJobModel.FK_CommentTB_JobCategoryTB" FromRole="JobCategoryTB" ToRole="CommentTB" />
+    <NavigationProperty Name="FormTB" Relationship="OnlineJobModel.FK_FormTB_JobCategoryTB" FromRole="JobCategoryTB" ToRole="FormTB" />
+  </EntityType>
+  <Association Name="FK_CommentTB_JobCategoryTB">
+    <End Type="OnlineJobModel.JobCategoryTB" Role="JobCategoryTB" Multiplicity="1" />
+    <End Type="OnlineJobModel.CommentTB" Role="CommentTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobCategoryTB">
+        <PropertyRef Name="JobID" />
+      </Principal>
+      <Dependent Role="CommentTB">
+        <PropertyRef Name="JobID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_FormTB_JobCategoryTB">
+    <End Type="OnlineJobModel.JobCategoryTB" Role="JobCategoryTB" Multiplicity="1" />
+    <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="JobCategoryTB">
+        <PropertyRef Name="JobID" />
+      </Principal>
+      <Dependent Role="FormTB">
+        <PropertyRef Name="JobID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -337,21 +303,21 @@
       <PropertyRef Name="ResumeEmployeeID" />
     </Key>
     <Property Name="ResumeID" Type="Int32" Nullable="false" />
-    <Property Name="EmployeeID" Type="Int32" Nullable="false" />
+    <Property Name="FormID" Type="Int32" Nullable="false" />
     <Property Name="Date" Type="DateTime" Nullable="false" Precision="3" />
     <Property Name="ResumeEmployeeID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
-    <NavigationProperty Name="EmployeeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_EmployeeTB" FromRole="ResumeEmployeeTB" ToRole="EmployeeTB" />
+    <NavigationProperty Name="FormTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_FormTB" FromRole="ResumeEmployeeTB" ToRole="FormTB" />
     <NavigationProperty Name="ResumeTB" Relationship="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB" FromRole="ResumeEmployeeTB" ToRole="ResumeTB" />
   </EntityType>
-  <Association Name="FK_ResumeEmployeeTB_EmployeeTB">
-    <End Type="OnlineJobModel.EmployeeTB" Role="EmployeeTB" Multiplicity="1" />
+  <Association Name="FK_ResumeEmployeeTB_FormTB">
+    <End Type="OnlineJobModel.FormTB" Role="FormTB" Multiplicity="1" />
     <End Type="OnlineJobModel.ResumeEmployeeTB" Role="ResumeEmployeeTB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="EmployeeTB">
-        <PropertyRef Name="EmployeeID" />
+      <Principal Role="FormTB">
+        <PropertyRef Name="FormID" />
       </Principal>
       <Dependent Role="ResumeEmployeeTB">
-        <PropertyRef Name="EmployeeID" />
+        <PropertyRef Name="FormID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -367,4 +333,76 @@
       </Dependent>
     </ReferentialConstraint>
   </Association>
+  <ComplexType Name="ReportPerKarfarmaPerResume_Result">
+    <Property Type="Int32" Name="ResumeID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="LatName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="RequestDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="EduDegree" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="AbilityDescription" Nullable="false" MaxLength="150" />
+    <Property Type="Boolean" Name="EnglishAbility" Nullable="false" />
+    <Property Type="String" Name="ExtraAbility" Nullable="true" MaxLength="150" />
+  </ComplexType>
+  <ComplexType Name="ReportPerKarfarmaEachResume_Result">
+    <Property Type="Int32" Name="ResumeID" Nullable="false" />
+    <Property Type="String" Name="FirstName" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="LatName" Nullable="false" MaxLength="50" />
+    <Property Type="Int32" Name="Age" Nullable="false" />
+    <Property Type="String" Name="Gender" Nullable="false" MaxLength="150" />
+    <Property Type="DateTime" Name="RequestDate" Nullable="true" Precision="23" />
+    <Property Type="String" Name="EduDegree" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="AbilityDescription" Nullable="false" MaxLength="150" />
+    <Property Type="Boolean" Name="EnglishAbility" Nullable="false" />
+    <Property Type="String" Name="ExtraAbility" Nullable="true" MaxLength="150" />
+    <Property Type="DateTime" Name="sentdate" Nullable="true" Precision="23" />
+  </ComplexType>
+  <EntityType Name="EmployerTB">
+    <Key>
+      <PropertyRef Name="EmployerID" />
+    </Key>
+    <Property Name="EmployerID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+    <Property Name="ResumeID" Type="Int32" />
+    <Property Name="UserID" Type="Int32" Nullable="false" />
+    <NavigationProperty Name="ResumeTB" Relationship="OnlineJobModel.FK_EmployerTB_ResumeTB" FromRole="EmployerTB" ToRole="ResumeTB" />
+    <NavigationProperty Name="UserTB" Relationship="OnlineJobModel.FK_EmployerTB_UserTB" FromRole="EmployerTB" ToRole="UserTB" />
+  </EntityType>
+  <Association Name="FK_EmployerTB_ResumeTB">
+    <End Type="OnlineJobModel.ResumeTB" Role="ResumeTB" Multiplicity="0..1" />
+    <End Type="OnlineJobModel.EmployerTB" Role="EmployerTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="ResumeTB">
+        <PropertyRef Name="ResumeID" />
+      </Principal>
+      <Dependent Role="EmployerTB">
+        <PropertyRef Name="ResumeID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <Association Name="FK_EmployerTB_UserTB">
+    <End Type="OnlineJobModel.UserTB" Role="UserTB" Multiplicity="1" />
+    <End Type="OnlineJobModel.EmployerTB" Role="EmployerTB" Multiplicity="*" />
+    <ReferentialConstraint>
+      <Principal Role="UserTB">
+        <PropertyRef Name="UserID" />
+      </Principal>
+      <Dependent Role="EmployerTB">
+        <PropertyRef Name="UserID" />
+      </Dependent>
+    </ReferentialConstraint>
+  </Association>
+  <ComplexType Name="FormForeachResume_Result">
+    <Property Type="Int32" Name="FormID" Nullable="false" />
+    <Property Type="String" Name="Region" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="City" Nullable="false" MaxLength="150" />
+    <Property Type="String" Name="Benefits" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="WorkingDays" Nullable="false" MaxLength="10" />
+    <Property Type="String" Name="Gender" Nullable="true" MaxLength="150" />
+    <Property Type="DateTime" Name="RequestDtae" Nullable="false" Precision="23" />
+    <Property Type="String" Name="FormText" Nullable="true" MaxLength="150" />
+    <Property Type="String" Name="JobDescRiption" Nullable="false" MaxLength="150" />
+    <Property Type="Int32" Name="JobID" Nullable="false" />
+    <Property Type="String" Name="companyname" Nullable="true" MaxLength="150" />
+  </ComplexType>
 </Schema>

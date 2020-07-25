@@ -147,11 +147,16 @@
     <Compile Include="Areas\Admin\Controllers\UserController.cs" />
     <Compile Include="Areas\KarFarma\Controllers\PanelController.cs" />
     <Compile Include="Areas\KarFarma\KarFarmaAreaRegistration.cs" />
+    <Compile Include="Areas\KarFarma\ViewModle\AddForm.cs" />
+    <Compile Include="Areas\KarFarma\ViewModle\EditFormViewModel.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\IndexInformation.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\JobForm.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\MyInformation.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\NewFormForEmployee.cs" />
     <Compile Include="Areas\KarFarma\ViewModle\Resume.cs" />
+    <Compile Include="Areas\KarJo\Controllers\PanelController.cs" />
+    <Compile Include="Areas\KarJo\KarJoAreaRegistration.cs" />
+    <Compile Include="Areas\KarJo\ViewModel\ResumeDisplay.cs" />
     <Compile Include="Controllers\AccountController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageEmailController.cs" />
@@ -951,6 +956,14 @@
     <Content Include="Content\fonts\la-solid-900.woff" />
     <Content Include="Content\fonts\la-solid-900.woff2" />
     <Content Include="Content\fonts\la-solid-900d41d.eot" />
+    <Content Include="Areas\KarJo\Views\web.config" />
+    <Content Include="Areas\KarJo\Views\Shared\_LayoutKarjo.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\Index.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\EditResume.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\CreateResume.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\EditPersonalInformation.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\SendResume.cshtml" />
+    <Content Include="Areas\KarJo\Views\Panel\ShowForms.cshtml" />
     <None Include="Scripts\jquery-3.4.1.intellisense.js" />
     <Content Include="Scripts\jquery-3.4.1.js" />
     <Content Include="Scripts\jquery-3.4.1.min.js" />
@@ -992,6 +1005,7 @@
     <Folder Include="App_Data\" />
     <Folder Include="Areas\Admin\Data\" />
     <Folder Include="Areas\KarFarma\Data\" />
+    <Folder Include="Areas\KarJo\Data\" />
     <Folder Include="Models\" />
   </ItemGroup>
   <ItemGroup>

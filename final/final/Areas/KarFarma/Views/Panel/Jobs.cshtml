@@ -2,10 +2,13 @@
 @{
     ViewBag.Title = "JobsFOrm";
     Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+
+
 }
+<link href="~/Areas/KarFarma/Content/css/Custome.css" rel="stylesheet" />
 <h4 class="title">JobsForms</h4>
 <div class="table-outer">
-    <table class="default-table">
+    <table class="default-table" style="border:0px;">
         <thead>
             <tr>
                 <th>Number</th>
@@ -57,7 +60,7 @@
             });
         }
 
-        function Delete(id,me) {
+        function Delete(id, me) {
             if (confirm("Are you Sure?")) {
 
                 $.get("/karFarma/Panel/DeleteForm/" + id, function () {
@@ -67,7 +70,7 @@
                 });
             }
         }
-       </script>
+    </script>
 
 }
 

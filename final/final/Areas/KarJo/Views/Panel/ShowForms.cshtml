@@ -1,0 +1,93 @@
+﻿@model DataLayer.FormTB
+@{
+    Layout = null;
+}
+<!DOCTYPE html>
+
+<html>
+<head>
+    <meta name="viewport" content="width=device-width" />
+    <title>ShowForms</title>
+    <style>
+
+        #t1 {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+            #t1 th {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+
+            #t1 td {
+                border: 1px solid black;
+                border-collapse: collapse;
+            }
+
+        th, td {
+            padding: 5px;
+            text-align: left;
+        }
+    </style>
+</head>
+<body>
+    <h4>Employee Resume</h4>
+
+    <table id="t1" style="width:100%">
+        <tr>
+            <th>CompanyName</th>
+            <td>@ViewBag.CompanyName</td>
+        </tr>
+        <tr>
+            <th>City</th>
+            <td>@Model.City</td>
+        </tr>
+
+        <tr>
+            <th>Region</th>
+            <td>@Model.Region</td>
+        </tr>
+
+        <tr>
+            <th>Working Days</th>
+            <td>@Model.WorkingDays</td>
+        </tr>
+
+        <tr>
+            <th>Requirements</th>
+            <td>@Model.FormText</td>
+        </tr>
+        <tr>
+            <th>Benifits</th>
+            <td>@Model.Benefits</td>
+        </tr>
+        <tr>
+            <th>Gender</th>
+            @if (Model.Gender == null)
+            {
+
+                <td>Male-Female</td>
+            }
+            else
+            {
+                <td>@Model.Gender</td>
+            }
+        </tr>
+        <tr>
+            <th>Requirements</th>
+            <td>@Model.FormText</td>
+        </tr>
+        <tr>
+            <th>Jobcategory</th>
+            <td>@ViewBag.category</td>
+        </tr>
+        <tr>
+            <th>DescRiption</th>
+            <td>@Model.JobDescRiption</td>
+        </tr>
+    </table>
+
+</body>
+</html>
+

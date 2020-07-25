@@ -33,7 +33,7 @@ namespace final.Controllers
                     {
                         UserName = register.UserName,
                         Email = register.Email.Trim().ToLower(),
-                        Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
+                       // Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
                         ActiveCode = Guid.NewGuid().ToString(),
                         IsActive = false,
                         RegesterDate = DateTime.Now,

@@ -1,18 +1,19 @@
-﻿@model DataLayer.FormTB
+﻿@model IEnumerable<DataLayer.JobCategoryTB>
 @{
     ViewBag.Title = "AddForm";
     Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+
 }
 <div class="form-widget ls-widget ">
-    <div class="widget-title"><h4><span class="icon flaticon-user"></span> Follow</h4></div>
+    <div class="widget-title"><h4><span class="icon flaticon-user"></span> New Form</h4></div>
     <div class="widget-content">
         <!-- Comment Form -->
         <div class="default-form">
             <!--Comment Form-->
             <form id="formemloyee">
                 <div class="form-group">
-                    <label>Company Name</label>
-                    <input type="text" id="CompanyName" placeholder="" value=" " required>
+                    <label>CompanyName</label>
+                    <input type="text" id="CompanyName" placeholder="@ViewBag.CompanyName" value="@ViewBag.CompanyName" readonly required>
                     <span class="icon fab "></span>
                 </div>
                 <div class="form-group">
@@ -35,10 +36,9 @@
                     <input type="text" id="WorkingDays" placeholder=" " value=" " required>
                     <span class="icon fab"></span>
                 </div>
-                <label>Radiobox</label>
                 <div class="radio-outer margin-top-10">
-                    <label>Checkbox</label>
-                    <div class="checkbox-outer margin-top-10">
+                    <label>Gender</label>
+                    <div class="checkbox-outer">
                         <ul class="checkboxes">
                             <li>
                                 <input id="check-a" type="checkbox" name="Male" checked>
@@ -56,6 +56,26 @@
                     <input type="text" id="FormText" placeholder=" " value=" " required>
                     <span class="icon fab"></span>
                 </div>
+                <div class="radio-outer margin-top-10">
+                    <label>Jobs</label>
+                    <div class="checkbox-outer">
+                        <ul class="checkboxes">
+                            @foreach (var g in Model)
+                            {
+                                <li>
+                                    <input id="check-@g.JobID" data-id="@g.JobID" type="checkbox" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)">
+                                    <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label>JobDescription</label>
+                    <input type="text" id="JobDescription" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
                 <div class="form-group">
                     <button class="theme-btn btn-style-two" id="submit-form">Save Changes</button>
                 </div>
@@ -66,7 +86,15 @@
 </div>
 @section PageScript{
     <script>
-
+        var t =@Model.Count();
+        var jobid;
+        function selectOnlyThis(e,id) {
+            for (var i = 1; i <= t; i++) {
+                document.getElementById("check-" + i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+            jobid = $(e).attr("data-id");
+        }
         $(function () {
             $(document).ready(function () {
                 $(document).on("click", "#submit-form", function (e) {
@@ -74,8 +102,6 @@
                     const s = $('#check-a').checked;
                     const s1 = $('#check-b').checked;
                     var c;
-                    console.log(s);
-                    console.log(s1);
                     if (s) {
                         c = "Male";
                     }
@@ -92,13 +118,14 @@
                         type: "POST",
                         url: "/KarFarma/Panel/AddForm",
                         data: JSON.stringify({
-                            CompanyName: $("#CompanyName").val(),
                             Region: $("#Region").val(),
                             City: $("#City").val(),
-                            Benifits: $("#Benifits").val(),
+                            Benefits: $("#Benifits").val(),
                             WorkingDays: $("#WorkingDays").val(),
                             Gender: c,
-                            FormText: $("#FormText").val()
+                            FormText: $("#FormText").val(),
+                            JobDescription: $("#JobDescription").val(),
+                            JobID:jobid
                         }),
                         contentType: "application/json; charset=utf-8",
                         dataType: "json",
