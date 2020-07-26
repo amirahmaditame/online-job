@@ -21,32 +21,37 @@ namespace DataLayer
         [Display(Name = "password")]
         [Required(ErrorMessage = "please Enter the {0}")]
         [DataType(DataType.Password)]
-        public string Password { get; set; }
+        public string Password_H { get; set; }
 
         [Display(Name = "RePassword")]
         [Required(ErrorMessage = "please Enter the {0}")]
         [DataType(DataType.Password)]
-        [Compare("Password", ErrorMessage = "Not Match")]
-        public string RePassword { get; set; }
+        [Compare("Password_H", ErrorMessage = "Not Match")]
+        public string RePassword_H { get; set; }
 
+        [Display(Name = "password")]
+        [Required(ErrorMessage = "please Enter the {0}")]
+        [DataType(DataType.Password)]
+        public string Password_E { get; set; }
 
-        [Required(ErrorMessage = "Choose at least one")]
+        [Display(Name = "RePassword")]
+        [Required(ErrorMessage = "please Enter the {0}")]
+        [DataType(DataType.Password)]
+        [Compare("Password_E", ErrorMessage = "Not Match")]
+        public string RePassword_E { get; set; }
+
         public int roleid { get; set; }
 
         [Display(Name = "Phone")]
-        [Required(ErrorMessage = "please Enter the {0}")]
         public int PhoneNumber { get; set; }
 
         [Display(Name = "Site")]
-       
         public string Site { get; set; }
 
-        [Display(Name = "Adress")]
-        [Required(ErrorMessage = "please Enter the {0}")]
+        [Display(Name = "Address")]
         public string Adress { get; set; }
 
         [Display(Name = "CompanyName")]
-        [Required(ErrorMessage = "please Enter the {0}")]
         public string CompanyName { get; set; }
 
     }

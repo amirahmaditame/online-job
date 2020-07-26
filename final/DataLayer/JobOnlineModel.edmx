@@ -54,8 +54,8 @@
           <Property Name="WorkingDays" Type="nchar" MaxLength="10" Nullable="false" />
           <Property Name="Gender" Type="nvarchar" MaxLength="150" />
           <Property Name="RequestDtae" Type="datetime" Nullable="false" />
-          <Property Name="FormText" Type="nvarchar" MaxLength="150" />
-          <Property Name="JobDescRiption" Type="nvarchar" MaxLength="150" Nullable="false" />
+          <Property Name="FormText" Type="nvarchar(max)" />
+          <Property Name="JobDescRiption" Type="nvarchar" MaxLength="350" Nullable="false" />
           <Property Name="JobID" Type="int" Nullable="false" />
         </EntityType>
         <EntityType Name="JobCategoryTB">
@@ -551,8 +551,8 @@
           <Property Name="WorkingDays" Type="String" Nullable="false" MaxLength="10" FixedLength="true" Unicode="true" />
           <Property Name="Gender" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
           <Property Name="RequestDtae" Type="DateTime" Nullable="false" Precision="3" />
-          <Property Name="FormText" Type="String" MaxLength="150" FixedLength="false" Unicode="true" />
-          <Property Name="JobDescRiption" Type="String" Nullable="false" MaxLength="150" FixedLength="false" Unicode="true" />
+          <Property Name="FormText" Type="String" MaxLength="Max" FixedLength="false" Unicode="true" />
+          <Property Name="JobDescRiption" Type="String" Nullable="false" MaxLength="350" FixedLength="false" Unicode="true" />
           <NavigationProperty Name="FormDetailTB" Relationship="OnlineJobModel.FK_FormDetailTB_FormTB" FromRole="FormTB" ToRole="FormDetailTB" />
           <Property Name="JobID" Type="Int32" Nullable="false" />
           <NavigationProperty Name="JobCategoryTB" Relationship="OnlineJobModel.FK_FormTB_JobCategoryTB" FromRole="FormTB" ToRole="JobCategoryTB" />

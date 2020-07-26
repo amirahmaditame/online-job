@@ -3,7 +3,6 @@
 @{
     ViewBag.Title = "Register";
     Layout = "~/Views/Shared/_LandingPage.cshtml";
-    var role = 2;
 }
 
 @*<h3 class="text-center p-4">Register</h3>*@
@@ -103,7 +102,7 @@
                         <img src="https://image.ibb.co/n7oTvU/logo_white.png" alt="" />
                         <h3>Welcome</h3>
                         <p>You are 30 seconds away from earning your own money!</p>
-                        <input type="submit" name="" value="Login" /><br />
+                        <a class="btn btn-dark btn-lg" href="/Login">Login</a><br />
                     </div>
                     <div class="col-md-9 register-right">
                         <ul class="nav nav-tabs nav-justified" id="myTab" role="tablist">
@@ -119,33 +118,36 @@
                             <div class="tab-pane fade show active" id="home" role="tabpanel" aria-labelledby="home-tab">
 
                                 <h3 class="register-heading">Apply as a Employee</h3>
-                              @if (role == 2)
-                              {
-                               <div class="row register-form">
+
+                                <div id="Employee" class="row register-form">
                                     <div class="col-md-6">
-                                        <div class="form-group">
-                                            
-                                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name" } })
-                                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+
+                                        <div id="Same_E">
+                                            <div class="form-group">
+
+                                                @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name" } })
+                                                @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                            </div>
+                                            <div class="form-group">
+                                                @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                                @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            </div>
                                         </div>
                                         <div class="form-group">
-                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
-                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.Password_E, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                            @Html.ValidationMessageFor(model => model.Password_E, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
-                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
-                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.RePassword_E, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password" } })
+                                            @Html.ValidationMessageFor(model => model.RePassword_E, "", new { @class = "text-danger" })
                                         </div>
-                                        <div class="form-group">
-                                            @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password" } })
-                                            @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
-                                        </div>
+
 
                                     </div>
                                     <div class="col-md-6">
                                         <div class="form-group">
                                             @Html.EditorFor(model => model.PhoneNumber, new { htmlAttributes = new { @class = "form-control", placeholder = "Phone" } })
-                                            @Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })
+                                            @*@Html.ValidationMessageFor(model => model.PhoneNumber, "", new { @class = "text-danger" })*@
                                         </div>
                                         <div class="form-group">
                                             @Html.EditorFor(model => model.Site, new { htmlAttributes = new { @class = "form-control", placeholder = "Site" } })
@@ -153,7 +155,7 @@
                                         </div>
 
                                         <div class="form-group">
-                                            @Html.EditorFor(model => model.Adress, new { htmlAttributes = new { @class = "form-control", placeholder = "Adress" } })
+                                            @Html.EditorFor(model => model.Adress, new { htmlAttributes = new { @class = "form-control", placeholder = "Address" } })
                                             @Html.ValidationMessageFor(model => model.Adress, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
@@ -164,38 +166,40 @@
                                         <input type="submit" class="btnRegister" value="Register" />
                                     </div>
                                 </div>
-                              }
+
                             </div>
-                                
+
 
                             <div class="tab-pane fade show" id="profile" role="tabpanel" aria-labelledby="profile-tab">
 
                                 <h3 class="register-heading">Apply as a Hirer</h3>
-                                @if (role == 3)
-                                {
-                                <div class="row register-form">
-                                    <div class="col-md-12">
-                                        <div class="form-group">
 
-                                            @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name" } })
-                                            @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                <div id="Hirer" class="row register-form">
+                                    <div class="col-md-12">
+                                        <div id="Same_H">
+                                            @*<div class="form-group">
+
+                                                    @Html.EditorFor(model => model.UserName, new { htmlAttributes = new { @class = "form-control", placeholder = "User Name" } })
+                                                    @Html.ValidationMessageFor(model => model.UserName, "", new { @class = "text-danger" })
+                                                </div>
+                                                <div class="form-group">
+                                                    @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                                    @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                                </div>
+                                            *@
                                         </div>
                                         <div class="form-group">
-                                            @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
-                                            @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.Password_H, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
+                                            @Html.ValidationMessageFor(model => model.Password_H, "", new { @class = "text-danger" })
                                         </div>
                                         <div class="form-group">
-                                            @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control", placeholder = "Password" } })
-                                            @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
-                                        </div>
-                                        <div class="form-group">
-                                            @Html.EditorFor(model => model.RePassword, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password" } })
-                                            @Html.ValidationMessageFor(model => model.RePassword, "", new { @class = "text-danger" })
+                                            @Html.EditorFor(model => model.RePassword_H, new { htmlAttributes = new { @class = "form-control", placeholder = "Confirm Password" } })
+                                            @Html.ValidationMessageFor(model => model.RePassword_H, "", new { @class = "text-danger" })
                                         </div>
                                         <input type="submit" class="btnRegister" value="Register" />
                                     </div>
                                 </div>
-                                }
+
                             </div>
 
                         </div>
@@ -212,11 +216,16 @@
 {
     <script>
         function checkRole(id) {
-            alert("sad");
-        @role = id;
-            var x = @role;
-                alert(x);
             $("#roleCheck").val(id);
+
+            if (id === 3) {
+                $("#Same_H").html($("#Same_E").html());
+                $("#Same_E").empty();
+            }
+            if (id === 2) {
+                $("#Same_E").html($("#Same_H").html());
+                $("#Same_H").empty();
+            }
         }
-        </script>
+    </script>
 }

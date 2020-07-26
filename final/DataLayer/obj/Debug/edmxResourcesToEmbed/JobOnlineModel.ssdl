@@ -49,8 +49,8 @@
     <Property Name="WorkingDays" Type="nchar" MaxLength="10" Nullable="false" />
     <Property Name="Gender" Type="nvarchar" MaxLength="150" />
     <Property Name="RequestDtae" Type="datetime" Nullable="false" />
-    <Property Name="FormText" Type="nvarchar" MaxLength="150" />
-    <Property Name="JobDescRiption" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="FormText" Type="nvarchar(max)" />
+    <Property Name="JobDescRiption" Type="nvarchar" MaxLength="350" Nullable="false" />
     <Property Name="JobID" Type="int" Nullable="false" />
   </EntityType>
   <EntityType Name="JobCategoryTB">

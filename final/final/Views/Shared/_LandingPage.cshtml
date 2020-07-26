@@ -39,7 +39,7 @@
             <!-- Main box -->
             <div class="main-box">
                 <div class="logo-box">
-                    <div class="logo"><a href="index.html"><img src="/Content/images/logo.png" alt="" title=""></a></div>
+                    <div class="logo"><a href="/"><img src="/Content/images/logo.png" alt="" title=""></a></div>
 
                     <!-- Search Btn -->
                     <div class="search-box">
@@ -196,42 +196,12 @@
                         <a href="add-listing.html" class="add-listing"> <span class="flaticon-plus-symbol"></span> Add Listing</a>
 
                         <!-- Cart btn -->
-                        <div class="cart-btn">
-                            <a href="shopping-cart.html"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
-
-                            <div class="shopping-cart">
-                                <ul class="shopping-cart-items">
-                                    <li class="cart-item">
-                                        <img src="images/resource/item-thumb-1.jpg" alt="" class="thumb" />
-                                        <span class="item-name">Dolar Sit Amet</span>
-                                        <span class="item-quantity">1 x <span class="item-amount">$7.90</span></span>
-                                        <a href="shop-single.html" class="product-detail"></a>
-                                        <button class="remove-item"><span class="fa fa-times"></span></button>
-                                    </li>
-
-                                    <li class="cart-item">
-                                        <img src="images/resource/item-thumb-2.jpg" alt="" class="thumb" />
-                                        <span class="item-name">Lorem Ipsum</span>
-                                        <span class="item-quantity">3 x <span class="item-amount">$7.90</span></span>
-                                        <a href="shop-single.html" class="product-detail"></a>
-                                        <button class="remove-item"><span class="fa fa-times"></span></button>
-                                    </li>
-                                </ul>
-
-                                <div class="shopping-cart-total"><span>Subtotal: </span> $57.70</div>
-
-                                <div class="cart-footer">
-                                    <a href="cart.html" class="theme-btn btn-style-one">View Cart</a>
-                                    <a href="checkout.html" class="theme-btn btn-style-two">Checkout</a>
-                                </div>
-                            </div> <!--end shopping-cart -->
-                        </div>
+                     
 
                         <!-- Login/Register -->
                         <div class="login-box">
                             <span class="flaticon-user"></span>
-                            <a href="login.html" class="call-modal">Login</a> or
-                            <a href="register.html" class="call-modal">Register </a>
+                            @Html.Partial("_LoggedInUser")
                         </div>
                     </div>
                 </div>
@@ -239,7 +209,7 @@
 
             <!-- Mobile Header -->
             <div class="mobile-header">
-                <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
+                <div class="logo"><a href="/"><img src="images/logo.png" alt="" title=""></a></div>
 
                 <!--Nav Box-->
                 <div class="nav-outer clearfix">
@@ -251,13 +221,11 @@
                         </div>
 
                         <!-- Cart btn -->
-                        <div class="cart-btn">
-                            <a href="shopping-cart.html"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
-                        </div>
+                       
 
                         <!-- Login/Register -->
                         <div class="login-box">
-                            <a href="login.html" class="call-modal"><span class="flaticon-user"></span></a>
+                            <a href="/register" class="call-modal"><span class="flaticon-user"></span></a>
                         </div>
                         <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="fa fa-bars"></span></a>
                     </div>
@@ -349,11 +317,7 @@
     <script src="/Content/js/script.js"></script>
     <script src="~/Scripts/jquery.validate.min.js"></script>
     <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
-    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
-    <script src="~/Content/recorderJs/recorder.js"></script>
-    <script src="~/Content/AVRecorder/av-recorder-api.js"></script>
-    <script src="~/Content/AVRecorder/av-recorder-html5.js"></script>
-    <script src="~/Content/AVRecorder/av-recorder.js"></script>
+ 
     @RenderSection("scriptsmain", required: false)
 </body>
 

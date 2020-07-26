@@ -1,7 +1,7 @@
-﻿
+﻿@model DataLayer.FormTB
 @{
     ViewBag.Title = "ShowJob";
-    Layout = "~/Views/Shared/_MainLayoutPage.cshtml";
+    Layout = "~/Views/Shared/_LandingPage.cshtml";
 }
 
 <!-- Listing Banner -->
@@ -21,7 +21,7 @@
             </div>
             <figure class="image"><img src="/Content/images/resource/listing-icon-1.jpg" alt=""></figure>
             <h3>Bear Restaurant <span class="icon icon-verified"></span></h3>
-            <div class="text">Luxury hotel in the heart of Bloomsbury.</div>
+            <div class="text">@Model.JobDescRiption</div>
         </div>
 
         <!-- Listing Options -->
@@ -51,8 +51,8 @@
                     <div class="description-widget ls-widget">
                         <div class="widget-title"><h4><span class="icon flaticon-menu"></span> Description</h4></div>
                         <div class="widget-content">
-                            <p>Searcys St Pancras' adored Champagne bar is famously the longest in Europe. Here, guests can enjoy panoramic views of the magnificent station. For those looking to enjoy a glass of something special, the menu showcases a variety of Champagne and sparkling wines from around the world, including nine options by the glass.</p>
-                            <p> Lorem ipsum dolor sit amet, consectetur adipiscing elit. Maecenas in pulvinar neque. Nulla finibus lobortis pulvinar. Donec a consectetur nulla. Nulla posuere sapien vitae lectus suscipit, et pulvinar nisi tincidunt. Aliquam erat volutpat. Curabitur convallis fringilla diam sed aliquam. Sed tempor iaculis massa faucibus feugiat. In fermentum facilisis massa, a consequat purus viverra purus viverra</p>
+                            <p>@Model.JobDescRiption</p>
+                            <p> @Model.FormText</p>
                         </div>
                     </div>
 
@@ -524,7 +524,7 @@
                     </div>
 
                     <!-- Price Range Widget -->
-                    <div class="price-range-widget ls-widget">
+                    @*<div class="price-range-widget ls-widget">
                         <div class="widget-title">
                             <h4><span class="icon flaticon-menu"></span>Price Range</h4>
                         </div>
@@ -542,7 +542,7 @@
                                 </div>
                             </div>
                         </div>
-                    </div>
+                    </div>*@
 
                     <!-- Categories Widget -->
                     <div class="categories-widget ls-widget">
