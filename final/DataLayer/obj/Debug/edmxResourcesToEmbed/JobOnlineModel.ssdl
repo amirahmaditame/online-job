@@ -17,10 +17,10 @@
     </Key>
     <Property Name="EmployeeID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
     <Property Name="UserID" Type="int" Nullable="false" />
-    <Property Name="PhoneNumber" Type="int" Nullable="false" />
-    <Property Name="Site" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="Adress" Type="varchar" MaxLength="150" Nullable="false" />
-    <Property Name="CompanyName" Type="nvarchar" MaxLength="150" Nullable="false" />
+    <Property Name="PhoneNumber" Type="int" />
+    <Property Name="Site" Type="varchar" MaxLength="150" />
+    <Property Name="Adress" Type="varchar" MaxLength="150" />
+    <Property Name="CompanyName" Type="nvarchar" MaxLength="150" />
   </EntityType>
   <EntityType Name="EmployerTB">
     <Key>

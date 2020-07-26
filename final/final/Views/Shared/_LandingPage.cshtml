@@ -1,14 +1,10 @@
-﻿
-<!DOCTYPE html>
+﻿<!DOCTYPE html>
 <html lang="en">
 
 
 <head>
     <meta charset="utf-8">
     <title>@ViewBag.Title </title>
-
-    <link href="~/Content/AVRecorder/av-recorder.css" rel="stylesheet" />
-    <link href="~/Content/AVRecorder/loader.css" rel="stylesheet" />
 
     <!-- Stylesheets -->
     <link href="/Content/css/bootstrap.css" rel="stylesheet">
@@ -28,14 +24,17 @@
 </head>
 
 <body>
-    @RenderBody()
+
     <div class="page-wrapper">
 
         <!-- Preloader -->
         <div class="preloader"></div>
 
+        <!-- Header Span -->
+        <span class="header-span"></span>
+
         <!-- Main Header-->
-        <header class="main-header">
+        <header class="main-header alternate">
 
             <!-- Main box -->
             <div class="main-box">
@@ -103,8 +102,15 @@
                 <div class="nav-outer">
                     <nav class="nav main-menu">
                         <ul class="navigation" id="navbar">
-                            <li class="current">
-                                <a href="/"> <span>Home</span></a>
+                            <li class="dropdown">
+                                <span>Home</span>
+                                <ul>
+                                    <li><a href="index.html">Home Page One</a></li>
+                                    <li><a href="index-2.html">Home Page Two</a></li>
+                                    <li><a href="index-3.html">Home Page Three</a></li>
+                                    <li><a href="index-4.html">Home Page Four</a></li>
+                                    <li><a href="index-5.html">Home Page Five</a></li>
+                                </ul>
                             </li>
                             <li class="dropdown">
                                 <span>Pages</span>
@@ -130,13 +136,13 @@
                                     <li><a href="error-page.html">Error 404</a></li>
                                 </ul>
                             </li>
-                            <li class="dropdown">
+                            <li class="dropdown current">
                                 <span>Listings</span>
                                 <ul>
                                     <li class="dropdown">
                                         <span>Listing Layout</span>
                                         <ul>
-                                            <li><a href="listing-layout-1.html">Layout 01</a></li>
+                                            <li class="current"><a href="listing-layout-1.html">Layout 01</a></li>
                                             <li><a href="listing-layout-2.html">Layout 02</a></li>
                                             <li><a href="listing-layout-3.html">Layout 03</a></li>
                                         </ul>
@@ -189,10 +195,43 @@
                         <!-- Add Listing -->
                         <a href="add-listing.html" class="add-listing"> <span class="flaticon-plus-symbol"></span> Add Listing</a>
 
+                        <!-- Cart btn -->
+                        <div class="cart-btn">
+                            <a href="shopping-cart.html"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
+
+                            <div class="shopping-cart">
+                                <ul class="shopping-cart-items">
+                                    <li class="cart-item">
+                                        <img src="images/resource/item-thumb-1.jpg" alt="" class="thumb" />
+                                        <span class="item-name">Dolar Sit Amet</span>
+                                        <span class="item-quantity">1 x <span class="item-amount">$7.90</span></span>
+                                        <a href="shop-single.html" class="product-detail"></a>
+                                        <button class="remove-item"><span class="fa fa-times"></span></button>
+                                    </li>
+
+                                    <li class="cart-item">
+                                        <img src="images/resource/item-thumb-2.jpg" alt="" class="thumb" />
+                                        <span class="item-name">Lorem Ipsum</span>
+                                        <span class="item-quantity">3 x <span class="item-amount">$7.90</span></span>
+                                        <a href="shop-single.html" class="product-detail"></a>
+                                        <button class="remove-item"><span class="fa fa-times"></span></button>
+                                    </li>
+                                </ul>
+
+                                <div class="shopping-cart-total"><span>Subtotal: </span> $57.70</div>
+
+                                <div class="cart-footer">
+                                    <a href="cart.html" class="theme-btn btn-style-one">View Cart</a>
+                                    <a href="checkout.html" class="theme-btn btn-style-two">Checkout</a>
+                                </div>
+                            </div> <!--end shopping-cart -->
+                        </div>
+
                         <!-- Login/Register -->
                         <div class="login-box">
                             <span class="flaticon-user"></span>
-                            @Html.Partial("_LoggedInUser")
+                            <a href="login.html" class="call-modal">Login</a> or
+                            <a href="register.html" class="call-modal">Register </a>
                         </div>
                     </div>
                 </div>
@@ -200,7 +239,7 @@
 
             <!-- Mobile Header -->
             <div class="mobile-header">
-                <div class="logo"><a href="index.html"><img src="/Content/images/logo.png" alt="" title=""></a></div>
+                <div class="logo"><a href="index.html"><img src="images/logo.png" alt="" title=""></a></div>
 
                 <!--Nav Box-->
                 <div class="nav-outer clearfix">
@@ -245,27 +284,12 @@
             <!-- End Header Search -->
 
         </header>
-
-
-        @RenderSection("Slider", false)
-
-
-
-        @RenderSection("showcategory", false)
-
-
-
-        @RenderSection("lastjob", false)
-
-        @RenderSection("howitwork", false)
-
-        @RenderSection("needmore", false)
-
-        @RenderSection("ourcustomer", false)
-
-
+        <!--End Main Header -->
+        <!-- Listing Section / Sytle Two-->
+      @RenderBody()
+        <!--End Listing Page Section -->
         <!-- Main Footer -->
-        <footer class="main-footer">
+        <footer class="main-footer style-two">
             <!-- Footer Upper -->
             <div class="footer-upper">
                 <ul class="footer-nav">
@@ -281,7 +305,7 @@
             <!-- Footer Content -->
             <div class="footer-content">
                 <div class="auto-container">
-                    <ul class="social-icon-one">
+                    <ul class="social-icon-two">
                         <li><a href="#"><span class="fab fa-facebook"></span></a></li>
                         <li><a href="#"><span class="fab fa-twitter"></span></a></li>
                         <li><a href="#"><span class="fab fa-instagram"></span></a></li>
@@ -307,7 +331,6 @@
             <div class="scroll-to-top scroll-to-target" data-target="html"><span class="flaticon-up"></span></div>
         </footer>
         <!-- End Footer -->
-
     </div><!-- End Page Wrapper -->
 
 
@@ -332,24 +355,8 @@
     <script src="~/Content/AVRecorder/av-recorder-html5.js"></script>
     <script src="~/Content/AVRecorder/av-recorder.js"></script>
     @RenderSection("scriptsmain", required: false)
-
-    <!-- Typed Script -->
-    <script src="/Content/js/typed.js"></script>
-    <script>
-        var typed = new Typed('.typed-words', {
-            strings: ["City Gems", " Restaurants", " Hotels"],
-            typeSpeed: 80,
-            backSpeed: 80,
-            backDelay: 4000,
-            startDelay: 1000,
-            loop: true,
-            showCursor: true
-        });
-    </script>
-    <script>
-        AOS.init();
-    </script>
 </body>
+
 
 </html>
 

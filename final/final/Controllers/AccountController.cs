@@ -20,62 +20,193 @@ namespace final.Controllers
             return View();
         }
 
-        [Route("Register")]
+
         [HttpPost]
-        [ValidateAntiForgeryToken]
+        [Route("Register")]
         public ActionResult Register(RegisterViewModel register)
         {
-            if (ModelState.IsValid)
+
+            if (register.roleid == 2)
             {
-                if (!db.UserTB.Any(u => u.Email == register.Email.Trim().ToLower()))
+                if (ModelState.IsValid)
                 {
-                    UserTB user = new UserTB()
+                    if (!db.UserTB.Any(u => u.Email == register.Email.Trim().ToLower()))
                     {
-                        UserName = register.UserName,
-                        Email = register.Email.Trim().ToLower(),
-                       // Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
-                        ActiveCode = Guid.NewGuid().ToString(),
-                        IsActive = false,
-                        RegesterDate = DateTime.Now,
-                        RoleID = register.roleid
-                    };
-
-                    db.UserTB.Add(user);
-
-                    if (user.RoleID == 2)
-                    {
-                        var useremployee = new EmployeeTB()
+                        UserTB user = new UserTB()
                         {
-                            UserID = user.UserID
+                            UserName = register.UserName,
+                            Email = register.Email.Trim().ToLower(),
+                            Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
+                            ActiveCode = Guid.NewGuid().ToString(),
+                            IsActive = false,
+                            RegesterDate = DateTime.Now,
+                            RoleID = register.roleid
                         };
-                        db.EmployeeTB.Add(useremployee);
+
+                        db.UserTB.Add(user);
+
+
+                        
+                            var useremployee = new EmployeeTB()
+                            {
+                                UserID = user.UserID,
+                                PhoneNumber = register.PhoneNumber,
+                                Site = register.Site,
+                                Adress = register.Adress,
+                                CompanyName = register.CompanyName
+                            };
+                            db.EmployeeTB.Add(useremployee);
+                        
+                        db.SaveChanges();
+                        string body = PartialToStringClass.RenderPartialView("ManageEmail", "ActivationEmail", user);
+                        SendEmail.Send(user.Email, "Activation Email", body);
+
+                        return View("SuccessRegister", user);
+
                     }
-                    /////////////////////                  
-                    if (user.RoleID == 3)
+
+                    else
                     {
-                        var useremployer = new EmployerTB()
-                        {
-                            UserID = user.UserID
-                        };
-                        db.EmployerTB.Add(useremployer);
+                        ModelState.AddModelError("Email", "The Email Used Before");
                     }
-                    ///////////////////
-
-                    db.SaveChanges();
-
-                    string body = PartialToStringClass.RenderPartialView("ManageEmail", "ActivationEmail", user);
-                    SendEmail.Send(user.Email, "Activation Email", body);
-
-                    return View("SuccessRegister", user);
-                }
-                else
-                {
-                    ModelState.AddModelError("Email", "The Email Used Before");
                 }
             }
-            return View(register);
+            else if (register.roleid == 3)
+            {
+               
+                    if (!db.UserTB.Any(u => u.Email == register.Email.Trim().ToLower()))
+                    {
+                        UserTB user1 = new UserTB()
+                        {
+                            UserName = register.UserName,
+                            Email = register.Email.Trim().ToLower(),
+                            Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
+                            ActiveCode = Guid.NewGuid().ToString(),
+                            IsActive = false,
+                            RegesterDate = DateTime.Now,
+                            RoleID = register.roleid
+                        };
 
-        }
+                        db.UserTB.Add(user1);
+
+                        var useremployer = new EmployerTB()
+                        {
+                            UserID = user1.UserID
+                        };
+                        db.EmployerTB.Add(useremployer);
+                        db.SaveChanges();
+                        string body = PartialToStringClass.RenderPartialView("ManageEmail", "ActivationEmail", user1);
+                        SendEmail.Send(user1.Email, "Activation Email", body);
+
+                        return View("SuccessRegister", user1);
+
+                    }
+                    else
+                    {
+                        ModelState.AddModelError("Email", "The Email Used Before");
+                    }
+               
+
+            }
+
+
+                return View(register);
+
+
+
+                //else if(register.roleid == 3)
+                //{
+                //    if (!db.UserTB.Any(u => u.Email == register.Emailemployeer.Trim().ToLower()))
+                //    {
+                //        UserTB useremployeer = new UserTB()
+                //        {
+                //            UserName = register.UserNameemployeer,
+                //            Email = register.Emailemployeer.Trim().ToLower(),
+                //            Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Passwordemployeer, "MD5"),
+                //            ActiveCode = Guid.NewGuid().ToString(),
+                //            IsActive = false,
+                //            RegesterDate = DateTime.Now,
+                //            RoleID = register.roleid
+                //        };
+
+                //        db.UserTB.Add(useremployeer);
+
+                //        var useremployerr = new EmployerTB()
+                //        {
+                //            UserID = useremployeer.UserID
+                //        };
+                //        db.EmployerTB.Add(useremployerr);
+
+                //        db.SaveChanges();
+                //        string body = PartialToStringClass.RenderPartialView("ManageEmail", "ActivationEmail", useremployeer);
+                //        SendEmail.Send(useremployeer.Email, "Activation Email", body);
+
+                //        return View("SuccessRegister", useremployeer);
+
+                //    }
+                //    else
+                //    {
+                //        ModelState.AddModelError("Emailemployeer", "The Email Used Before");
+                //    }
+                //}
+
+
+                //if (!db.UserTB.Any(u => u.Email == register.Email.Trim().ToLower()))
+                //{
+                //    UserTB user = new UserTB()
+                //    {
+                //        UserName = register.UserName,
+                //        Email = register.Email.Trim().ToLower(),
+                //        Password = FormsAuthentication.HashPasswordForStoringInConfigFile(register.Password, "MD5"),
+                //        ActiveCode = Guid.NewGuid().ToString(),
+                //        IsActive = false,
+                //        RegesterDate = DateTime.Now,
+                //        RoleID = register.roleid
+                //    };
+
+                //    db.UserTB.Add(user);
+
+                //    if (user.RoleID == 2)
+                //    {
+                //        var useremployee = new EmployeeTB()
+                //        {
+                //            UserID = user.UserID,
+                //            PhoneNumber = register.PhoneNumber,
+                //            Site = register.Site,
+                //            Adress = register.Adress,
+                //            CompanyName = register.CompanyName
+                //        };
+                //        db.EmployeeTB.Add(useremployee);
+                //    }
+                //    /////////////////////                  
+                //    if (user.RoleID == 3)
+                //    {
+                //        var useremployer = new EmployerTB()
+                //        {
+                //            UserID = user.UserID
+                //        };
+                //        db.EmployerTB.Add(useremployer);
+                //    }
+                //    ///////////////////
+
+                //    db.SaveChanges();
+
+                //    string body = PartialToStringClass.RenderPartialView("ManageEmail", "ActivationEmail", user);
+                //    SendEmail.Send(user.Email, "Activation Email", body);
+
+                //    return View("SuccessRegister", user);
+                //}
+                //else
+                //{
+                //    ModelState.AddModelError("Email", "The Email Used Before");
+                //}
+
+
+            }
+
+
+
+
         [Route("Login")]
         public ActionResult Login()
         {
@@ -172,12 +303,12 @@ namespace final.Controllers
         }
 
         [HttpPost]
-        public ActionResult RecoveryPassword(string id , RecoveryPasswordViewModel recovery)
+        public ActionResult RecoveryPassword(string id, RecoveryPasswordViewModel recovery)
         {
             if (ModelState.IsValid)
             {
                 var user = db.UserTB.SingleOrDefault(u => u.ActiveCode == id);
-                if(user == null)
+                if (user == null)
                 {
                     return HttpNotFound();
 

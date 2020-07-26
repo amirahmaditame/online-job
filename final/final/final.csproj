@@ -194,6 +194,7 @@
     <Content Include="Areas\Admin\Content\css\select2.min.css" />
     <Content Include="Areas\Admin\Content\css\style.css" />
     <Content Include="Areas\Admin\Content\Cusomcss.css" />
+    <Content Include="Areas\Admin\Content\customjs\jquery.unobtrusive-ajax.min.js" />
     <Content Include="Areas\Admin\Content\customjs\jquery.validate.min.js" />
     <Content Include="Areas\Admin\Content\customjs\jquery.validate.unobtrusive.min.js" />
     <Content Include="Areas\Admin\Content\customjs\modal.js" />
@@ -1009,6 +1010,7 @@
     <Content Include="Views\Job\ShowJob.cshtml" />
     <Content Include="Views\Search\Index.cshtml" />
     <Content Include="Views\Shared\_singleJobShow.cshtml" />
+    <Content Include="Views\Shared\_LandingPage.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
