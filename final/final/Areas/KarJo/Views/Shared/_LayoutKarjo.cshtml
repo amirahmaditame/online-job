@@ -1,0 +1,202 @@
+﻿
+<!DOCTYPE html>
+<html lang="en">
+
+<!-- Mirrored from grandetest.com/theme/listdo-html/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 31 May 2020 13:54:43 GMT -->
+<head>
+    <meta charset="utf-8">
+    <title>Admin </title>
+
+    <!-- Stylesheets -->
+    <link href="~/Areas/KarFarma/Content/css/bootstrap.css" rel="stylesheet">
+    <link href="~/Areas/KarFarma/Content/css/style.css" rel="stylesheet">
+    <link href="~/Areas/KarFarma/Content/css/responsive.css" rel="stylesheet">
+
+    <link rel="shortcut icon" href="~/Areas/KarFarma/Content/images/favicon.png" type="image/x-icon">
+    <link rel="icon" href="~/Areas/KarFarma/Content/images/favicon.png" type="image/x-icon">
+
+    <!-- Responsive -->
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0">
+    <!--[if lt IE 9]><script src="https://cdnjs.cloudflare.com/ajax/libs/html5shiv/3.7.3/html5shiv.js"></script><![endif]-->
+    <!--[if lt IE 9]><script src="js/respond.js"></script><![endif]-->
+</head>
+
+<body>
+
+    <div class="page-wrapper dashboard">
+
+        <!-- Preloader -->
+        <div class="preloader"></div>
+
+        <!-- Header Span -->
+        <span class="header-span"></span>
+
+        <!-- Main Header-->
+        <header class="main-header alternate fixed">
+
+            <!-- Main box -->
+            <div class="main-box">
+                <div class="logo-box">
+                    <div class="logo"><a href="index.html"><img src="~/Areas/KarFarma/Content/images/logo.png" alt="" title=""></a></div>
+
+                    <!-- Search Btn -->
+                    <div class="search-box">
+                        <!-- Search Backdrop -->
+                        <div class="search-backdrop"></div>
+
+                        <div class="header-search-form">
+                            <input type="text" name="header-search" id="cusom-search" data-list=".search-list" placeholder="What are you looking for?">
+                            <span class="search-btn"><i class="flaticon-magnifying-glass"></i></span>
+                        </div>
+
+                    </div>
+                </div>
+
+                <!--Nav Box-->
+                <div class="nav-outer">
+
+                    <!-- Main Menu End-->
+
+                    <div class="outer-box">
+                        <!-- Dashboard Option -->
+                        <div class="dropdown dashboard-option">
+                            <a class="dropdown-toggle" role="button" data-toggle="dropdown" aria-expanded="false">
+                                <img src="~/Areas/KarFarma/Content/images/resource/user-img.jpg" alt="avatar" class="thumb">
+                                <span class="name">@User.Identity.Name</span>
+                            </a>
+                            <div class="dropdown-menu">
+                                <a class="dropdown-item" href="index.html"><i class="la la-sign-out"></i>Logout</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Header -->
+            <div class="mobile-header">
+                <div class="logo"><a href="index.html"><img src="~/Areas/KarFarma/Content/images/logo.png" alt="" title=""></a></div>
+
+                <!--Nav Box-->
+                <div class="nav-outer clearfix">
+
+                    <div class="outer-box">
+                        <!-- Search Btn -->
+                        <div class="search-box">
+                            <button class="search-btn mobile-search-btn"><i class="flaticon-magnifying-glass"></i></button>
+                        </div>
+
+                        <!-- Cart btn -->
+                        <div class="cart-btn">
+                            <a href="shopping-cart.html"><i class="icon flaticon-shopping-bag"></i> <span class="count">2</span></a>
+                        </div>
+
+                        <button id="toggle-user-sidebar"><img src="~/Areas/KarFarma/Content/images/resource/user-img.jpg" alt="avatar" class="thumb"></button>
+
+                        <a href="#nav-mobile" class="mobile-nav-toggler navbar-trigger"><span class="fa fa-bars"></span></a>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Mobile Nav -->
+            <div id="nav-mobile"></div>
+
+            <!-- Header Search -->
+            <div class="search-popup">
+                <span class="search-back-drop"></span>
+
+                <div class="search-inner">
+                    <button class="close-search"><span class="fa fa-times"></span></button>
+                    <form method="post" action="https://grandetest.com/theme/listdo-html/blog-showcase.html">
+                        <div class="form-group">
+                            <input type="search" name="search-field" value="" placeholder="Search..." required="">
+                            <button type="submit"><i class="flaticon-magnifying-glass"></i></button>
+                        </div>
+                    </form>
+                </div>
+            </div>
+            <!-- End Header Search -->
+
+        </header>
+        <!--End Main Header -->
+        <!-- Sidebar Backdrop -->
+        <div class="sidebar-backdrop"></div>
+
+        <!-- User Sidebar -->
+        <div class="user-sidebar">
+
+            <div class="sidebar-inner">
+                <div class="sidebar-header">
+                    <div class="user-box">
+                        <figure class="user-image"><img src="~/Areas/KarFarma/Content/images/resource/user-img.jpg" alt=""></figure>
+                        <h4 class="user-name">Hello, Ali!</h4>
+                    </div>
+                </div>
+
+                <ul class="navigation">
+                    <li><a href="index.html"><i class="la la-sign-out"></i>Logout</a></li>
+                </ul>
+            </div>
+        </div>
+        <!-- End User Sidebar -->
+        <!-- Dashboard -->
+        <section class="user-dashboard">
+            <div class="dashboard-outer">
+
+                <div class="row">
+
+                    <div class="sidebar-column sidebar-side sticky-container col-lg-3 col-md-12 col-sm-12">
+                        <aside class="sidebar theiaStickySidebar">
+                            <div class="sticky-sidebar">
+                                <ul class="listing-content-list" id="menu">
+                                    <li data-target="#General"><span class="icon flaticon-house"></span><a href="/KarJo/Panel/Index">General</a></li>
+                                    <li data-target="#Contact-Information"><span class="icon flaticon-phone-call-1"></span><a href="/KarJo/Panel/EditPersonalInformation"> Edit Pesonal Information</a></li>
+                                    <li data-target="#Listing-Details"><span class="icon flaticon-setup"></span><a href="/KarJo/Panel/SendResume">Send Resume</a></li>
+                                </ul>
+                            </div>
+                        </aside>
+                    </div>
+                    <div class="content-column col-lg-8 col-md-12 col-sm-12">
+                        @RenderBody()
+                    </div>
+                </div>
+            </div>
+        </section>
+        <!-- End Dashboard -->
+
+    </div><!-- End Page Wrapper -->
+
+    <script src="~/Areas/KarFarma/Content/js/jquery.min.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/popper.min.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/bootstrap.min.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/jquery.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/chosen.min.js"></script>
+
+    <script src="~/Areas/KarFarma/Content/js/jquery-ui.min.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/jquery.fancybox.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/jquery.modal.min.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/jquery.hideseek.min.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/mmenu.polyfills.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/sticky_sidebar.min.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/mmenu.js"></script>
+
+    <script src="~/Areas/KarFarma/Content/js/appear.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/owl.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/wow.js"></script>
+    <script src="~/Areas/KarFarma/Content/js/script.js"></script>
+    <script src="~/Scripts/jquery.validate.min.js"></script>
+    <script src="~/Scripts/jquery.validate.unobtrusive.min.js"></script>
+    @RenderSection("PageScript", false)
+
+</body>
+
+<!-- Mirrored from grandetest.com/theme/listdo-html/dashboard.html by HTTrack Website Copier/3.x [XR&CO'2014], Sun, 31 May 2020 13:54:44 GMT -->
+</html>
+<script>
+    $("#menu li a").click(function () {
+        $(this).parent().addClass('selected').siblings().removeClass('selected');
+
+    });
+
+</script>
+

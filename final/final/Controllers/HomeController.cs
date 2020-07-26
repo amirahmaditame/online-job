@@ -4,14 +4,11 @@ using System.Linq;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer;
-using Microsoft.Ajax.Utilities;
-
 namespace final.Controllers
 {
     public class HomeController : Controller
     {
         OnlineJobEntities db = new OnlineJobEntities();
-
         // GET: Home
         public ActionResult Index()
         {
@@ -31,7 +28,7 @@ namespace final.Controllers
         }
         public ActionResult lastjob()
         {
-            var lastJob = db.FormTB.OrderByDescending(j=>j.RequestDtae).Take(6);
+            var lastJob = db.FormTB.OrderByDescending(j => j.RequestDtae).Take(6);
             return PartialView(lastJob);
         }
 
@@ -39,7 +36,6 @@ namespace final.Controllers
         {
             return PartialView();
         }
-
         public ActionResult needmore()
         {
             return PartialView();
@@ -49,6 +45,5 @@ namespace final.Controllers
         {
             return PartialView();
         }
-
     }
 }

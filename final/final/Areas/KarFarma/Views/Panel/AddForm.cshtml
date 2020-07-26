@@ -1,0 +1,150 @@
+﻿@model IEnumerable<DataLayer.JobCategoryTB>
+@{
+    ViewBag.Title = "AddForm";
+    Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+
+}
+<div class="form-widget ls-widget ">
+    <div class="widget-title"><h4><span class="icon flaticon-user"></span> New Form</h4></div>
+    <div class="widget-content">
+        <!-- Comment Form -->
+        <div class="default-form">
+            <!--Comment Form-->
+            <form id="formemloyee">
+                <div class="form-group">
+                    <label>CompanyName</label>
+                    <input type="text" id="CompanyName" placeholder="@ViewBag.CompanyName" value="@ViewBag.CompanyName" readonly required>
+                    <span class="icon fab "></span>
+                </div>
+                <div class="form-group">
+                    <label>Region</label>
+                    <input type="text" id="Region" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="City" placeholder=" " value=" " required>
+                    <span class="icon fab "></span>
+                </div>
+                <div class="form-group">
+                    <label>Benifits</label>
+                    <input type="text" id="Benifits" placeholder=" " value=" " required>
+                    <span class="icon fab fa-instagram"></span>
+                </div>
+                <div class="form-group">
+                    <label>Working Days</label>
+                    <input type="text" id="WorkingDays" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="radio-outer margin-top-10">
+                    <label>Gender</label>
+                    <div class="checkbox-outer">
+                        <ul class="checkboxes">
+                            <li>
+                                <input id="check-a" type="checkbox" name="Male" checked>
+                                <label for="check-a">Male</label>
+                            </li>
+                            <li>
+                                <input id="check-b" type="checkbox" name="Female" checked>
+                                <label for="check-b">Female</label>
+                            </li>
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Form Text</label>
+                    <input type="text" id="FormText" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="radio-outer margin-top-10">
+                    <label>Jobs</label>
+                    <div class="checkbox-outer">
+                        <ul class="checkboxes">
+                            @foreach (var g in Model)
+                            {
+                                <li>
+                                    <input id="check-@g.JobID" data-id="@g.JobID" type="checkbox" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)">
+                                    <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                                </li>
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <br />
+                <div class="form-group">
+                    <label>JobDescription</label>
+                    <input type="text" id="JobDescription" placeholder=" " value=" " required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <button class="theme-btn btn-style-two" id="submit-form">Save Changes</button>
+                </div>
+            </form>
+        </div>
+        <!--End Comment Form -->
+    </div>
+</div>
+@section PageScript{
+    <script>
+        var t =@Model.Count();
+        var jobid;
+        function selectOnlyThis(e,id) {
+            for (var i = 1; i <= t; i++) {
+                document.getElementById("check-" + i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+            jobid = $(e).attr("data-id");
+        }
+        $(function () {
+            $(document).ready(function () {
+                $(document).on("click", "#submit-form", function (e) {
+                    e.preventDefault();
+                    const s = $('#check-a').checked;
+                    const s1 = $('#check-b').checked;
+                    var c;
+                    if (s) {
+                        c = "Male";
+                    }
+                    else {
+                        if (s1) {
+                            c = "Femle";
+                        }
+                        else {
+                            c = "Male-Female"
+                        }
+                    }
+                    console.log(c);
+                    $.ajax({
+                        type: "POST",
+                        url: "/KarFarma/Panel/AddForm",
+                        data: JSON.stringify({
+                            Region: $("#Region").val(),
+                            City: $("#City").val(),
+                            Benefits: $("#Benifits").val(),
+                            WorkingDays: $("#WorkingDays").val(),
+                            Gender: c,
+                            FormText: $("#FormText").val(),
+                            JobDescription: $("#JobDescription").val(),
+                            JobID:jobid
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                            if (e.Status) {
+                                alert('ok!');
+                            }
+                            else {
+                                alert('false');
+
+                            }
+                        },
+                        error: function () {
+                            alert('khata');
+                        }
+                    });
+                });
+
+            });
+        });
+    </script>
+}

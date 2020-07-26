@@ -1,0 +1,185 @@
+﻿@model final.Areas.KarFarma.ViewModle.EditFormViewModel
+@{
+    ViewBag.Title = "EditForm";
+    Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+}
+<div class="form-widget ls-widget ">
+    <div class="widget-title"><h4><span class="icon flaticon-user"></span> Follow</h4></div>
+    <div class="widget-content">
+        <!-- Comment Form -->
+        <div class="default-form">
+            <!--Comment Form-->
+            <form id="formemloyee">
+                <div class="form-group">
+                    <label>Region</label>
+                    <input type="text" id="Region" placeholder="@Model.Form.Region" value="@Model.Form.Region" required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <label>City</label>
+                    <input type="text" id="City" placeholder="@Model.Form.City" value="@Model.Form.City" required>
+                    <span class="icon fab "></span>
+                </div>
+                <div class="form-group">
+                    <label>Benifits</label>
+                    <input type="text" id="Benifits" placeholder="@Model.Form.Benefits" value="@Model.Form.Benefits" required>
+                    <span class="icon fab fa-instagram"></span>
+                </div>
+                <div class="form-group">
+                    <label>Working Days</label>
+                    <input type="text" id="WorkingDays" placeholder="@Model.Form.WorkingDays" value="@Model.Form.WorkingDays" required>
+                    <span class="icon fab"></span>
+                </div>
+                <label>Radiobox</label>
+                <div class="radio-outer margin-top-10">
+                    <label>Checkbox</label>
+                    <div class="checkbox-outer margin-top-10">
+                        <ul class="checkboxes">
+                            @if (Model.Form.Gender == "Male")
+                            {
+                                <!-- Checkboxes Ouer -->
+                                <li>
+                                    <input id="check-a" type="checkbox" name="Male" checked>
+                                    <label for="check-a">Male</label>
+                                </li>
+                                <li>
+                                    <input id="check-b" type="checkbox" name="Female">
+                                    <label for="check-b">Female</label>
+                                </li>
+                            }
+                            else
+                            {
+                                if (Model.Form.Gender == "Female")
+                                {
+                                    <li>
+                                        <input id="check-a" type="checkbox" name="Male">
+                                        <label for="check-a">Male</label>
+                                    </li>
+                                    <li>
+                                        <input id="check-b" type="checkbox" name="Female" checked>
+                                        <label for="check-b">Female</label>
+                                    </li>
+                                }
+
+                                <li>
+                                    <input id="check-a" type="checkbox" name="Male" checked>
+                                    <label for="check-a">Male</label>
+                                </li>
+                                <li>
+                                    <input id="check-b" type="checkbox" name="Female" checked>
+                                    <label for="check-b">Female</label>
+                                </li>
+
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>Form Text</label>
+                    <input type="text" id="FormText" placeholder="@Model.Form.FormText" value="@Model.Form.FormText" required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="radio-outer margin-top-10">
+                    <label>Jobs</label>
+                    <div class="checkbox-outer margin-top-10">
+                        <ul class="checkboxes">
+                            @foreach (var g in Model.JobCategory)
+                            {
+                                if (g.JobCategory.ToString() == ViewBag.category)
+                                {
+                                    <li>
+                                        <input id="check-@g.JobID" data-id="@g.JobID" type="checkbox" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)" checked>
+                                        <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                                    </li>
+                                }
+                                else
+                                {
+                                    <li>
+                                        <input id="check-@g.JobID" data-id="@g.JobID" type="checkbox" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)">
+                                        <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                                    </li>
+                                }
+                            }
+                        </ul>
+                    </div>
+                </div>
+                <div class="form-group">
+                    <label>JobDescRiption</label>
+                    <input type="text" id="JobDescRiption" placeholder="@Model.Form.JobDescRiption" value="@Model.Form.JobDescRiption" required>
+                    <span class="icon fab"></span>
+                </div>
+                <div class="form-group">
+                    <button class="theme-btn btn-style-two" id="submit-form">Save Changes</button>
+                </div>
+            </form>
+        </div>
+        <!--End Comment Form -->
+    </div>
+</div>
+@section PageScript{
+    <script>
+        var t =@Model.JobCategory.Count();
+        var cat;
+        function selectOnlyThis(e,id) {
+            for (var i = 1; i <= t; i++) {
+                document.getElementById("check-" + i).checked = false;
+            }
+            document.getElementById(id).checked = true;
+            cat = $(e).attr("data-id");
+        }
+        $(function () {
+            $(document).ready(function () {
+                $(document).on("click", "#submit-form", function (e) {
+                    e.preventDefault();
+                    const s = $('#check-a').checked;
+                    const s1 = $('#check-b').checked;
+                    var c;
+                    console.log(s);
+                    console.log(s1);
+                    if (s) {
+                        c = "Male";
+                    }
+                    else {
+                        if (s1) {
+                            c = "Femle";
+                        }
+                        else {
+                            c = "Male-Female"
+                        }
+                    }
+                    console.log(c);
+                    $.ajax({
+                        type: "POST",
+                        url: "/KarFarma/Panel/EditForm",
+                        data: JSON.stringify({
+                            FormID:@Model.Form.FormID,
+                            Region: $("#Region").val(),
+                            City: $("#City").val(),
+                            Benifits: $("#Benifits").val(),
+                            WorkingDays: $("#WorkingDays").val(),
+                            Gender: c,
+                            FormText: $("#FormText").val(),
+                            JobDescRiption: $("#JobDescRiption").val(),
+                            JobID: cat
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                            if (e.Status) {
+                                alert('ok!');
+                            }
+                            else {
+                                alert('false');
+
+                            }
+                        },
+                        error: function () {
+                            alert('khata');
+                        }
+                    });
+                });
+
+            });
+        });
+    </script>
+}

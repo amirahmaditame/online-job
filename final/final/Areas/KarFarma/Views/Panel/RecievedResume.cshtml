@@ -1,0 +1,96 @@
+﻿@model IEnumerable< final.Areas.KarFarma.ViewModle.Resume>
+@{
+    ViewBag.Title = "RecievedResume";
+    Layout = "~/Areas/KarFarma/Views/Shared/_LayoutEmployee.cshtml";
+}
+<link href="~/Areas/KarFarma/Content/css/Custome.css" rel="stylesheet" />
+<h4 class="title">Resumes</h4>
+<div class="table-outer">
+    <table class="default-table" style="border:0px;">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Date</th>
+                <th>View</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var group in Model)
+            {
+                    <tr>
+                        <td>@group.FirstName</td>
+                        <td>@group.LastName</td>
+                        <td>@group.date</td>
+                        <td>
+                            <a onclick="view(@group.id)" href="javascript:;" class="btn btn-outline btn-circle btn-sm purple btn-viewgroup">
+                                <i class="fa fa-edit"></i> view
+                            </a>
+                        </td>
+                    </tr>
+                    
+                }
+        </tbody>
+    </table>
+</div>
+<div class="modal " id="MyModal"  tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="" role="document">
+        <div class="modal-content">
+            <div class="modal-body" id="myModalBody">
+                ...
+            </div>
+
+        </div>
+    </div>
+</div>
+@section PageScript{
+    <script>
+        function view(id) {
+            $.get("/karFarma/Panel/ShowResume/" + id, function (res) {
+
+                $("#MyModal").modal();
+                
+                $("#myModalBody").html(res);
+
+            });
+        }
+    </script>
+    @*<script>
+        $(function () {
+            $(document).ready(function () {
+
+                $(".btn-viewgroup").click(function () {
+                    console.log($(this).attr("data-id"));
+                    $.ajax({
+                        type: "POST",
+                        url: "/KarFarma/Panel/ShowResume",
+                        data: JSON.stringify({
+                            id: $(this).attr("data-id")
+                        }),
+                        contentType: "application/json; charset=utf-8",
+                        dataType: "json",
+                        success: function (e) {
+                            if (e.Status) {
+                                
+                                alert('sahih');
+                                
+                            }
+                            
+                        },
+                        error: function () {
+                            alert('khata');
+                        }
+                    });
+                });
+
+
+
+            });
+        });
+    </script>*@
+
+}
+
+
+
+

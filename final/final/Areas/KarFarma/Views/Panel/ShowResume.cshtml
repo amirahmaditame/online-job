@@ -1,0 +1,72 @@
+﻿@model DataLayer.ResumeTB
+@{
+    ViewBag.Title = "ShowResume";
+
+}
+<style>
+
+    #t1 {
+        border: 1px solid black;
+        border-collapse: collapse;
+    }
+
+        #t1 th {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+        #t1 td {
+            border: 1px solid black;
+            border-collapse: collapse;
+        }
+
+    th, td {
+        padding: 5px;
+        text-align: left;
+    }
+</style>
+
+<h4>Employee Resume</h4>
+
+<table id="t1" style="width:100%">
+    <tr>
+        <th>FirstName</th>
+        <td>@Model.FirstName</td>
+    </tr>
+    <tr>
+        <th>LastName</th>
+        <td>@Model.LatName</td>
+    </tr>
+
+    <tr>
+        <th>Age</th>
+        <td>@Model.Age</td>
+    </tr>
+
+    <tr>
+        <th>Educational Degree</th>
+        <td>@Model.EduDegree</td>
+    </tr>
+
+    <tr>
+        <th>English Ability</th>
+        @if (Model.EnglishAbility)
+        {
+
+            <td>Professional</td>
+        }
+        else
+        {
+            <td>Normal</td>
+        }
+    </tr>
+    <tr>
+        <th>Ability Desciption</th>
+        <td>@Model.AbilityDescription</td>
+    </tr>
+    <tr>
+        <th>Extra Ability</th>
+        <td>@Model.ExtraAbility</td>
+    </tr>
+
+</table>

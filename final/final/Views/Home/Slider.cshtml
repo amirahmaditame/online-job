@@ -19,11 +19,11 @@
             <div class="listing-search-tabs tabs-box">
                 <ul class="tab-buttons">
                     <li class="tab-btn active-btn" data-tab="#tab1">Jobs</li>
-                    
+
                 </ul>
 
                 <div class="tabs-content">
-                  
+
                     <div class="tab active-tab" id="tab1">
                         <div class="listing-search-form">
                             <form method="get" action="/Search">
@@ -33,11 +33,11 @@
                                     </div>
                                     <!-- Form Group -->
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12 location">
-                                        <input  type="text" name="location" placeholder="Lucation">
+                                        <input type="text" name="location" placeholder="Lucation">
                                         <span class="icon flaticon-placeholder" data-text="Type and hit enter"></span>
                                     </div>
 
-                                    @{ 
+                                    @{
                                         List<DataLayer.JobCategoryTB> category = ViewBag.category;
                                     }
 
@@ -61,8 +61,8 @@
                         </div>
                     </div>
 
-                  
-                   
+
+
                 </div>
             </div>
 
