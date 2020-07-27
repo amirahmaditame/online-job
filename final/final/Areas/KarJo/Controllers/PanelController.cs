@@ -10,6 +10,7 @@ using System.Web.UI.WebControls;
 
 namespace final.Areas.KarJo.Controllers
 {
+    [Authorize(Roles = "employeer")]
     public class PanelController : Controller
     {
         // GET: KarJo/Panel
@@ -17,8 +18,10 @@ namespace final.Areas.KarJo.Controllers
         OnlineJobEntities online = new OnlineJobEntities();
         public ActionResult Index()
         {
-            var model = online.UserTB.Find(4);
-            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(id);
+            int employerId = online.EmployerTB.Where(p => p.UserID == id).FirstOrDefault().EmployerID;
             var resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).First().ResumeID;
             ViewBag.id = resumeid;
             int count = online.FormForeachResume(resumeid).Count();
@@ -29,8 +32,10 @@ namespace final.Areas.KarJo.Controllers
         [HttpGet]
         public ActionResult CreateResume() 
         {
-            var model = online.UserTB.Find(4);
-            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(id);
+            int employerId = online.EmployerTB.Where(p => p.UserID == id).FirstOrDefault().EmployerID;
             var resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).First().ResumeID;
             if (resumeid !=null) {
                 var resumesample = online.ResumeTB.Where(p => p.ResumeID == resumeid).First();
@@ -42,8 +47,10 @@ namespace final.Areas.KarJo.Controllers
         [HttpPost]
         public ActionResult CreateResume(ResumeTB resume)
         {
-            var model = online.UserTB.Find(4);
-            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(id);
+            int employerId = online.EmployerTB.Where(p => p.UserID == id).FirstOrDefault().EmployerID;
             resume.RequestDate = DateTime.Now;
             online.ResumeTB.Add(resume);
             var m=online.EmployerTB.Where(p => p.EmployerID == employerId).First();
@@ -53,8 +60,10 @@ namespace final.Areas.KarJo.Controllers
         }
         [HttpGet]
         public ActionResult EditResume() {
-            var model = online.UserTB.Find(4);
-            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(id);
+            int employerId = online.EmployerTB.Where(p => p.UserID == id).FirstOrDefault().EmployerID;
             int? resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).Select(p=>p.ResumeID).First();
             var resume = online.ResumeTB.Where(p => p.ResumeID == resumeid).First();
             return View(resume);
@@ -74,7 +83,9 @@ namespace final.Areas.KarJo.Controllers
         [HttpGet]
         public ActionResult EditPersonalInformation() 
         {
-            var model = online.UserTB.Find(4);
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(id);
             return View(model);
         }
 
@@ -91,8 +102,10 @@ namespace final.Areas.KarJo.Controllers
             });
         }
         public ActionResult SendResume() {
-            var model = online.UserTB.Find(4);
-            int employerId = online.EmployerTB.Where(p => p.UserID == 4).FirstOrDefault().EmployerID;
+            var username = User.Identity.Name;
+            var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
+            var model = online.UserTB.Find(id);
+            int employerId = online.EmployerTB.Where(p => p.UserID == id).FirstOrDefault().EmployerID;
             int? resumeid = online.EmployerTB.Where(p => p.EmployerID == employerId).Select(p => p.ResumeID).First();
             var Forms = online.FormForeachResume(resumeid);
             int i;i = 1;
