@@ -82,7 +82,7 @@
                 <div class="radio-outer margin-top-10">
                     <label>Jobs</label>
                     <div class="checkbox-outer margin-top-10">
-                        <ul class="checkboxes">
+                        @*<ul class="checkboxes">
                             @foreach (var g in Model.JobCategory)
                             {
                                 if (g.JobCategory.ToString() == ViewBag.category)
@@ -100,7 +100,41 @@
                                     </li>
                                 }
                             }
-                        </ul>
+
+
+
+                        </ul>*@
+
+
+                        <div class="form-group">
+
+                            <div class="radio-outer margin-top-10">
+                                @foreach (var g in Model.JobCategory)
+                                {
+                                    if (g.JobCategory.ToString() == ViewBag.category)
+                                    {
+
+                                        <div class="radio-box">
+
+
+                                            <input id="check-@g.JobID" data-id="@g.JobID" type="radio" name="cat" onclick="selectOnlyThis(this,this.id)" checked>
+                                            <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+
+                                        </div>
+                                    }
+                                    else
+                                    {
+                                        <div class="radio-box">
+                                            <input id="check-@g.JobID" data-id="@g.JobID" type="radio" name="cat" onclick="selectOnlyThis(this,this.id)">
+                                            <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                                            </div>
+                                        }
+                                    }
+                            </div>
+                            </div>
+
+
+
                     </div>
                 </div>
                 <div class="form-group">
@@ -121,21 +155,29 @@
         var t =@Model.JobCategory.Count();
         var cat;
         function selectOnlyThis(e,id) {
-            for (var i = 1; i <= t; i++) {
-                document.getElementById("check-" + i).checked = false;
-            }
-            document.getElementById(id).checked = true;
+            //for (var i = 1; i <= t; i++) {
+            //    document.getElementById("check-" + i).checked = false;
+            //}
+            //document.getElementById(id).checked = true;
             cat = $(e).attr("data-id");
         }
         $(function () {
             $(document).ready(function () {
                 $(document).on("click", "#submit-form", function (e) {
                     e.preventDefault();
+                    var ele = document.getElementsByName('cat');
+
+                    for (i = 0; i < ele.length; i++) {
+                        if (ele[i].checked)
+                            cat = ele[i].attr("data-id");
+                    } 
                     const s = $('#check-a').checked;
                     const s1 = $('#check-b').checked;
                     var c;
                     console.log(s);
                     console.log(s1);
+                    console.log(cat);
+                    cat = $("input[type=radio][name=cat]:checked").val();
                     if (s) {
                         c = "Male";
                     }
@@ -155,7 +197,7 @@
                             FormID:@Model.Form.FormID,
                             Region: $("#Region").val(),
                             City: $("#City").val(),
-                            Benifits: $("#Benifits").val(),
+                            Benefits: $("#Benifits").val(),
                             WorkingDays: $("#WorkingDays").val(),
                             Gender: c,
                             FormText: $("#FormText").val(),

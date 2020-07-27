@@ -11,6 +11,16 @@
     <Property Name="CommentText" Type="nvarchar" MaxLength="350" Nullable="false" />
     <Property Name="CommentDate" Type="datetime" Nullable="false" />
   </EntityType>
+  <EntityType Name="ContactMessage">
+    <Key>
+      <PropertyRef Name="ContactMessageID" />
+    </Key>
+    <Property Name="ContactMessageID" Type="int" StoreGeneratedPattern="Identity" Nullable="false" />
+    <Property Name="Name" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Email" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="Subject" Type="nvarchar" MaxLength="250" Nullable="false" />
+    <Property Name="MessageText" Type="nvarchar" MaxLength="600" Nullable="false" />
+  </EntityType>
   <EntityType Name="EmployeeTB">
     <Key>
       <PropertyRef Name="EmployeeID" />
@@ -167,14 +177,14 @@
     </ReferentialConstraint>
   </Association>
   <Association Name="FK_FormDetailTB_FormTB">
-    <End Role="FormTB" Type="Self.FormTB" Multiplicity="1" />
+    <End Role="EmployeeTB" Type="Self.EmployeeTB" Multiplicity="1" />
     <End Role="FormDetailTB" Type="Self.FormDetailTB" Multiplicity="*" />
     <ReferentialConstraint>
-      <Principal Role="FormTB">
-        <PropertyRef Name="FormID" />
+      <Principal Role="EmployeeTB">
+        <PropertyRef Name="EmployeeID" />
       </Principal>
       <Dependent Role="FormDetailTB">
-        <PropertyRef Name="FormID" />
+        <PropertyRef Name="EmployeeID" />
       </Dependent>
     </ReferentialConstraint>
   </Association>
@@ -246,6 +256,7 @@
   </Function>
   <EntityContainer Name="OnlineJobModelStoreContainer">
     <EntitySet Name="CommentTB" EntityType="Self.CommentTB" Schema="dbo" store:Type="Tables" />
+    <EntitySet Name="ContactMessage" EntityType="Self.ContactMessage" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmployeeTB" EntityType="Self.EmployeeTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="EmployerTB" EntityType="Self.EmployerTB" Schema="dbo" store:Type="Tables" />
     <EntitySet Name="FormDetailTB" EntityType="Self.FormDetailTB" Schema="dbo" store:Type="Tables" />
@@ -276,7 +287,7 @@
       <End Role="FormDetailTB" EntitySet="FormDetailTB" />
     </AssociationSet>
     <AssociationSet Name="FK_FormDetailTB_FormTB" Association="Self.FK_FormDetailTB_FormTB">
-      <End Role="FormTB" EntitySet="FormTB" />
+      <End Role="EmployeeTB" EntitySet="EmployeeTB" />
       <End Role="FormDetailTB" EntitySet="FormDetailTB" />
     </AssociationSet>
     <AssociationSet Name="FK_FormTB_JobCategoryTB" Association="Self.FK_FormTB_JobCategoryTB">

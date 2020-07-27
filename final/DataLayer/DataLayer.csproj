@@ -54,6 +54,9 @@
     <Compile Include="CommentTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
+    <Compile Include="ContactMessage.cs">
+      <DependentUpon>JobOnlineModel.tt</DependentUpon>
+    </Compile>
     <Compile Include="EmployeeTB.cs">
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
@@ -87,6 +90,7 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>JobOnlineModel.edmx</DependentUpon>
     </Compile>
+    <Compile Include="MetaDataClasses\ContactMessageMetaData.cs" />
     <Compile Include="MetaDataClasses\FormMetaData.cs" />
     <Compile Include="MetaDataClasses\JobsGroupMetaData.cs" />
     <Compile Include="MetaDataClasses\RoleMetaData.cs" />
@@ -125,6 +129,7 @@
       <DependentUpon>JobOnlineModel.tt</DependentUpon>
     </Compile>
     <Compile Include="ViewModels\AccountViewModel.cs" />
+    <Compile Include="ViewModels\JobViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <EntityDeploy Include="JobOnlineModel.edmx">

@@ -28,8 +28,6 @@ public partial class FormDetailTB
 
     public virtual EmployeeTB EmployeeTB { get; set; }
 
-    public virtual FormTB FormTB { get; set; }
-
 }
 
 }

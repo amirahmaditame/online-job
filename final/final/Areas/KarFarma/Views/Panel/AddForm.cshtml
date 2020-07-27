@@ -58,16 +58,34 @@
                 </div>
                 <div class="radio-outer margin-top-10">
                     <label>Jobs</label>
-                    <div class="checkbox-outer">
-                        <ul class="checkboxes">
-                            @foreach (var g in Model)
-                            {
-                                <li>
-                                    <input id="check-@g.JobID" data-id="@g.JobID" type="checkbox" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)">
-                                    <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
-                                </li>
-                            }
-                        </ul>
+                    <div class="">
+                        @*<ul class="">
+            @foreach (var g in Model)
+            {
+                <li>
+                    <input id="check-@g.JobID" data-id="@g.JobID" type="radio" name="@g.JobCategory" onclick="selectOnlyThis(this,this.id)">
+                    <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+                </li>
+            }
+        </ul>*@
+
+                        <div class="form-group">
+
+                            <div class="radio-outer margin-top-10">
+                                @foreach (var g in Model)
+                                {
+                                    <div class="radio-box">
+
+
+                                        <input id="check-@g.JobID" data-id="@g.JobID" type="radio" name="radio" onclick="selectOnlyThis(this,this.id) " >
+                                        <label for="check-@g.JobID" data-id="@g.JobID">@g.JobCategory</label>
+
+                                    </div>
+                                }
+                            </div>
+                        </div>
+                       
+
                     </div>
                 </div>
                 <br />
@@ -89,10 +107,10 @@
         var t =@Model.Count();
         var jobid;
         function selectOnlyThis(e,id) {
-            for (var i = 1; i <= t; i++) {
-                document.getElementById("check-" + i).checked = false;
-            }
-            document.getElementById(id).checked = true;
+            //for (var i = 1; i <= t; i++) {
+            //    document.getElementById("check-" + i).checked = false;
+            //}
+            //document.getElementById(id).checked = true;
             jobid = $(e).attr("data-id");
         }
         $(function () {
@@ -101,6 +119,7 @@
                     e.preventDefault();
                     const s = $('#check-a').checked;
                     const s1 = $('#check-b').checked;
+                    alert(jobid);
                     var c;
                     if (s) {
                         c = "Male";

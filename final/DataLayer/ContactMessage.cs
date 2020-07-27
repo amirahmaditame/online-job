@@ -15,22 +15,18 @@ namespace DataLayer
 using System;
     using System.Collections.Generic;
     
-public partial class ResumeEmployeeTB
+public partial class ContactMessage
 {
 
-    public int ResumeID { get; set; }
+    public int ContactMessageID { get; set; }
 
-    public int FormID { get; set; }
+    public string Name { get; set; }
 
-    public System.DateTime Date { get; set; }
+    public string Email { get; set; }
 
-    public int ResumeEmployeeID { get; set; }
+    public string Subject { get; set; }
 
-
-
-    public virtual ResumeTB ResumeTB { get; set; }
-
-    public virtual FormTB FormTB { get; set; }
+    public string MessageText { get; set; }
 
 }
 

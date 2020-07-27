@@ -1,9 +1,12 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Web;
 using System.Web.Mvc;
 using DataLayer;
+using Microsoft.Ajax.Utilities;
+
 namespace final.Controllers
 {
     public class HomeController : Controller
@@ -28,8 +31,11 @@ namespace final.Controllers
         }
         public ActionResult lastjob()
         {
-            var lastJob = db.FormTB.OrderByDescending(j => j.RequestDtae).Take(6);
-            return PartialView(lastJob);
+            var last = db.FormTB.OrderByDescending(s => s.RequestDtae).Take(6);
+
+            return PartialView(last);
+
+
         }
 
         public ActionResult howitwork()

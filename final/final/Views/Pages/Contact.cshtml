@@ -1,0 +1,105 @@
+﻿@model DataLayer.ContactMessage
+@{
+    ViewBag.Title = "Contact";
+    Layout = "~/Views/Shared/_LandingPage.cshtml";
+}
+
+<section class="contact-section">
+    <div class="auto-container">
+        <div class="sec-title text-center">
+            <h2>Contact</h2>
+            <span class="divider"></span>
+            <div class="text">Explore some of the best tips from around the city from our partners and friends.</div>
+        </div>
+
+        <div class="row">
+            <!-- Map Column -->
+            <div class="map-column col-lg-7 col-md-12 col-sm-12">
+                <!-- Business Info Widget -->
+                <div class="business-info-widget ls-widget">
+                    <div class="widget-title">
+                        <h4><span class="icon flaticon-call"></span>Contact Info</h4>
+                    </div>
+                    <div class="widget-content">
+                        <div class="map-box">
+                            <div class="map-canvas"
+                                 data-zoom="12"
+                                 data-lat="-37.817085"
+                                 data-lng="144.955631"
+                                 data-type="roadmap"
+                                 data-hue="#ffc400"
+                                 data-title="Envato"
+                                 data-icon-path="images/icons/map-marker.png"
+                                 data-content="Melbourne VIC 3000, Australia<br><a href='mailto:info@youremail.com'>info@youremail.com</a>">
+                            </div>
+                        </div>
+
+                        <ul class="contact-info-list">
+                            <li><span class="icon flaticon-pin"></span> 484 Ellis St, San Francisco, CA 94102,<br> United States</li>
+                            <li><span class="icon flaticon-call"></span> <a href="tel:61282369200">+61 2 8236 9200 </a></li>
+                            <li><span class="icon flaticon-mail"></span> <a href="https://grandetest.com/cdn-cgi/l/email-protection#ea999f9a9a85989eaa8683999e8e85c4898587"><span class="__cf_email__" data-cfemail="5c2f292c2c332e281c30352f283833723f3331">[email&#160;protected]</span> </a></li>
+                            <li><span class="icon flaticon-unlink"></span> <a href="www.listdo.html">www.listdo.com</a></li>
+                        </ul>
+
+                        <ul class="social-icon-two">
+                            <li><a href="#"><span class="fab fa-facebook"></span></a></li>
+                            <li><a href="#"><span class="fab fa-twitter"></span></a></li>
+                            <li><a href="#"><span class="fab fa-instagram"></span></a></li>
+                            <li><a href="#"><span class="fab fa-pinterest"></span></a></li>
+                            <li><a href="#"><span class="fab fa-dribbble"></span></a></li>
+                            <li><a href="#"><span class="fab fa-google"></span></a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+
+            <div class="contact-column col-lg-5 col-md-12 col-sm-12">
+                <!-- Contact Widget -->
+                <div class="contact-widget ls-widget">
+                    <div class="widget-title"><h4><span class="icon flaticon-list"></span>Contact business</h4></div>
+                    <div class="widget-content">
+                        <!-- Comment Form -->
+                        <div class="default-form">
+                            <!--Comment Form-->
+                            @using (Html.BeginForm())
+                            {
+
+                                <div class="row clearfix ">
+                                    <div class="form-group col-lg-12 col-md-12 col-sm-12">
+                                        <div class="response"></div>
+                                    </div>
+
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control", placeholder = "Name" } })
+                                        @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        @Html.EditorFor(model => model.Email, new { htmlAttributes = new { @class = "form-control", placeholder = "Email" } })
+                                        @Html.ValidationMessageFor(model => model.Email, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        @Html.EditorFor(model => model.Subject, new { htmlAttributes = new { @class = "form-control", placeholder = "Subject" } })
+                                        @Html.ValidationMessageFor(model => model.Subject, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        @Html.EditorFor(model => model.MessageText, new { htmlAttributes = new { @class = "form-control", placeholder = "Text" } })
+                                        @Html.ValidationMessageFor(model => model.MessageText, "", new { @class = "text-danger" })
+                                    </div>
+                                    <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                                        <button class="theme-btn btn-style-two" type="button" id="submit" name="submit-form">Submit Review</button>
+                                    </div>
+                                </div>
+
+                            }
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+@section scriptsmain
+{
+    <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2uu6KHbLc_y7fyAVA4dpqSVM4w9ZnnUw"></script>
+    <script src="/Content/js/map-script.js"></script>
+}

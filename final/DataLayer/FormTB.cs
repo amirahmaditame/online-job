@@ -22,8 +22,6 @@ public partial class FormTB
     public FormTB()
     {
 
-        this.FormDetailTB = new HashSet<FormDetailTB>();
-
         this.ResumeEmployeeTB = new HashSet<ResumeEmployeeTB>();
 
     }
@@ -50,10 +48,6 @@ public partial class FormTB
     public int JobID { get; set; }
 
 
-
-    [System.Diagnostics.CodeAnalysis.SuppressMessage("Microsoft.Usage", "CA2227:CollectionPropertiesShouldBeReadOnly")]
-
-    public virtual ICollection<FormDetailTB> FormDetailTB { get; set; }
 
     public virtual JobCategoryTB JobCategoryTB { get; set; }
 

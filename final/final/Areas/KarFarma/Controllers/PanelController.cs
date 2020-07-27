@@ -120,7 +120,7 @@ namespace final.Areas.KarFarma.Controllers
         {
             var username = User.Identity.Name;
             var i = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
-            int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            int employeeId = online.EmployeeTB.Where(p => p.UserID == i).FirstOrDefault().EmployeeID;
             var model = online.FormTB.Find(id);
             ViewBag.CompanyName = online.EmployeeTB.Where(p => p.EmployeeID == employeeId).Select(p => p.CompanyName).First();
             var catid = online.FormTB.Where(p => p.FormID == id).FirstOrDefault().JobID;
@@ -168,14 +168,32 @@ namespace final.Areas.KarFarma.Controllers
         [HttpPost]
         public JsonResult AddForm(FormTB form)
         {
-            form.RequestDtae = DateTime.Now;
-            online.FormTB.Add(form);
             var username = User.Identity.Name;
             var id = online.UserTB.SingleOrDefault(u => u.UserName == username).UserID;
             int employeeId = online.EmployeeTB.Where(p => p.UserID == id).FirstOrDefault().EmployeeID;
+            var formm = new FormTB()
+            {
+                Benefits = form.Benefits,
+                City = form.City,
+                FormText = form.FormText,
+                Gender = form.Gender,
+                JobDescRiption= form.JobDescRiption,
+                Region = form.Region,
+                RequestDtae = DateTime.Now,
+                JobID = form.JobID,
+                WorkingDays = form.WorkingDays,
+                
+                
+            };
+            
+            online.FormTB.Add(formm);
+            online.SaveChanges();
+
+
             FormDetailTB form1 = new FormDetailTB() {
                 EmployeeID = employeeId,
-                FormID=form.FormID
+                FormID=formm.FormID
+                
             };
             online.FormDetailTB.Add(form1);
             online.SaveChanges();

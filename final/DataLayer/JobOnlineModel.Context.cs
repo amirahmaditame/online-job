@@ -47,13 +47,15 @@ public partial class OnlineJobEntities : DbContext
 
     public virtual DbSet<EmployeeTB> EmployeeTB { get; set; }
 
-    public virtual DbSet<FormTB> FormTB { get; set; }
-
     public virtual DbSet<JobCategoryTB> JobCategoryTB { get; set; }
 
     public virtual DbSet<ResumeEmployeeTB> ResumeEmployeeTB { get; set; }
 
     public virtual DbSet<EmployerTB> EmployerTB { get; set; }
+
+    public virtual DbSet<FormTB> FormTB { get; set; }
+
+    public virtual DbSet<ContactMessage> ContactMessage { get; set; }
 
 
     public virtual ObjectResult<ReportPerEmployeeForEachResume_Result> ReportPerEmployeeForEachResume(Nullable<int> employeeID)

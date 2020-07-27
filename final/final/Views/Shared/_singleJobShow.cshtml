@@ -1,16 +1,14 @@
 ﻿
 @model DataLayer.FormTB
 
-
-
 <div class="inner-box">
     <div class="image-box">
         <figure class="image"><img src="/Content/images/resource/listing/1-1.jpg" alt=""></figure>
         <div class="tags">
-            <span>Featured</span>
-            <span>$25 - $35</span>
+            <span>@Model.RequestDtae.ToString("MMMM dd, yyyy")</span>
+            @*<span>@Model.Gender</span>*@
         </div>
-        <a href="#" class="like-btn"><span class="flaticon-heart"></span> Save</a>
+        @*<a href="#" class="like-btn"><span class="flaticon-heart"></span> Save</a>*@
     </div>
     <div class="lower-content">
         <div class="user-thumb"><img src="/Content/images/resource/user-thumb-1.jpg" alt="" /></div>
@@ -23,18 +21,18 @@
             <span class="title">(7 review)</span>
         </div>
         <h3><a href="/ShowJob/@Model.FormID">Company name <span class="icon icon-verified"></span></a></h3>
-        <div class="text">Luxury hotel in the heart of Bloomsbury.</div>
+        <div class="text"> @Model.JobDescRiption </div>
         <ul class="info">
             <li><span class="flaticon-pin"></span>@Model.Region</li>
-            <li><span class="flaticon-phone-call"></span> +61 2 8236 9200 </li>
+            <li><span class="flaticon-pin"></span> @Model.City</li>
         </ul>
     </div>
     <div class="bottom-box">
         <div class="places">
-            <div class="place"><span class="icon flaticon-bed"></span> Hotels </div>
-            <span class="count">+3</span>
+            <div class="place"><span class="icon flaticon-heart"></span><a href="/Search?categorySelected=@Model.JobCategoryTB.JobCategory"> @Model.JobCategoryTB.JobCategory</a> </div>
+            @*<span class="count">+3</span>*@
         </div>
-        <div class="status">Now Closed</div>
+        <div class="status">@Model.Gender</div>
     </div>
 </div>
 

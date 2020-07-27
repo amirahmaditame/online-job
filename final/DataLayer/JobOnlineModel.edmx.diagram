@@ -14,17 +14,17 @@
         <EntityTypeShape EntityType="OnlineJobModel.EmployeeTB" Width="1.5" PointX="5.25" PointY="16.125" />
         <AssociationConnector Association="OnlineJobModel.FK_EmployeeTB_UserTB" />
         <AssociationConnector Association="OnlineJobModel.FK_FormDetailTB_EmployeeTB" />
-        <EntityTypeShape EntityType="OnlineJobModel.FormTB" Width="1.5" PointX="0.75" PointY="1" />
-        <AssociationConnector Association="OnlineJobModel.FK_FormDetailTB_FormTB" />
         <EntityTypeShape EntityType="OnlineJobModel.JobCategoryTB" Width="1.5" PointX="3.75" PointY="9.375" />
         <AssociationConnector Association="OnlineJobModel.FK_CommentTB_JobCategoryTB" />
-        <AssociationConnector Association="OnlineJobModel.FK_FormTB_JobCategoryTB" />
         <EntityTypeShape EntityType="OnlineJobModel.ResumeEmployeeTB" Width="1.5" PointX="3.75" PointY="5.625" />
-        <AssociationConnector Association="OnlineJobModel.FK_ResumeEmployeeTB_FormTB" />
         <AssociationConnector Association="OnlineJobModel.FK_ResumeEmployeeTB_ResumeTB" />
         <EntityTypeShape EntityType="OnlineJobModel.EmployerTB" Width="1.5" PointX="5.25" PointY="13.125" />
         <AssociationConnector Association="OnlineJobModel.FK_EmployerTB_ResumeTB" />
         <AssociationConnector Association="OnlineJobModel.FK_EmployerTB_UserTB" />
+        <EntityTypeShape EntityType="OnlineJobModel.FormTB" Width="1.5" PointX="3.5" PointY="1" />
+        <AssociationConnector Association="OnlineJobModel.FK_FormTB_JobCategoryTB" />
+        <AssociationConnector Association="OnlineJobModel.FK_ResumeEmployeeTB_FormTB" />
+        <EntityTypeShape EntityType="OnlineJobModel.ContactMessage" Width="1.5" PointX="0.75" PointY="0.75" />
       </Diagram>
     </edmx:Diagrams>
   </edmx:Designer>

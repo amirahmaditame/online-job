@@ -43,10 +43,10 @@
 
                                     <!-- Form Group -->
                                     <div class="form-group col-lg-3 col-md-6 col-sm-12">
-                                        <select class="chosen-select">
+                                        <select name="categorySelected" class="chosen-select">
                                             @foreach (var item in category)
                                             {
-                                                <option>@item.JobCategory</option>
+                                                <option >@item.JobCategory</option>
                                             }
 
                                         </select>
@@ -72,10 +72,10 @@
         <div class="browse-catergory">
             <div class="text">Or browse the highlights</div>
             <ul class="browse-cat-list">
-                <li><a href="#"><span class="icon flaticon-computer"></span> Computer</a></li>
-                <li><a href="#"><span class="icon flaticon-heart"></span> Art </a></li>
-                <li><a href="#"><span class="icon flaticon-consulting-message"></span> Chemistry </a></li>
-                <li><a href="#"><span class="icon flaticon-favorites"></span> Electrinic </a></li>
+                <li><a href="/Search?categorySelected=Computer"><span class="icon flaticon-computer"></span> Computer</a></li>
+                <li><a href="/Search?categorySelected=Art"><span class="icon flaticon-heart"></span> Art </a></li>
+                <li><a href="/Search?categorySelected=chemistry"><span class="icon flaticon-consulting-message"></span> Chemistry </a></li>
+                <li><a href="/Search?categorySelected=electronic"><span class="icon flaticon-favorites"></span> Electrinic </a></li>
             </ul>
         </div>
     </div>

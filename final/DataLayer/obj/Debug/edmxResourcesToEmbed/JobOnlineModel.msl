@@ -122,22 +122,6 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
-    <EntitySetMapping Name="FormTB">
-      <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
-        <MappingFragment StoreEntitySet="FormTB">
-          <ScalarProperty Name="JobID" ColumnName="JobID" />
-          <ScalarProperty Name="JobDescRiption" ColumnName="JobDescRiption" />
-          <ScalarProperty Name="FormText" ColumnName="FormText" />
-          <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
-          <ScalarProperty Name="Gender" ColumnName="Gender" />
-          <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
-          <ScalarProperty Name="Benefits" ColumnName="Benefits" />
-          <ScalarProperty Name="City" ColumnName="City" />
-          <ScalarProperty Name="Region" ColumnName="Region" />
-          <ScalarProperty Name="FormID" ColumnName="FormID" />
-        </MappingFragment>
-      </EntityTypeMapping>
-    </EntitySetMapping>
     <EntitySetMapping Name="JobCategoryTB">
       <EntityTypeMapping TypeName="OnlineJobModel.JobCategoryTB">
         <MappingFragment StoreEntitySet="JobCategoryTB">
@@ -215,5 +199,32 @@
         </ComplexTypeMapping>
       </ResultMapping>
     </FunctionImportMapping>
+    <EntitySetMapping Name="FormTB">
+      <EntityTypeMapping TypeName="OnlineJobModel.FormTB">
+        <MappingFragment StoreEntitySet="FormTB">
+          <ScalarProperty Name="JobID" ColumnName="JobID" />
+          <ScalarProperty Name="JobDescRiption" ColumnName="JobDescRiption" />
+          <ScalarProperty Name="FormText" ColumnName="FormText" />
+          <ScalarProperty Name="RequestDtae" ColumnName="RequestDtae" />
+          <ScalarProperty Name="Gender" ColumnName="Gender" />
+          <ScalarProperty Name="WorkingDays" ColumnName="WorkingDays" />
+          <ScalarProperty Name="Benefits" ColumnName="Benefits" />
+          <ScalarProperty Name="City" ColumnName="City" />
+          <ScalarProperty Name="Region" ColumnName="Region" />
+          <ScalarProperty Name="FormID" ColumnName="FormID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
+    <EntitySetMapping Name="ContactMessage">
+      <EntityTypeMapping TypeName="OnlineJobModel.ContactMessage">
+        <MappingFragment StoreEntitySet="ContactMessage">
+          <ScalarProperty Name="MessageText" ColumnName="MessageText" />
+          <ScalarProperty Name="Subject" ColumnName="Subject" />
+          <ScalarProperty Name="Email" ColumnName="Email" />
+          <ScalarProperty Name="Name" ColumnName="Name" />
+          <ScalarProperty Name="ContactMessageID" ColumnName="ContactMessageID" />
+        </MappingFragment>
+      </EntityTypeMapping>
+    </EntitySetMapping>
   </EntityContainerMapping>
 </Mapping>
