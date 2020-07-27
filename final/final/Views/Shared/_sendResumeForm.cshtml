@@ -1,0 +1,36 @@
+﻿@*@model DataLayer.jobDetailViewModel*@
+@{ 
+    var user = User.Identity.Name.ToString();
+}
+
+@if(User.Identity.IsAuthenticated)
+{
+    
+        <div class="row clearfix">
+            
+            <div class="col-lg-12 col-md-12 col-sm-12 form-group">
+                <button onclick="sendresume()" style="width:100%" class="theme-btn btn-style-two" type="submit" name="submit-form">Send</button>
+            </div>
+        </div>
+    
+}
+else
+{
+<div class="alert alert-warning">Please Log in Site To submit your resume</div>
+}
+
+
+@*<script>
+        function sendresume() {
+            $.ajax({
+                url:"/Job/sendresume",
+                data: { 'resumeId': @Model.resumeId, 'FormID' : @Model.form.FormID },
+                type: "post",
+
+                success: function (savingStatus) {
+                    alert("Your resume has been successfully submitted")
+                },
+
+            });
+        }
+</script>*@

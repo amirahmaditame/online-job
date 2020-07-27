@@ -11,4 +11,10 @@ namespace DataLayer
         public FormTB form;
         public int phoneNumber;
     }
+
+    public class jobDetailViewModel
+    {
+        public FormTB form;
+        public int resumeId { get; set; }
+    }
 }

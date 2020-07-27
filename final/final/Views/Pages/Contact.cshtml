@@ -86,9 +86,10 @@
                                         @Html.ValidationMessageFor(model => model.MessageText, "", new { @class = "text-danger" })
                                     </div>
                                     <div class="col-lg-12 col-md-12 col-sm-12 form-group">
-                                        <button class="theme-btn btn-style-two" type="button" id="submit" name="submit-form">Submit Review</button>
+                                        <button onclick="clearT()" class="theme-btn btn-style-two" type="submit" id="submit" name="submit-form">Submit Review</button>
                                     </div>
                                 </div>
+                               
 
                             }
                         </div>
@@ -102,4 +103,9 @@
 {
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyB2uu6KHbLc_y7fyAVA4dpqSVM4w9ZnnUw"></script>
     <script src="/Content/js/map-script.js"></script>
+
+    
+
+
+
 }

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
-using DataLayer;
+
 
 namespace final.Controllers
 {
@@ -27,6 +27,12 @@ namespace final.Controllers
         [HttpPost]
         public ActionResult Contact(ContactMessage message)
         {
+            if(ModelState.IsValid)
+            {
+                db.ContactMessage.Add(message);
+                db.SaveChanges();
+                return View("successText");
+            }
             return View();
         }
     }
