@@ -31,7 +31,7 @@ public partial class EmployeeTB
 
     public int UserID { get; set; }
 
-    public int PhoneNumber { get; set; }
+    public Nullable<int> PhoneNumber { get; set; }
 
     public string Site { get; set; }
 
